@@ -1,0 +1,127 @@
+{#
+/**
+ * @file
+ * Tabs component - Pestañas interactivas
+ */
+#}
+
+{% set tabs_style = style|default('default') %}
+{% set tabs_alignment = alignment|default('left') %}
+{% set tabs_items = tabs|default([]) %}
+{% set active_tab = default_tab|default(0) %}
+{% set tabs_id = custom_id|default('tabs-' ~ random()) %}
+
+{% set tab_list =
+  html_cva(
+    base: ['flex flex-wrap mb-4'],
+    variants: {
+      alignment: {
+        left: 'justify-start',
+        center: 'justify-center',
+        right: 'justify-end',
+        stretch: 'justify-stretch'
+      },
+      style: {
+        default: 'border-b border-border gap-0',
+        pills: 'gap-2',
+        underline: 'border-b border-border gap-0',
+        boxed: 'bg-muted p-1 rounded-lg gap-1'
+      }
+    }
+  )
+%}
+
+{% set tab_button =
+  html_cva(
+    base: [
+      'px-4 py-2 font-medium text-sm transition-all duration-200',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+      'cursor-pointer'
+    ],
+    variants: {
+      style: {
+        default: [
+          'border-b-2 border-transparent -mb-px',
+          'hover:text-primary hover:border-primary/50',
+          'data-[active=true]:border-primary data-[active=true]:text-primary'
+        ],
+        pills: [
+          'rounded-full',
+          'hover:bg-muted',
+          'data-[active=true]:bg-primary data-[active=true]:text-primary-foreground'
+        ],
+        underline: [
+          'border-b-2 border-transparent -mb-px',
+          'hover:text-primary',
+          'data-[active=true]:border-primary data-[active=true]:text-primary'
+        ],
+        boxed: [
+          'rounded-md',
+          'hover:bg-background/50',
+          'data-[active=true]:bg-background data-[active=true]:shadow-sm'
+        ]
+      },
+      stretch: {
+        yes: 'flex-1 text-center',
+        no: ''
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set tab_list_classes =
+  tab_list.apply({
+    alignment: tabs_alignment,
+    style: tabs_style
+  })
+%}
+
+{% set is_stretch = tabs_alignment == 'stretch' ? 'yes' : 'no' %}
+
+<div class="cb-tabs {{ additional_classes }}" id="{{ tabs_id }}" data-cb-tabs>
+  {# Tab buttons #}
+  <div class="{{ tab_list_classes }}" role="tablist" aria-label="Pestañas">
+    {% for tab in tabs_items %}
+      {% set tab_button_classes =
+        tab_button.apply({
+          style: tabs_style,
+          stretch: is_stretch
+        })
+      %}
+      <button
+        class="{{ tab_button_classes }}"
+        role="tab"
+        aria-selected="{{ loop.index0 == active_tab ? 'true' : 'false' }}"
+        aria-controls="{{ tabs_id }}-panel-{{ loop.index0 }}"
+        id="{{ tabs_id }}-tab-{{ loop.index0 }}"
+        data-active="{{ loop.index0 == active_tab ? 'true' : 'false' }}"
+        data-tab-index="{{ loop.index0 }}"
+        tabindex="{{ loop.index0 == active_tab ? '0' : '-1' }}"
+      >
+        {% if tab.icon %}
+          <span class="mr-2">{{ tab.icon }}</span>
+        {% endif %}
+        {{ tab.title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  {# Tab panels #}
+  {% for tab in tabs_items %}
+    <div
+      class="cb-tab-panel {{ loop.index0 == active_tab ? '' : 'hidden' }}"
+      role="tabpanel"
+      id="{{ tabs_id }}-panel-{{ loop.index0 }}"
+      aria-labelledby="{{ tabs_id }}-tab-{{ loop.index0 }}"
+      data-tab-panel="{{ loop.index0 }}"
+      tabindex="0"
+    >
+      {{ tab.content|raw }}
+    </div>
+  {% endfor %}
+</div>

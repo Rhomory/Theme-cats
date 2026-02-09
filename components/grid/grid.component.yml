@@ -1,0 +1,123 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Grid
+group: Layout
+status: stable
+description: "Sistema de grid flexible con 12 columnas y múltiples configuraciones."
+props:
+  type: object
+  properties:
+    columns:
+      type: string
+      title: Columnas (Desktop)
+      description: "Número de columnas en pantallas grandes"
+      enum:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+        - "12"
+      meta:enum:
+        "1": 1 columna
+        "2": 2 columnas
+        "3": 3 columnas
+        "4": 4 columnas
+        "5": 5 columnas
+        "6": 6 columnas
+        "12": 12 columnas
+      default: "3"
+      examples:
+        - "3"
+    columns_tablet:
+      type: string
+      title: Columnas (Tablet)
+      description: "Número de columnas en tablets"
+      enum:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+      meta:enum:
+        "1": 1 columna
+        "2": 2 columnas
+        "3": 3 columnas
+        "4": 4 columnas
+      default: "2"
+      examples:
+        - "2"
+    columns_mobile:
+      type: string
+      title: Columnas (Móvil)
+      description: "Número de columnas en móviles"
+      enum:
+        - "1"
+        - "2"
+      meta:enum:
+        "1": 1 columna
+        "2": 2 columnas
+      default: "1"
+      examples:
+        - "1"
+    gap:
+      type: string
+      title: Espaciado entre elementos
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+        - "xlarge"
+      meta:enum:
+        none: Sin espacio
+        small: Pequeño (8px)
+        medium: Mediano (16px)
+        large: Grande (24px)
+        xlarge: Extra grande (32px)
+      default: "medium"
+      examples:
+        - "medium"
+    align_items:
+      type: string
+      title: Alineación vertical
+      enum:
+        - "start"
+        - "center"
+        - "end"
+        - "stretch"
+      meta:enum:
+        start: Arriba
+        center: Centro
+        end: Abajo
+        stretch: Estirar
+      default: "stretch"
+    justify_content:
+      type: string
+      title: Alineación horizontal
+      enum:
+        - "start"
+        - "center"
+        - "end"
+        - "between"
+        - "around"
+        - "evenly"
+      meta:enum:
+        start: Inicio
+        center: Centro
+        end: Final
+        between: Espacio entre
+        around: Espacio alrededor
+        evenly: Espacio uniforme
+      default: "start"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas
+      examples:
+        - "my-custom-grid"
+    custom_id:
+      type: string
+      title: ID personalizado
+
+slots:
+  items:
+    title: "Elementos del grid"

@@ -1,0 +1,31 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Spacer
+group: Layout
+status: stable
+description: "Espaciador vertical con altura configurable."
+props:
+  type: object
+  properties:
+    size:
+      type: string
+      title: Tamaño
+      enum:
+        - "xs"
+        - "sm"
+        - "md"
+        - "lg"
+        - "xl"
+        - "2xl"
+        - "3xl"
+      meta:enum:
+        xs: Extra pequeño (8px)
+        sm: Pequeño (16px)
+        md: Mediano (24px)
+        lg: Grande (32px)
+        xl: Extra grande (48px)
+        2xl: 2XL (64px)
+        3xl: 3XL (96px)
+      default: "md"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas

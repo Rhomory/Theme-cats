@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Spacer component - Espaciador vertical
+ */
+#}
+
+{% set spacer_size = size|default('md') %}
+
+{% set spacer =
+  html_cva(
+    base: ['block w-full'],
+    variants: {
+      size: {
+        xs: 'h-2',
+        sm: 'h-4',
+        md: 'h-6',
+        lg: 'h-8',
+        xl: 'h-12',
+        '2xl': 'h-16',
+        '3xl': 'h-24'
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set spacer_classes = spacer.apply({ size: spacer_size }, additional_classes) %}
+
+<div class="{{ spacer_classes }}" aria-hidden="true"></div>

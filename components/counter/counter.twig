@@ -1,0 +1,76 @@
+{#
+/**
+ * @file
+ * Counter component - Contador animado
+ */
+#}
+
+{% set counter_number = number|default(100) %}
+{% set counter_prefix = prefix|default('') %}
+{% set counter_suffix = suffix|default('') %}
+{% set counter_title = title|default('') %}
+{% set counter_duration = duration|default(2000) %}
+{% set counter_size = size|default('large') %}
+{% set counter_color = color|default('primary') %}
+{% set counter_alignment = alignment|default('center') %}
+
+{% set counter =
+  html_cva(
+    base: ['cb-counter'],
+    variants: {
+      alignment: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right'
+      }
+    }
+  )
+%}
+
+{% set number_styles =
+  html_cva(
+    base: ['font-bold tabular-nums'],
+    variants: {
+      size: {
+        small: 'text-2xl md:text-3xl',
+        medium: 'text-3xl md:text-4xl',
+        large: 'text-4xl md:text-5xl',
+        xlarge: 'text-5xl md:text-6xl'
+      },
+      color: {
+        default: 'text-foreground',
+        primary: 'text-primary',
+        secondary: 'text-secondary',
+        accent: 'text-accent'
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set counter_classes = counter.apply({ alignment: counter_alignment }, additional_classes) %}
+{% set number_classes = number_styles.apply({ size: counter_size, color: counter_color }) %}
+
+<div
+  class="{{ counter_classes }}"
+  data-cb-counter
+  data-target="{{ counter_number }}"
+  data-duration="{{ counter_duration }}"
+>
+  <div class="{{ number_classes }}">
+    {% if counter_prefix %}
+      <span class="cb-counter-prefix">{{ counter_prefix }}</span>
+    {% endif %}
+    <span class="cb-counter-number" data-counter-value>0</span>
+    {% if counter_suffix %}
+      <span class="cb-counter-suffix">{{ counter_suffix }}</span>
+    {% endif %}
+  </div>
+  {% if counter_title %}
+    <p class="mt-2 text-muted-foreground text-sm md:text-base">{{ counter_title }}</p>
+  {% endif %}
+</div>

@@ -1,0 +1,124 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Container
+group: Layout
+status: stable
+description: "Contenedor flexible con opciones de ancho, padding y estilos personalizados."
+props:
+  type: object
+  properties:
+    width:
+      type: string
+      title: Ancho del contenedor
+      enum:
+        - "full"
+        - "boxed"
+        - "narrow"
+        - "wide"
+      meta:enum:
+        full: Ancho completo (100%)
+        boxed: Contenedor estándar (1200px)
+        narrow: Angosto (800px)
+        wide: Amplio (1400px)
+      default: "boxed"
+      examples:
+        - "boxed"
+    padding:
+      type: string
+      title: Padding interno
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+        - "xlarge"
+      meta:enum:
+        none: Sin padding
+        small: Pequeño (16px)
+        medium: Mediano (32px)
+        large: Grande (48px)
+        xlarge: Extra grande (64px)
+      default: "medium"
+      examples:
+        - "medium"
+    background_color:
+      type: string
+      title: Color de fondo
+      enum:
+        - "transparent"
+        - "primary"
+        - "secondary"
+        - "accent"
+        - "muted"
+        - "white"
+        - "dark"
+      meta:enum:
+        transparent: Transparente
+        primary: Primario
+        secondary: Secundario
+        accent: Acento
+        muted: Atenuado
+        white: Blanco
+        dark: Oscuro
+      default: "transparent"
+    border_radius:
+      type: string
+      title: Borde redondeado
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+        - "full"
+      meta:enum:
+        none: Sin borde
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+        full: Completo
+      default: "none"
+    shadow:
+      type: string
+      title: Sombra
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+      meta:enum:
+        none: Sin sombra
+        small: Pequeña
+        medium: Mediana
+        large: Grande
+      default: "none"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas
+      description: "Clases CSS adicionales separadas por espacios"
+      examples:
+        - "my-custom-class another-class"
+    custom_id:
+      type: string
+      title: ID personalizado
+      description: "ID HTML para anclas o JavaScript"
+      examples:
+        - "mi-seccion"
+    animation:
+      type: string
+      title: Animación de entrada
+      enum:
+        - "none"
+        - "fade-in"
+        - "slide-up"
+        - "slide-down"
+        - "scale-in"
+      meta:enum:
+        none: Sin animación
+        fade-in: Aparecer
+        slide-up: Deslizar hacia arriba
+        slide-down: Deslizar hacia abajo
+        scale-in: Escalar
+      default: "none"
+
+slots:
+  content:
+    title: "Contenido"

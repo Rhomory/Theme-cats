@@ -1,0 +1,139 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Column
+group: Layout
+status: stable
+description: "Columna flexible con control de ancho y alineación."
+props:
+  type: object
+  properties:
+    width:
+      type: string
+      title: Ancho (Desktop)
+      description: "Ancho de la columna basado en 12 columnas"
+      enum:
+        - "auto"
+        - "1/12"
+        - "2/12"
+        - "3/12"
+        - "4/12"
+        - "5/12"
+        - "6/12"
+        - "7/12"
+        - "8/12"
+        - "9/12"
+        - "10/12"
+        - "11/12"
+        - "12/12"
+      meta:enum:
+        auto: Automático
+        "1/12": 1/12 (~8%)
+        "2/12": 2/12 (~17%)
+        "3/12": 3/12 (25%)
+        "4/12": 4/12 (~33%)
+        "5/12": 5/12 (~42%)
+        "6/12": 6/12 (50%)
+        "7/12": 7/12 (~58%)
+        "8/12": 8/12 (~67%)
+        "9/12": 9/12 (75%)
+        "10/12": 10/12 (~83%)
+        "11/12": 11/12 (~92%)
+        "12/12": 12/12 (100%)
+      default: "auto"
+      examples:
+        - "6/12"
+    width_tablet:
+      type: string
+      title: Ancho (Tablet)
+      enum:
+        - "auto"
+        - "6/12"
+        - "12/12"
+      meta:enum:
+        auto: Automático
+        "6/12": 50%
+        "12/12": 100%
+      default: "auto"
+    width_mobile:
+      type: string
+      title: Ancho (Móvil)
+      enum:
+        - "auto"
+        - "12/12"
+      meta:enum:
+        auto: Automático
+        "12/12": 100%
+      default: "12/12"
+    align_self:
+      type: string
+      title: Alineación propia
+      enum:
+        - "auto"
+        - "start"
+        - "center"
+        - "end"
+        - "stretch"
+      meta:enum:
+        auto: Automático
+        start: Arriba
+        center: Centro
+        end: Abajo
+        stretch: Estirar
+      default: "auto"
+    padding:
+      type: string
+      title: Padding interno
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+      meta:enum:
+        none: Sin padding
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "none"
+    background_color:
+      type: string
+      title: Color de fondo
+      enum:
+        - "transparent"
+        - "primary"
+        - "secondary"
+        - "accent"
+        - "muted"
+        - "white"
+        - "dark"
+      meta:enum:
+        transparent: Transparente
+        primary: Primario
+        secondary: Secundario
+        accent: Acento
+        muted: Atenuado
+        white: Blanco
+        dark: Oscuro
+      default: "transparent"
+    border_radius:
+      type: string
+      title: Borde redondeado
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+      meta:enum:
+        none: Sin borde
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "none"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas
+    custom_id:
+      type: string
+      title: ID personalizado
+
+slots:
+  content:
+    title: "Contenido de la columna"

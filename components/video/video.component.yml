@@ -1,0 +1,86 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Video
+group: Content
+status: stable
+description: "Reproductor de video con soporte para YouTube, Vimeo y videos locales."
+props:
+  type: object
+  properties:
+    source:
+      type: string
+      title: Tipo de fuente
+      enum:
+        - "youtube"
+        - "vimeo"
+        - "local"
+      meta:enum:
+        youtube: YouTube
+        vimeo: Vimeo
+        local: Video local
+      default: "youtube"
+    url:
+      type: string
+      title: URL del video
+      description: "URL de YouTube/Vimeo o ruta del archivo local"
+      examples:
+        - "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    poster:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Imagen de portada
+      type: object
+    aspect_ratio:
+      type: string
+      title: Proporción de aspecto
+      enum:
+        - "16/9"
+        - "4/3"
+        - "1/1"
+        - "21/9"
+      meta:enum:
+        "16/9": 16:9 (Panorámico)
+        "4/3": 4:3 (Clásico)
+        "1/1": 1:1 (Cuadrado)
+        "21/9": 21:9 (Cine)
+      default: "16/9"
+    autoplay:
+      type: boolean
+      title: Reproducción automática
+      default: false
+    muted:
+      type: boolean
+      title: Silenciado
+      default: false
+    loop:
+      type: boolean
+      title: Repetir
+      default: false
+    controls:
+      type: boolean
+      title: Mostrar controles
+      default: true
+    lazy_load:
+      type: boolean
+      title: Carga diferida
+      description: "Muestra imagen de portada hasta que el usuario hace clic"
+      default: true
+    border_radius:
+      type: string
+      title: Borde redondeado
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+      meta:enum:
+        none: Sin borde
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "medium"
+    shadow:
+      type: boolean
+      title: Sombra
+      default: false
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas

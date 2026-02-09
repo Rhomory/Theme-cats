@@ -1,0 +1,93 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Divider
+group: Layout
+status: stable
+description: "Línea divisoria con estilos personalizables."
+props:
+  type: object
+  properties:
+    style:
+      type: string
+      title: Estilo de línea
+      enum:
+        - "solid"
+        - "dashed"
+        - "dotted"
+        - "double"
+      meta:enum:
+        solid: Sólida
+        dashed: Discontinua
+        dotted: Punteada
+        double: Doble
+      default: "solid"
+    width:
+      type: string
+      title: Ancho
+      enum:
+        - "full"
+        - "3/4"
+        - "1/2"
+        - "1/4"
+      meta:enum:
+        full: 100%
+        "3/4": 75%
+        "1/2": 50%
+        "1/4": 25%
+      default: "full"
+    thickness:
+      type: string
+      title: Grosor
+      enum:
+        - "thin"
+        - "medium"
+        - "thick"
+      meta:enum:
+        thin: Fino (1px)
+        medium: Medio (2px)
+        thick: Grueso (4px)
+      default: "thin"
+    color:
+      type: string
+      title: Color
+      enum:
+        - "default"
+        - "primary"
+        - "secondary"
+        - "accent"
+        - "muted"
+      meta:enum:
+        default: Por defecto
+        primary: Primario
+        secondary: Secundario
+        accent: Acento
+        muted: Atenuado
+      default: "default"
+    alignment:
+      type: string
+      title: Alineación
+      enum:
+        - "left"
+        - "center"
+        - "right"
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+      default: "center"
+    margin:
+      type: string
+      title: Margen vertical
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+      meta:enum:
+        none: Sin margen
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "medium"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas

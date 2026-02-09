@@ -1,0 +1,55 @@
+global:
+  version: 1.x
+  css:
+    theme:
+      css/canvas-builder.css: {}
+  js:
+    js/canvas-builder.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+# Componentes específicos
+carousel:
+  version: 1.x
+  css:
+    component:
+      css/components/carousel.css: {}
+  js:
+    js/components/carousel.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+tabs:
+  version: 1.x
+  css:
+    component:
+      css/components/tabs.css: {}
+  js:
+    js/components/tabs.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+counter:
+  version: 1.x
+  css:
+    component:
+      css/components/counter.css: {}
+  js:
+    js/components/counter.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+video:
+  version: 1.x
+  css:
+    component:
+      css/components/video.css: {}
+  js:
+    js/components/video.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

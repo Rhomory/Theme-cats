@@ -1,0 +1,68 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Progress Bar
+group: Content
+status: stable
+description: "Barra de progreso animada con etiqueta y porcentaje."
+props:
+  type: object
+  properties:
+    percentage:
+      type: number
+      title: Porcentaje
+      default: 75
+      examples:
+        - 75
+    label:
+      type: string
+      title: Etiqueta
+      examples:
+        - "HTML/CSS"
+    show_percentage:
+      type: boolean
+      title: Mostrar porcentaje
+      default: true
+    color:
+      type: string
+      title: Color de la barra
+      enum:
+        - "primary"
+        - "secondary"
+        - "accent"
+        - "success"
+        - "warning"
+        - "error"
+      meta:enum:
+        primary: Primario
+        secondary: Secundario
+        accent: Acento
+        success: Verde (éxito)
+        warning: Amarillo (advertencia)
+        error: Rojo (error)
+      default: "primary"
+    size:
+      type: string
+      title: Altura de la barra
+      enum:
+        - "thin"
+        - "medium"
+        - "thick"
+      meta:enum:
+        thin: Fina (4px)
+        medium: Media (8px)
+        thick: Gruesa (12px)
+      default: "medium"
+    rounded:
+      type: boolean
+      title: Bordes redondeados
+      default: true
+    animated:
+      type: boolean
+      title: Animar al aparecer
+      default: true
+    striped:
+      type: boolean
+      title: Patrón rayado
+      default: false
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas

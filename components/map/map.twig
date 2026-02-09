@@ -1,0 +1,85 @@
+{#
+/**
+ * @file
+ * Map component - Mapa embebido
+ */
+#}
+
+{% set map_provider = provider|default('openstreetmap') %}
+{% set map_address = address|default('') %}
+{% set map_zoom = zoom|default(14) %}
+{% set map_height = height|default('medium') %}
+{% set map_radius = border_radius|default('medium') %}
+
+{% set map =
+  html_cva(
+    base: ['w-full overflow-hidden'],
+    variants: {
+      height: {
+        small: 'h-[200px]',
+        medium: 'h-[300px]',
+        large: 'h-[400px]',
+        xlarge: 'h-[500px]'
+      },
+      borderRadius: {
+        none: 'rounded-none',
+        small: 'rounded',
+        medium: 'rounded-lg',
+        large: 'rounded-2xl'
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set map_classes =
+  map.apply({
+    height: map_height,
+    borderRadius: map_radius
+  }, additional_classes)
+%}
+
+{# URL encode the address #}
+{% set encoded_address = map_address|url_encode %}
+
+<div class="cb-map {{ map_classes }}">
+  {% if map_provider == 'google' %}
+    <iframe
+      class="w-full h-full"
+      src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q={{ encoded_address }}&zoom={{ map_zoom }}"
+      frameborder="0"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  {% elseif map_provider == 'openstreetmap' %}
+    {# Check if address is coordinates #}
+    {% set is_coords = map_address matches '/^-?\\d+\\.?\\d*,-?\\d+\\.?\\d*$/' %}
+    {% if is_coords %}
+      {% set coords = map_address|split(',') %}
+      {% set lat = coords[0] %}
+      {% set lng = coords[1] %}
+      <iframe
+        class="w-full h-full"
+        src="https://www.openstreetmap.org/export/embed.html?bbox={{ lng - 0.01 }},{{ lat - 0.01 }},{{ lng + 0.01 }},{{ lat + 0.01 }}&layer=mapnik&marker={{ lat }},{{ lng }}"
+        frameborder="0"
+        loading="lazy"
+      ></iframe>
+    {% else %}
+      <iframe
+        class="w-full h-full"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1,-0.1,0.1,0.1&layer=mapnik"
+        frameborder="0"
+        loading="lazy"
+        data-address="{{ map_address }}"
+      ></iframe>
+      <noscript>
+        <a href="https://www.openstreetmap.org/search?query={{ encoded_address }}" target="_blank">Ver mapa en OpenStreetMap</a>
+      </noscript>
+    {% endif %}
+  {% endif %}
+</div>

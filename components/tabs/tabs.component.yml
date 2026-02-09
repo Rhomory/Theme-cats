@@ -1,0 +1,69 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Tabs
+group: Content
+status: stable
+description: "Pestañas interactivas para organizar contenido."
+props:
+  type: object
+  properties:
+    style:
+      type: string
+      title: Estilo de pestañas
+      enum:
+        - "default"
+        - "pills"
+        - "underline"
+        - "boxed"
+      meta:enum:
+        default: Por defecto
+        pills: Píldoras
+        underline: Subrayado
+        boxed: Cajas
+      default: "default"
+    alignment:
+      type: string
+      title: Alineación de pestañas
+      enum:
+        - "left"
+        - "center"
+        - "right"
+        - "stretch"
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+        stretch: Expandir
+      default: "left"
+    tabs:
+      type: array
+      title: Pestañas
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            title: Título de la pestaña
+          icon:
+            type: string
+            title: Icono (opcional)
+          content:
+            type: string
+            title: Contenido HTML
+            pattern: "(.|\\r?\\n)*"
+      examples:
+        - - title: "Pestaña 1"
+            content: "Contenido de la pestaña 1"
+          - title: "Pestaña 2"
+            content: "Contenido de la pestaña 2"
+    default_tab:
+      type: number
+      title: Pestaña activa por defecto
+      default: 0
+      examples:
+        - 0
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas
+    custom_id:
+      type: string
+      title: ID personalizado

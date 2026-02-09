@@ -1,0 +1,23 @@
+name: Canvas Builder Theme
+type: theme
+description: 'Tema estilo Elementor basado en byte_theme con componentes avanzados y opciones de personalización.'
+core_version_requirement: ^11
+base theme: byte_theme
+
+libraries:
+  - canvas_builder_theme/global
+
+regions:
+  header: Header
+  primary_menu: Primary Menu
+  secondary_menu: Secondary Menu
+  hero: Hero
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  help: Help
+  content: Content
+  sidebar_first: Sidebar First
+  sidebar_second: Sidebar Second
+  footer_top: Footer Top
+  footer: Footer
+  footer_bottom: Footer Bottom

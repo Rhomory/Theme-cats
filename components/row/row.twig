@@ -1,0 +1,98 @@
+{#
+/**
+ * @file
+ * Row component - Fila flexible tipo Elementor
+ */
+#}
+
+{% set row_direction = direction|default('row') %}
+{% set row_wrap = wrap|default('wrap') %}
+{% set row_gap = gap|default('medium') %}
+{% set row_align = align_items|default('stretch') %}
+{% set row_justify = justify_content|default('start') %}
+{% set row_padding = padding|default('none') %}
+{% set row_bg = background_color|default('transparent') %}
+
+{% set row =
+  html_cva(
+    base: ['flex w-full'],
+    variants: {
+      direction: {
+        row: 'flex-row',
+        'row-reverse': 'flex-row-reverse',
+        column: 'flex-col',
+        'column-reverse': 'flex-col-reverse'
+      },
+      wrap: {
+        wrap: 'flex-wrap',
+        nowrap: 'flex-nowrap',
+        'wrap-reverse': 'flex-wrap-reverse'
+      },
+      gap: {
+        none: 'gap-0',
+        small: 'gap-2',
+        medium: 'gap-4',
+        large: 'gap-6',
+        xlarge: 'gap-8'
+      },
+      alignItems: {
+        start: 'items-start',
+        center: 'items-center',
+        end: 'items-end',
+        stretch: 'items-stretch',
+        baseline: 'items-baseline'
+      },
+      justifyContent: {
+        start: 'justify-start',
+        center: 'justify-center',
+        end: 'justify-end',
+        between: 'justify-between',
+        around: 'justify-around',
+        evenly: 'justify-evenly'
+      },
+      padding: {
+        none: 'p-0',
+        small: 'p-2',
+        medium: 'p-4',
+        large: 'p-6'
+      },
+      backgroundColor: {
+        transparent: 'bg-transparent',
+        primary: 'bg-primary text-primary-foreground',
+        secondary: 'bg-secondary text-secondary-foreground',
+        accent: 'bg-accent text-accent-foreground',
+        muted: 'bg-muted text-muted-foreground',
+        white: 'bg-white text-foreground',
+        dark: 'bg-slate-900 text-white'
+      }
+    }
+  )
+%}
+
+{# Normalizar clases personalizadas #}
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set row_classes =
+  row.apply({
+    direction: row_direction,
+    wrap: row_wrap,
+    gap: row_gap,
+    alignItems: row_align,
+    justifyContent: row_justify,
+    padding: row_padding,
+    backgroundColor: row_bg
+  }, additional_classes)
+%}
+
+{% set row_id = custom_id|default('') %}
+
+<div
+  class="{{ row_classes }}"
+  {% if row_id %}id="{{ row_id }}"{% endif %}
+>
+  {% block columns %}
+  {% endblock %}
+</div>

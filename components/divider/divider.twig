@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Divider component - Línea divisoria
+ */
+#}
+
+{% set div_style = style|default('solid') %}
+{% set div_width = width|default('full') %}
+{% set div_thickness = thickness|default('thin') %}
+{% set div_color = color|default('default') %}
+{% set div_alignment = alignment|default('center') %}
+{% set div_margin = margin|default('medium') %}
+
+{% set divider =
+  html_cva(
+    base: ['block'],
+    variants: {
+      width: {
+        full: 'w-full',
+        '3/4': 'w-3/4',
+        '1/2': 'w-1/2',
+        '1/4': 'w-1/4'
+      },
+      thickness: {
+        thin: 'border-t',
+        medium: 'border-t-2',
+        thick: 'border-t-4'
+      },
+      style: {
+        solid: 'border-solid',
+        dashed: 'border-dashed',
+        dotted: 'border-dotted',
+        double: 'border-double'
+      },
+      color: {
+        default: 'border-border',
+        primary: 'border-primary',
+        secondary: 'border-secondary',
+        accent: 'border-accent',
+        muted: 'border-muted-foreground/30'
+      },
+      alignment: {
+        left: 'mr-auto',
+        center: 'mx-auto',
+        right: 'ml-auto'
+      },
+      margin: {
+        none: 'my-0',
+        small: 'my-2',
+        medium: 'my-4',
+        large: 'my-8'
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set divider_classes =
+  divider.apply({
+    width: div_width,
+    thickness: div_thickness,
+    style: div_style,
+    color: div_color,
+    alignment: div_alignment,
+    margin: div_margin
+  }, additional_classes)
+%}
+
+<hr class="{{ divider_classes }}" />

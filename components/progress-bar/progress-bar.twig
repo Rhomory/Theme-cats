@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Progress Bar component - Barra de progreso
+ */
+#}
+
+{% set bar_percentage = percentage|default(75) %}
+{% set bar_label = label|default('') %}
+{% set bar_show_percentage = show_percentage|default(true) %}
+{% set bar_color = color|default('primary') %}
+{% set bar_size = size|default('medium') %}
+{% set bar_rounded = rounded|default(true) %}
+{% set bar_animated = animated|default(true) %}
+{% set bar_striped = striped|default(false) %}
+
+{% set is_rounded = bar_rounded ? 'yes' : 'no' %}
+{% set is_striped = bar_striped ? 'yes' : 'no' %}
+
+{% set track =
+  html_cva(
+    base: ['w-full bg-muted overflow-hidden'],
+    variants: {
+      size: {
+        thin: 'h-1',
+        medium: 'h-2',
+        thick: 'h-3'
+      },
+      rounded: {
+        yes: 'rounded-full',
+        no: 'rounded-none'
+      }
+    }
+  )
+%}
+
+{% set bar =
+  html_cva(
+    base: ['h-full transition-all duration-1000 ease-out'],
+    variants: {
+      color: {
+        primary: 'bg-primary',
+        secondary: 'bg-secondary',
+        accent: 'bg-accent',
+        success: 'bg-green-500',
+        warning: 'bg-yellow-500',
+        error: 'bg-red-500'
+      },
+      rounded: {
+        yes: 'rounded-full',
+        no: 'rounded-none'
+      },
+      striped: {
+        yes: 'bg-[length:1rem_1rem] bg-[linear-gradient(45deg,rgba(255,255,255,.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,.15)_50%,rgba(255,255,255,.15)_75%,transparent_75%,transparent)]',
+        no: ''
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set track_classes = track.apply({ size: bar_size, rounded: is_rounded }) %}
+{% set bar_classes = bar.apply({ color: bar_color, rounded: is_rounded, striped: is_striped }) %}
+
+<div class="cb-progress-bar {{ additional_classes }}" data-cb-progress="{{ bar_animated ? 'true' : 'false' }}">
+  {% if bar_label or bar_show_percentage %}
+    <div class="flex justify-between items-center mb-2">
+      {% if bar_label %}
+        <span class="text-sm font-medium text-foreground">{{ bar_label }}</span>
+      {% endif %}
+      {% if bar_show_percentage %}
+        <span class="text-sm text-muted-foreground" data-progress-value>{{ bar_percentage }}%</span>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="{{ track_classes }}" role="progressbar" aria-valuenow="{{ bar_percentage }}" aria-valuemin="0" aria-valuemax="100">
+    <div
+      class="{{ bar_classes }}"
+      style="width: {{ bar_animated ? '0' : bar_percentage ~ '%' }};"
+      data-progress-bar
+      data-target="{{ bar_percentage }}"
+    ></div>
+  </div>
+</div>

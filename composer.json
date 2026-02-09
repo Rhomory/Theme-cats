@@ -1,0 +1,30 @@
+{
+  "name": "drupal/canvas_builder_theme",
+  "description": "Tema estilo Elementor para Drupal con componentes avanzados y opciones de personalización.",
+  "type": "drupal-custom-theme",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/Rhomory/Theme---cats",
+  "authors": [
+    {
+      "name": "Rhomory",
+      "email": "calcina.renzo.45@gmail.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/Rhomory/Theme---cats/issues",
+    "source": "https://github.com/Rhomory/Theme---cats"
+  },
+  "require": {
+    "drupal/core": "^11",
+    "drupal/byte": "^1"
+  },
+  "version": "0.0.1",
+  "extra": {
+    "drupal": {
+      "version": "0.0.1",
+      "datestamp": ""
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

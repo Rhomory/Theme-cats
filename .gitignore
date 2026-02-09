@@ -1,0 +1,18 @@
+# Dependencias
+node_modules/
+vendor/
+
+# Build artifacts
+*.map
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

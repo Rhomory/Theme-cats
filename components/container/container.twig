@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Container component - Contenedor flexible tipo Elementor
+ */
+#}
+
+{% set container_width = width|default('boxed') %}
+{% set container_padding = padding|default('medium') %}
+{% set container_bg = background_color|default('transparent') %}
+{% set container_radius = border_radius|default('none') %}
+{% set container_shadow = shadow|default('none') %}
+{% set container_animation = animation|default('none') %}
+{% set has_animation = container_animation != 'none' ? 'yes' : 'no' %}
+
+{% set container =
+  html_cva(
+    base: ['relative w-full'],
+    variants: {
+      width: {
+        full: 'max-w-full',
+        boxed: 'max-w-7xl mx-auto',
+        narrow: 'max-w-3xl mx-auto',
+        wide: 'max-w-[1400px] mx-auto'
+      },
+      padding: {
+        none: 'p-0',
+        small: 'p-4',
+        medium: 'p-6 md:p-8',
+        large: 'p-8 md:p-12',
+        xlarge: 'p-12 md:p-16'
+      },
+      backgroundColor: {
+        transparent: 'bg-transparent',
+        primary: 'bg-primary text-primary-foreground',
+        secondary: 'bg-secondary text-secondary-foreground',
+        accent: 'bg-accent text-accent-foreground',
+        muted: 'bg-muted text-muted-foreground',
+        white: 'bg-white text-foreground',
+        dark: 'bg-slate-900 text-white'
+      },
+      borderRadius: {
+        none: 'rounded-none',
+        small: 'rounded',
+        medium: 'rounded-lg',
+        large: 'rounded-2xl',
+        full: 'rounded-3xl'
+      },
+      shadow: {
+        none: 'shadow-none',
+        small: 'shadow-sm',
+        medium: 'shadow-md',
+        large: 'shadow-lg'
+      }
+    }
+  )
+%}
+
+{# Normalizar clases personalizadas #}
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set container_classes =
+  container.apply({
+    width: container_width,
+    padding: container_padding,
+    backgroundColor: container_bg,
+    borderRadius: container_radius,
+    shadow: container_shadow
+  }, additional_classes)
+%}
+
+{% set container_id = custom_id|default('') %}
+{% set animation_attrs = '' %}
+{% if has_animation == 'yes' %}
+  {% set animation_attrs = 'data-cb-animate="' ~ container_animation ~ '"' %}
+{% endif %}
+
+<div
+  class="{{ container_classes }}"
+  {% if container_id %}id="{{ container_id }}"{% endif %}
+  {{ animation_attrs|raw }}
+>
+  {% block content %}
+  {% endblock %}
+</div>

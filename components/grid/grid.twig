@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Grid component - Sistema de grid tipo Elementor
+ */
+#}
+
+{% set grid_columns = columns|default('3') %}
+{% set grid_columns_tablet = columns_tablet|default('2') %}
+{% set grid_columns_mobile = columns_mobile|default('1') %}
+{% set grid_gap = gap|default('medium') %}
+{% set grid_align = align_items|default('stretch') %}
+{% set grid_justify = justify_content|default('start') %}
+
+{% set grid =
+  html_cva(
+    base: ['grid w-full'],
+    variants: {
+      columns: {
+        '1': 'lg:grid-cols-1',
+        '2': 'lg:grid-cols-2',
+        '3': 'lg:grid-cols-3',
+        '4': 'lg:grid-cols-4',
+        '5': 'lg:grid-cols-5',
+        '6': 'lg:grid-cols-6',
+        '12': 'lg:grid-cols-12'
+      },
+      columnsTablet: {
+        '1': 'md:grid-cols-1',
+        '2': 'md:grid-cols-2',
+        '3': 'md:grid-cols-3',
+        '4': 'md:grid-cols-4'
+      },
+      columnsMobile: {
+        '1': 'grid-cols-1',
+        '2': 'grid-cols-2'
+      },
+      gap: {
+        none: 'gap-0',
+        small: 'gap-2',
+        medium: 'gap-4',
+        large: 'gap-6',
+        xlarge: 'gap-8'
+      },
+      alignItems: {
+        start: 'items-start',
+        center: 'items-center',
+        end: 'items-end',
+        stretch: 'items-stretch'
+      },
+      justifyContent: {
+        start: 'justify-start',
+        center: 'justify-center',
+        end: 'justify-end',
+        between: 'justify-between',
+        around: 'justify-around',
+        evenly: 'justify-evenly'
+      }
+    }
+  )
+%}
+
+{# Normalizar clases personalizadas #}
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set grid_classes =
+  grid.apply({
+    columns: grid_columns,
+    columnsTablet: grid_columns_tablet,
+    columnsMobile: grid_columns_mobile,
+    gap: grid_gap,
+    alignItems: grid_align,
+    justifyContent: grid_justify
+  }, additional_classes)
+%}
+
+{% set grid_id = custom_id|default('') %}
+
+<div
+  class="{{ grid_classes }}"
+  {% if grid_id %}id="{{ grid_id }}"{% endif %}
+>
+  {% block items %}
+  {% endblock %}
+</div>

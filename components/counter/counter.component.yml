@@ -1,0 +1,82 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Counter
+group: Content
+status: stable
+description: "Contador animado que se activa al hacer scroll."
+props:
+  type: object
+  properties:
+    number:
+      type: number
+      title: Número final
+      default: 100
+      examples:
+        - 100
+    prefix:
+      type: string
+      title: Prefijo
+      description: "Texto antes del número (ej: $, +)"
+      examples:
+        - "$"
+        - "+"
+    suffix:
+      type: string
+      title: Sufijo
+      description: "Texto después del número (ej: %, K, M)"
+      examples:
+        - "%"
+        - "K"
+    title:
+      type: string
+      title: Título
+      examples:
+        - "Clientes satisfechos"
+    duration:
+      type: number
+      title: Duración de la animación (ms)
+      default: 2000
+      examples:
+        - 2000
+    size:
+      type: string
+      title: Tamaño del número
+      enum:
+        - "small"
+        - "medium"
+        - "large"
+        - "xlarge"
+      meta:enum:
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+        xlarge: Extra grande
+      default: "large"
+    color:
+      type: string
+      title: Color del número
+      enum:
+        - "default"
+        - "primary"
+        - "secondary"
+        - "accent"
+      meta:enum:
+        default: Por defecto
+        primary: Primario
+        secondary: Secundario
+        accent: Acento
+      default: "primary"
+    alignment:
+      type: string
+      title: Alineación
+      enum:
+        - "left"
+        - "center"
+        - "right"
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+      default: "center"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas

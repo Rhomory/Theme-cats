@@ -1,0 +1,62 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Map
+group: Content
+status: stable
+description: "Mapa embebido de Google Maps u OpenStreetMap."
+props:
+  type: object
+  properties:
+    provider:
+      type: string
+      title: Proveedor
+      enum:
+        - "google"
+        - "openstreetmap"
+      meta:enum:
+        google: Google Maps
+        openstreetmap: OpenStreetMap
+      default: "openstreetmap"
+    address:
+      type: string
+      title: Dirección o coordenadas
+      description: "Dirección o coordenadas (lat,lng)"
+      examples:
+        - "New York, USA"
+        - "40.7128,-74.0060"
+    zoom:
+      type: number
+      title: Nivel de zoom
+      default: 14
+      examples:
+        - 14
+    height:
+      type: string
+      title: Altura
+      enum:
+        - "small"
+        - "medium"
+        - "large"
+        - "xlarge"
+      meta:enum:
+        small: Pequeña (200px)
+        medium: Mediana (300px)
+        large: Grande (400px)
+        xlarge: Extra grande (500px)
+      default: "medium"
+    border_radius:
+      type: string
+      title: Borde redondeado
+      enum:
+        - "none"
+        - "small"
+        - "medium"
+        - "large"
+      meta:enum:
+        none: Sin borde
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "medium"
+    custom_class:
+      type: string
+      title: Clases CSS personalizadas

@@ -1,0 +1,148 @@
+{#
+/**
+ * @file
+ * Video component - Reproductor de video
+ */
+#}
+
+{% set video_source = source|default('youtube') %}
+{% set video_url = url|default('') %}
+{% set video_poster = poster|default({}) %}
+{% set video_ratio = aspect_ratio|default('16/9') %}
+{% set video_autoplay = autoplay|default(false) %}
+{% set video_muted = muted|default(false) %}
+{% set video_loop = loop|default(false) %}
+{% set video_controls = controls|default(true) %}
+{% set video_lazy = lazy_load|default(true) %}
+{% set video_radius = border_radius|default('medium') %}
+{% set video_shadow = shadow|default(false) %}
+
+{% set has_shadow = video_shadow ? 'yes' : 'no' %}
+
+{# Extract video ID from URL #}
+{% set video_id = '' %}
+{% if video_source == 'youtube' and video_url %}
+  {% if 'youtu.be/' in video_url %}
+    {% set video_id = video_url|split('youtu.be/')|last|split('?')|first %}
+  {% elseif 'youtube.com' in video_url %}
+    {% set video_id = video_url|split('v=')|last|split('&')|first %}
+  {% endif %}
+{% elseif video_source == 'vimeo' and video_url %}
+  {% set video_id = video_url|split('vimeo.com/')|last|split('?')|first %}
+{% endif %}
+
+{% set wrapper =
+  html_cva(
+    base: ['relative w-full overflow-hidden'],
+    variants: {
+      aspectRatio: {
+        '16/9': 'aspect-video',
+        '4/3': 'aspect-[4/3]',
+        '1/1': 'aspect-square',
+        '21/9': 'aspect-[21/9]'
+      },
+      borderRadius: {
+        none: 'rounded-none',
+        small: 'rounded',
+        medium: 'rounded-lg',
+        large: 'rounded-2xl'
+      },
+      shadow: {
+        yes: 'shadow-lg',
+        no: ''
+      }
+    }
+  )
+%}
+
+{% set additional_classes = custom_class|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{% set wrapper_classes =
+  wrapper.apply({
+    aspectRatio: video_ratio,
+    borderRadius: video_radius,
+    shadow: has_shadow
+  }, additional_classes)
+%}
+
+<div
+  class="cb-video {{ wrapper_classes }}"
+  data-cb-video
+  data-source="{{ video_source }}"
+  data-video-id="{{ video_id }}"
+  data-url="{{ video_url }}"
+  data-autoplay="{{ video_autoplay ? 'true' : 'false' }}"
+  data-muted="{{ video_muted ? 'true' : 'false' }}"
+  data-loop="{{ video_loop ? 'true' : 'false' }}"
+  data-controls="{{ video_controls ? 'true' : 'false' }}"
+  data-lazy="{{ video_lazy ? 'true' : 'false' }}"
+>
+  {% if video_lazy and (video_poster.src or video_id) %}
+    {# Lazy load: show poster with play button #}
+    <div class="cb-video-poster absolute inset-0 cursor-pointer group" data-video-poster>
+      {% if video_poster.src %}
+        {% include 'canvas:image' ignore missing with {
+          src: video_poster.src,
+          alt: video_poster.alt|default('Video thumbnail'),
+          class: 'object-cover w-full h-full',
+          width: video_poster.width|default(1280),
+          height: video_poster.height|default(720)
+        } only %}
+      {% elseif video_source == 'youtube' and video_id %}
+        <img
+          src="https://img.youtube.com/vi/{{ video_id }}/maxresdefault.jpg"
+          alt="Video thumbnail"
+          class="object-cover w-full h-full"
+          loading="lazy"
+        />
+      {% endif %}
+      {# Play button overlay #}
+      <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
+        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center shadow-lg transition-all group-hover:scale-110">
+          <svg class="w-8 h-8 md:w-10 md:h-10 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Video container #}
+  <div class="cb-video-container absolute inset-0 {{ video_lazy ? 'hidden' : '' }}" data-video-container>
+    {% if video_source == 'youtube' and video_id %}
+      <iframe
+        class="w-full h-full"
+        src="https://www.youtube.com/embed/{{ video_id }}?{{ video_autoplay ? 'autoplay=1&' : '' }}{{ video_muted ? 'mute=1&' : '' }}{{ video_loop ? 'loop=1&playlist=' ~ video_id ~ '&' : '' }}{{ video_controls ? '' : 'controls=0&' }}rel=0"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="{{ video_lazy ? 'eager' : 'lazy' }}"
+      ></iframe>
+    {% elseif video_source == 'vimeo' and video_id %}
+      <iframe
+        class="w-full h-full"
+        src="https://player.vimeo.com/video/{{ video_id }}?{{ video_autoplay ? 'autoplay=1&' : '' }}{{ video_muted ? 'muted=1&' : '' }}{{ video_loop ? 'loop=1&' : '' }}"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="{{ video_lazy ? 'eager' : 'lazy' }}"
+      ></iframe>
+    {% elseif video_source == 'local' and video_url %}
+      <video
+        class="w-full h-full object-cover"
+        {{ video_autoplay ? 'autoplay' : '' }}
+        {{ video_muted ? 'muted' : '' }}
+        {{ video_loop ? 'loop' : '' }}
+        {{ video_controls ? 'controls' : '' }}
+        playsinline
+        {% if video_poster.src %}poster="{{ video_poster.src }}"{% endif %}
+      >
+        <source src="{{ video_url }}" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+      </video>
+    {% endif %}
+  </div>
+</div>
