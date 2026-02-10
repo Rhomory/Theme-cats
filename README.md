@@ -19,7 +19,7 @@ Tema estilo **Elementor** para Drupal 11 basado en byte_theme, con componentes a
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/Rhomory/Theme---cats"
+      "url": "https://github.com/Rhomory/Theme-cats"
     }
   ]
 }
@@ -28,15 +28,15 @@ Tema estilo **Elementor** para Drupal 11 basado en byte_theme, con componentes a
 2. Instala el tema:
 
 ```bash
-composer require drupal/canvas_builder_theme:dev-main
+ddev composer require drupal/canvas_builder_theme:dev-main
 ```
 
 3. Habilita el tema:
 
 ```bash
-drush theme:enable canvas_builder_theme -y
-drush config:set system.theme default canvas_builder_theme -y
-drush cr
+ddev drush theme:enable canvas_builder_theme -y
+ddev drush config:set system.theme default canvas_builder_theme -y
+ddev drush cr
 ```
 
 ### Instalación manual
@@ -47,29 +47,32 @@ drush cr
 ## Componentes incluidos
 
 ### Layout
-| Componente | Descripción |
-|------------|-------------|
+
+| Componente  | Descripción                                                   |
+| ----------- | ------------------------------------------------------------- |
 | `container` | Contenedor flexible con ancho, padding, colores y animaciones |
-| `grid` | Sistema de grid responsive (1-12 columnas) |
-| `row` | Fila flexible con dirección y alineación |
-| `column` | Columna con ancho basado en 12 columnas |
-| `spacer` | Espaciador vertical configurable |
-| `divider` | Línea divisoria con estilos personalizables |
+| `grid`      | Sistema de grid responsive (1-12 columnas)                    |
+| `row`       | Fila flexible con dirección y alineación                      |
+| `column`    | Columna con ancho basado en 12 columnas                       |
+| `spacer`    | Espaciador vertical configurable                              |
+| `divider`   | Línea divisoria con estilos personalizables                   |
 
 ### Contenido
-| Componente | Descripción |
-|------------|-------------|
-| `tabs` | Pestañas interactivas con 4 estilos |
-| `carousel` | Carrusel con autoplay, navegación y efectos |
-| `counter` | Contador animado al hacer scroll |
-| `progress-bar` | Barra de progreso con animación |
-| `video` | Reproductor (YouTube, Vimeo, local) |
-| `map` | Mapa embebido (Google Maps, OpenStreetMap) |
-| `social-icons` | Iconos de 13 redes sociales |
+
+| Componente     | Descripción                                 |
+| -------------- | ------------------------------------------- |
+| `tabs`         | Pestañas interactivas con 4 estilos         |
+| `carousel`     | Carrusel con autoplay, navegación y efectos |
+| `counter`      | Contador animado al hacer scroll            |
+| `progress-bar` | Barra de progreso con animación             |
+| `video`        | Reproductor (YouTube, Vimeo, local)         |
+| `map`          | Mapa embebido (Google Maps, OpenStreetMap)  |
+| `social-icons` | Iconos de 13 redes sociales                 |
 
 ## Opciones de personalización
 
 Todos los componentes incluyen:
+
 - **Clases CSS personalizadas**: Añade tus propias clases
 - **ID personalizado**: Para anclas y JavaScript
 - **Animaciones de entrada**: fade-in, slide-up, slide-down, scale-in
