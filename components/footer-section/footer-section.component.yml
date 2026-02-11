@@ -1,0 +1,88 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Footer Section
+group: Cats - Layout
+status: stable
+description: "Sección de pie de página con múltiples columnas."
+props:
+  type: object
+  required:
+    - style
+    - columns
+  properties:
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - default
+        - dark
+        - primary
+        - gradient
+      meta:enum:
+        default: Por defecto
+        dark: Oscuro
+        primary: Color primario
+        gradient: Degradado
+      default: "dark"
+      examples:
+        - "dark"
+    columns:
+      type: string
+      title: Columnas
+      enum:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+      meta:enum:
+        "1": "1 columna"
+        "2": "2 columnas"
+        "3": "3 columnas"
+        "4": "4 columnas"
+      default: "4"
+      examples:
+        - "4"
+    padding:
+      type: string
+      title: Espaciado
+      enum:
+        - sm
+        - md
+        - lg
+      meta:enum:
+        sm: Pequeño
+        md: Mediano
+        lg: Grande
+      default: "lg"
+      examples:
+        - "lg"
+    show_copyright:
+      type: boolean
+      title: Mostrar copyright
+      default: true
+      examples:
+        - true
+    copyright_text:
+      type: string
+      title: Texto de copyright
+      default: ""
+      examples:
+        - "© 2025 Mi Empresa"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  footer_columns:
+    title: "Columnas del footer"
+  footer_bottom:
+    title: "Contenido inferior (copyright, links legales)"

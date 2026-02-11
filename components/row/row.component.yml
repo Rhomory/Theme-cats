@@ -1,6 +1,6 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Row
-group: Layout
+group: Cats - Layout
 status: stable
 description: "Fila flexible con opciones de alineación y distribución."
 props:
@@ -122,6 +122,19 @@ props:
     custom_id:
       type: string
       title: ID personalizado
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
 
 slots:
   columns:

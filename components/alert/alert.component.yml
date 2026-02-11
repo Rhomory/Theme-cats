@@ -1,0 +1,95 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Alert
+group: Cats - Widgets
+status: stable
+description: "Alerta/notificación con diferentes estilos."
+props:
+  type: object
+  required:
+    - message
+    - type
+    - variant
+  properties:
+    title:
+      type: string
+      title: Título
+      default: ""
+      examples:
+        - "Información"
+    message:
+      type: string
+      title: Mensaje
+      default: "Este es un mensaje de alerta."
+      examples:
+        - "Este es un mensaje de alerta."
+    type:
+      type: string
+      title: Tipo de alerta
+      enum:
+        - info
+        - success
+        - warning
+        - error
+      meta:enum:
+        info: Información
+        success: Éxito
+        warning: Advertencia
+        error: Error
+      default: "info"
+      examples:
+        - "info"
+    variant:
+      type: string
+      title: Variante
+      enum:
+        - filled
+        - outlined
+        - soft
+      meta:enum:
+        filled: Relleno
+        outlined: Contorno
+        soft: Suave
+      default: "soft"
+      examples:
+        - "soft"
+    dismissible:
+      type: boolean
+      title: Se puede cerrar
+      default: false
+      examples:
+        - false
+    show_icon:
+      type: boolean
+      title: Mostrar icono
+      default: true
+      examples:
+        - true
+    link_url:
+      type: string
+      title: URL de enlace
+      default: ""
+      examples:
+        - "#"
+    link_text:
+      type: string
+      title: Texto del enlace
+      default: "Ver más"
+      examples:
+        - "Ver más"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  content:
+    title: "Contenido adicional"

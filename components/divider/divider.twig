@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set div_style = style|default('solid') %}
 {% set div_width = width|default('full') %}
 {% set div_thickness = thickness|default('thin') %}
@@ -71,4 +74,4 @@
   }, additional_classes)
 %}
 
-<hr class="{{ divider_classes }}" />
+<hr class="{{ divider_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} />

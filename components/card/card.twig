@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * Card component - Tarjeta de contenido
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set card_title = title|default('') %}
+{% set card_description = description|default('') %}
+{% set card_button_text = button_text|default('') %}
+{% set card_button_url = button_url|default('#') %}
+{% set card_style = style|default('default') %}
+{% set card_image_position = image_position|default('top') %}
+{% set card_align = align|default('left') %}
+
+{% set card_cva =
+  html_cva(
+    base: ['cats-card group relative overflow-hidden rounded-xl transition-all duration-300'],
+    variants: {
+      style: {
+        default: 'bg-white',
+        bordered: 'bg-white border border-[var(--cats-border)]',
+        elevated: 'bg-white shadow-lg hover:shadow-xl',
+        minimal: 'bg-transparent'
+      },
+      imagePosition: {
+        top: 'flex flex-col',
+        left: 'flex flex-row',
+        right: 'flex flex-row-reverse',
+        background: 'relative'
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right'
+      }
+    }
+  )
+%}
+
+{% set card_classes =
+  card_cva.apply({
+    style: card_style,
+    imagePosition: card_image_position,
+    align: card_align
+  })
+%}
+
+<article class="{{ card_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {# Image #}
+  {% set image_content %}
+    {% block card_image %}
+    {% endblock %}
+  {% endset %}
+
+  {% if image_content|trim is not empty %}
+    {% if card_image_position == 'background' %}
+      <div class="absolute inset-0 z-0">
+        {{ image_content }}
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-[1]"></div>
+    {% elseif card_image_position in ['left', 'right'] %}
+      <div class="w-1/3 flex-shrink-0">
+        {{ image_content }}
+      </div>
+    {% else %}
+      <div class="aspect-video overflow-hidden">
+        {{ image_content }}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {# Content #}
+  <div class="p-6 {{ card_image_position == 'background' ? 'relative z-10 text-white mt-auto' : '' }} {{ card_image_position in ['left', 'right'] ? 'flex-1' : '' }}">
+    {% if card_title %}
+      <h3 class="text-xl font-bold mb-2 {{ card_image_position == 'background' ? 'text-white' : 'text-[var(--cats-foreground)]' }}">
+        {{ card_title }}
+      </h3>
+    {% endif %}
+
+    {% if card_description %}
+      <p class="mb-4 {{ card_image_position == 'background' ? 'text-white/90' : 'text-gray-600' }}">
+        {{ card_description }}
+      </p>
+    {% endif %}
+
+    {# Additional Content Slot #}
+    {% block card_content %}
+    {% endblock %}
+
+    {% if card_button_text %}
+      <a
+        href="{{ card_button_url }}"
+        class="inline-flex items-center gap-2 font-medium transition-colors {{ card_image_position == 'background' ? 'text-white hover:text-white/80' : 'text-[var(--cats-primary)] hover:text-[var(--cats-primary-dark)]' }}"
+      >
+        {{ card_button_text }}
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+</article>

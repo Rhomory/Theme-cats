@@ -1,0 +1,24 @@
+/**
+ * Cats Theme - Estilos personalizados
+ *
+ * Este archivo es para agregar estilos personalizados
+ * que sobrescriban o extiendan los estilos base del tema.
+ *
+ * Los colores globales se pueden modificar desde:
+ * /admin/config/cats/settings
+ */
+
+/* ==========================================================================
+   Variables CSS personalizadas (sobrescribir según necesidad)
+   ========================================================================== */
+
+:root {
+  /* Colores personalizados del usuario */
+  /* Estos valores se sobrescriben desde el panel de administración */
+}
+
+/* ==========================================================================
+   Estilos personalizados
+   ========================================================================== */
+
+/* Agrega tus estilos personalizados aquí */

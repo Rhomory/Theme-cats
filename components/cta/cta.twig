@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * CTA component - Llamada a la acción
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set cta_heading = heading|default('') %}
+{% set cta_description = description|default('') %}
+{% set cta_style = style|default('primary') %}
+{% set cta_alignment = alignment|default('center') %}
+{% set cta_size = size|default('medium') %}
+{% set cta_rounded = rounded|default(true) %}
+
+{% set cta_cva =
+  html_cva(
+    base: ['cats-cta relative overflow-hidden'],
+    variants: {
+      style: {
+        default: 'bg-gray-100 text-slate-900',
+        primary: 'bg-[var(--cats-primary)] text-white',
+        dark: 'bg-slate-900 text-white',
+        gradient: 'bg-gradient-to-r from-[var(--cats-primary)] to-[var(--cats-accent)] text-white'
+      },
+      alignment: {
+        left: 'text-left',
+        center: 'text-center'
+      },
+      size: {
+        small: 'py-8 px-6',
+        medium: 'py-12 px-8',
+        large: 'py-16 px-10'
+      },
+      rounded: {
+        yes: 'rounded-2xl',
+        no: ''
+      }
+    }
+  )
+%}
+
+{% set cta_classes =
+  cta_cva.apply({
+    style: cta_style,
+    alignment: cta_alignment,
+    size: cta_size,
+    rounded: cta_rounded ? 'yes' : 'no'
+  })
+%}
+
+{% set heading_size = {
+  'small': 'text-xl md:text-2xl',
+  'medium': 'text-2xl md:text-3xl',
+  'large': 'text-3xl md:text-4xl'
+} %}
+
+<div class="{{ cta_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {# Background image slot #}
+  {% set bg_content %}
+    {% block background %}
+    {% endblock %}
+  {% endset %}
+  
+  {% if bg_content|trim is not empty %}
+    <div class="absolute inset-0 z-0">
+      {{ bg_content }}
+    </div>
+    <div class="absolute inset-0 bg-black/50 z-[1]"></div>
+  {% endif %}
+
+  {# Content #}
+  <div class="relative z-10 {{ cta_alignment == 'center' ? 'max-w-2xl mx-auto' : '' }}">
+    {% if cta_heading %}
+      <h2 class="{{ heading_size[cta_size] }} font-bold mb-4">
+        {{ cta_heading }}
+      </h2>
+    {% endif %}
+
+    {% if cta_description %}
+      <p class="text-lg opacity-90 mb-6">
+        {{ cta_description }}
+      </p>
+    {% endif %}
+
+    {# Buttons slot #}
+    <div class="flex flex-wrap gap-4 {{ cta_alignment == 'center' ? 'justify-center' : '' }}">
+      {% block buttons %}
+      {% endblock %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Badge
+group: Cats - Content
+status: stable
+description: "Etiqueta o insignia para destacar estados o categorías."
+props:
+  type: object
+  required:
+    - text
+    - variant
+  properties:
+    text:
+      type: string
+      title: Texto
+      default: "Nuevo"
+      examples:
+        - "Nuevo"
+    variant:
+      type: string
+      title: Variante
+      enum:
+        - primary
+        - secondary
+        - success
+        - warning
+        - error
+        - info
+        - neutral
+      meta:enum:
+        primary: Primario
+        secondary: Secundario
+        success: Éxito
+        warning: Advertencia
+        error: Error
+        info: Información
+        neutral: Neutral
+      default: "primary"
+      examples:
+        - "primary"
+    size:
+      type: string
+      title: Tamaño
+      enum:
+        - small
+        - medium
+        - large
+      meta:enum:
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "medium"
+      examples:
+        - "medium"
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - solid
+        - soft
+        - outline
+      meta:enum:
+        solid: Sólido
+        soft: Suave
+        outline: Contorno
+      default: "solid"
+      examples:
+        - "solid"
+    rounded:
+      type: string
+      title: Bordes
+      enum:
+        - default
+        - full
+      meta:enum:
+        default: Por defecto
+        full: Píldora
+      default: "full"
+      examples:
+        - "full"
+    icon:
+      type: string
+      title: Icono
+      enum:
+        - none
+        - check
+        - x
+        - star
+        - clock
+        - alert
+      meta:enum:
+        none: Sin icono
+        check: Check
+        x: X
+        star: Estrella
+        clock: Reloj
+        alert: Alerta
+      default: "none"
+      examples:
+        - "none"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-element-id"

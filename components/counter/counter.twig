@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set counter_number = number|default(100) %}
 {% set counter_prefix = prefix|default('') %}
 {% set counter_suffix = suffix|default('') %}
@@ -56,7 +59,7 @@
 {% set number_classes = number_styles.apply({ size: counter_size, color: counter_color }) %}
 
 <div
-  class="{{ counter_classes }}"
+  class="{{ counter_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   data-cb-counter
   data-target="{{ counter_number }}"
   data-duration="{{ counter_duration }}"

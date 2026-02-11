@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set col_width = width|default('auto') %}
 {% set col_width_tablet = width_tablet|default('auto') %}
 {% set col_width_mobile = width_mobile|default('12/12') %}
@@ -94,7 +97,7 @@
 {% set col_id = custom_id|default('') %}
 
 <div
-  class="{{ column_classes }}"
+  class="{{ column_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   {% if col_id %}id="{{ col_id }}"{% endif %}
 >
   {% block content %}

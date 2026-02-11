@@ -1,0 +1,142 @@
+{#
+/**
+ * @file
+ * Section component - Sección con grid, header y footer
+ */
+#}
+
+{% set section_width = width|default('100') %}
+{% set section_columns = columns|default('100') %}
+{% set section_mobile = mobile_columns|default('1') %}
+{% set section_margin_top = margin_top|default('md') %}
+{% set section_margin_bottom = margin_bottom|default('md') %}
+{% set section_padding_top = padding_top|default('0') %}
+{% set section_padding_bottom = padding_bottom|default('0') %}
+{% set section_bg = background_color|default('transparent') %}
+{% set has_header = show_header|default(true) %}
+{% set has_footer = show_footer|default(true) %}
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+
+{% set section_cva =
+  html_cva(
+    base: ['cats-section relative mx-auto flex flex-col items-stretch'],
+    variants: {
+      width: {
+        '100': 'max-w-full',
+        '90': 'max-w-[90%]',
+        '80': 'max-w-[80%]',
+        '75': 'max-w-[75%]',
+        '50': 'max-w-[50%]'
+      },
+      marginTop: {
+        '0': 'mt-0',
+        sm: 'mt-4 md:mt-6',
+        md: 'mt-8 md:mt-12',
+        lg: 'mt-12 md:mt-16',
+        xl: 'mt-16 md:mt-24'
+      },
+      marginBottom: {
+        '0': 'mb-0',
+        sm: 'mb-4 md:mb-6',
+        md: 'mb-8 md:mb-12',
+        lg: 'mb-12 md:mb-16',
+        xl: 'mb-16 md:mb-24'
+      },
+      paddingTop: {
+        '0': 'pt-0',
+        sm: 'pt-4',
+        md: 'pt-8',
+        lg: 'pt-12'
+      },
+      paddingBottom: {
+        '0': 'pb-0',
+        sm: 'pb-4',
+        md: 'pb-8',
+        lg: 'pb-12'
+      },
+      backgroundColor: {
+        transparent: 'bg-transparent',
+        primary: 'bg-[var(--cats-primary)] text-white',
+        secondary: 'bg-[var(--cats-secondary)] text-white',
+        accent: 'bg-[var(--cats-accent)] text-white',
+        muted: 'bg-[var(--cats-muted)]',
+        white: 'bg-white',
+        dark: 'bg-slate-900 text-white'
+      }
+    }
+  )
+%}
+
+{% set section_classes =
+  section_cva.apply({
+    width: section_width,
+    marginTop: section_margin_top,
+    marginBottom: section_margin_bottom,
+    paddingTop: section_padding_top,
+    paddingBottom: section_padding_bottom,
+    backgroundColor: section_bg
+  })
+%}
+
+{% set grid_cva =
+  html_cva(
+    base: ['grid w-full gap-4 md:gap-6 xl:gap-8'],
+    variants: {
+      columns: {
+        '100': 'grid-cols-1',
+        '50-50': 'md:grid-cols-2',
+        '33-33-33': 'md:grid-cols-3',
+        '75-25': 'md:grid-cols-[3fr_1fr]',
+        '25-75': 'md:grid-cols-[1fr_3fr]',
+        '67-33': 'md:grid-cols-[2fr_1fr]',
+        '33-67': 'md:grid-cols-[1fr_2fr]',
+        '25-25-25-25': 'sm:grid-cols-2 lg:grid-cols-4'
+      },
+      mobileColumns: {
+        '1': 'grid-cols-1',
+        '2': 'grid-cols-2'
+      }
+    }
+  )
+%}
+
+{% set grid_classes =
+  grid_cva.apply({
+    columns: section_columns,
+    mobileColumns: section_mobile
+  })
+%}
+
+<section class="{{ section_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  <div class="container mx-auto px-4">
+    {% if has_header %}
+      {% set header_content %}
+        {% block header_slot %}
+        {% endblock %}
+      {% endset %}
+      {% if header_content|trim is not empty %}
+        <header class="mb-6 md:mb-8">
+          {{ header_content }}
+        </header>
+      {% endif %}
+    {% endif %}
+
+    <div class="{{ grid_classes }}">
+      {% block main_slot %}
+      {% endblock %}
+    </div>
+
+    {% if has_footer %}
+      {% set footer_content %}
+        {% block footer_slot %}
+        {% endblock %}
+      {% endset %}
+      {% if footer_content|trim is not empty %}
+        <footer class="mt-6 md:mt-8">
+          {{ footer_content }}
+        </footer>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>

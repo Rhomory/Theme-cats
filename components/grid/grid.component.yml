@@ -1,6 +1,6 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Grid
-group: Layout
+group: Cats - Layout
 status: stable
 description: "Sistema de grid flexible con 12 columnas y múltiples configuraciones."
 props:
@@ -117,6 +117,19 @@ props:
     custom_id:
       type: string
       title: ID personalizado
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
 
 slots:
   items:

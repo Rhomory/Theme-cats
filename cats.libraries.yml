@@ -1,17 +1,18 @@
 global:
-  version: 1.x
+  version: 0.0.2
   css:
     theme:
-      css/canvas-builder.css: {}
+      css/cats.css: {}
+      css/custom.css: {}
   js:
-    js/canvas-builder.js: {}
+    js/cats.js: {}
   dependencies:
     - core/drupal
     - core/once
 
 # Componentes específicos
 carousel:
-  version: 1.x
+  version: 0.0.2
   css:
     component:
       css/components/carousel.css: {}
@@ -22,7 +23,7 @@ carousel:
     - core/once
 
 tabs:
-  version: 1.x
+  version: 0.0.2
   css:
     component:
       css/components/tabs.css: {}
@@ -33,7 +34,7 @@ tabs:
     - core/once
 
 counter:
-  version: 1.x
+  version: 0.0.2
   css:
     component:
       css/components/counter.css: {}
@@ -44,7 +45,7 @@ counter:
     - core/once
 
 video:
-  version: 1.x
+  version: 0.0.2
   css:
     component:
       css/components/video.css: {}
@@ -53,3 +54,12 @@ video:
   dependencies:
     - core/drupal
     - core/once
+
+text-editor:
+  version: 0.0.2
+  js:
+    js/components/text-editor.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/ckeditor5

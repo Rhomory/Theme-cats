@@ -1,0 +1,89 @@
+/**
+ * Cats Theme - Estilos globales
+ *
+ * Variables CSS personalizables para colores y estilos
+ * Los colores se pueden modificar desde /admin/config/cats/settings
+ */
+
+:root {
+  /* Colores primarios personalizables */
+  --cats-primary: var(--color-primary, #3b82f6);
+  --cats-primary-light: var(--color-primary-light, #60a5fa);
+  --cats-primary-dark: var(--color-primary-dark, #2563eb);
+  --cats-primary-foreground: #ffffff;
+
+  /* Colores secundarios */
+  --cats-secondary: var(--color-secondary, #64748b);
+  --cats-secondary-light: var(--color-secondary-light, #94a3b8);
+  --cats-secondary-dark: var(--color-secondary-dark, #475569);
+  --cats-secondary-foreground: #ffffff;
+
+  /* Colores de acento */
+  --cats-accent: var(--color-accent, #f59e0b);
+  --cats-accent-light: var(--color-accent-light, #fbbf24);
+  --cats-accent-dark: var(--color-accent-dark, #d97706);
+  --cats-accent-foreground: #000000;
+
+  /* Colores neutros */
+  --cats-background: var(--color-background, #ffffff);
+  --cats-foreground: var(--color-foreground, #0f172a);
+  --cats-muted: var(--color-muted, #f1f5f9);
+  --cats-muted-foreground: #64748b;
+  --cats-border: var(--color-border, #e2e8f0);
+
+  /* Colores de estado */
+  --cats-success: #22c55e;
+  --cats-warning: #f59e0b;
+  --cats-error: #ef4444;
+  --cats-info: #3b82f6;
+
+  /* Espaciados */
+  --cats-spacing-0: 0;
+  --cats-spacing-xs: 0.25rem;
+  --cats-spacing-sm: 0.5rem;
+  --cats-spacing-md: 1rem;
+  --cats-spacing-lg: 1.5rem;
+  --cats-spacing-xl: 2rem;
+  --cats-spacing-2xl: 3rem;
+  --cats-spacing-3xl: 4rem;
+
+  /* Bordes */
+  --cats-radius-none: 0;
+  --cats-radius-sm: 0.25rem;
+  --cats-radius-md: 0.5rem;
+  --cats-radius-lg: 1rem;
+  --cats-radius-full: 9999px;
+
+  /* Sombras */
+  --cats-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --cats-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --cats-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --cats-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Transiciones */
+  --cats-transition-fast: 150ms ease;
+  --cats-transition-normal: 300ms ease;
+  --cats-transition-slow: 500ms ease;
+
+  /* Tipografía */
+  --cats-font-sans: system-ui, -apple-system, sans-serif;
+  --cats-font-serif: Georgia, serif;
+  --cats-font-mono: monospace;
+}
+
+/* Animaciones */
+@keyframes cats-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cats-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cats-slide-down { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cats-scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+.cats-animate-fade-in { animation: cats-fade-in var(--cats-transition-normal); }
+.cats-animate-slide-up { animation: cats-slide-up var(--cats-transition-normal); }
+.cats-animate-slide-down { animation: cats-slide-down var(--cats-transition-normal); }
+.cats-animate-scale-in { animation: cats-scale-in var(--cats-transition-normal); }
+
+/* Sombras de texto */
+.cats-text-shadow-sm { text-shadow: 1px 1px 2px rgb(0 0 0 / 0.1); }
+.cats-text-shadow-md { text-shadow: 2px 2px 4px rgb(0 0 0 / 0.2); }
+.cats-text-shadow-lg { text-shadow: 4px 4px 8px rgb(0 0 0 / 0.3); }
+.cats-text-shadow-custom { text-shadow: var(--text-shadow-x, 2px) var(--text-shadow-y, 2px) var(--text-shadow-blur, 4px) var(--text-shadow-color, rgba(0,0,0,0.3)); }

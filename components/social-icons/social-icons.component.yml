@@ -1,92 +1,86 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Social Icons
-group: Content
+group: Cats - Content
 status: stable
 description: "Iconos de redes sociales con enlaces."
 props:
   type: object
+  required:
+    - style
+    - size
   properties:
-    icons:
-      type: array
-      title: Redes sociales
-      items:
-        type: object
-        properties:
-          network:
-            type: string
-            title: Red social
-            enum:
-              - "facebook"
-              - "twitter"
-              - "instagram"
-              - "linkedin"
-              - "youtube"
-              - "tiktok"
-              - "pinterest"
-              - "github"
-              - "dribbble"
-              - "behance"
-              - "whatsapp"
-              - "telegram"
-              - "email"
-          url:
-            type: string
-            title: URL o enlace
-      examples:
-        - - network: "facebook"
-            url: "https://facebook.com/example"
-          - network: "twitter"
-            url: "https://twitter.com/example"
     style:
       type: string
       title: Estilo
       enum:
-        - "default"
-        - "filled"
-        - "outlined"
-        - "minimal"
+        - default
+        - filled
+        - outlined
+        - minimal
       meta:enum:
         default: Por defecto
-        filled: Relleno con color de marca
+        filled: Relleno con color
         outlined: Solo borde
         minimal: Minimalista
       default: "default"
+      examples:
+        - "default"
     size:
       type: string
       title: Tamaño
       enum:
-        - "small"
-        - "medium"
-        - "large"
+        - small
+        - medium
+        - large
       meta:enum:
         small: Pequeño
         medium: Mediano
         large: Grande
       default: "medium"
+      examples:
+        - "medium"
     alignment:
       type: string
       title: Alineación
       enum:
-        - "left"
-        - "center"
-        - "right"
+        - left
+        - center
+        - right
       meta:enum:
         left: Izquierda
         center: Centro
         right: Derecha
       default: "center"
+      examples:
+        - "center"
     gap:
       type: string
       title: Espaciado
       enum:
-        - "small"
-        - "medium"
-        - "large"
+        - small
+        - medium
+        - large
       meta:enum:
         small: Pequeño
         medium: Mediano
         large: Grande
       default: "medium"
-    custom_class:
+      examples:
+        - "medium"
+
+    css_class:
       type: string
-      title: Clases CSS personalizadas
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  icons:
+    title: "Iconos de redes sociales"

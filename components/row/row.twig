@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set row_direction = direction|default('row') %}
 {% set row_wrap = wrap|default('wrap') %}
 {% set row_gap = gap|default('medium') %}
@@ -90,7 +93,7 @@
 {% set row_id = custom_id|default('') %}
 
 <div
-  class="{{ row_classes }}"
+  class="{{ row_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   {% if row_id %}id="{{ row_id }}"{% endif %}
 >
   {% block columns %}

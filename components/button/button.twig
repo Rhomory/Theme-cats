@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Button component - Botón con variantes
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set btn_label = label|default('Clic aquí') %}
+{% set btn_href = href|default('') %}
+{% set btn_variant = variant|default('primary') %}
+{% set btn_size = size|default('medium') %}
+{% set btn_icon = icon|default('none') %}
+{% set btn_icon_pos = icon_position|default('right') %}
+{% set is_full_width = full_width|default(false) %}
+{% set btn_rounded = rounded|default('default') %}
+{% set is_disabled = disabled|default(false) %}
+
+{% set button_cva =
+  html_cva(
+    base: [
+      'inline-flex items-center justify-center font-medium transition-all duration-200',
+      'focus:outline-none focus:ring-2 focus:ring-offset-2',
+      'disabled:opacity-50 disabled:cursor-not-allowed'
+    ],
+    variants: {
+      variant: {
+        primary: 'bg-[var(--cats-primary)] text-white hover:bg-[var(--cats-primary)]/90 focus:ring-[var(--cats-primary)]',
+        secondary: 'bg-[var(--cats-secondary)] text-white hover:bg-[var(--cats-secondary)]/90 focus:ring-[var(--cats-secondary)]',
+        outline: 'border-2 border-[var(--cats-primary)] text-[var(--cats-primary)] bg-transparent hover:bg-[var(--cats-primary)] hover:text-white',
+        ghost: 'bg-transparent text-[var(--cats-foreground)] hover:bg-[var(--cats-muted)]',
+        link: 'bg-transparent text-[var(--cats-primary)] underline-offset-4 hover:underline p-0'
+      },
+      size: {
+        small: 'text-sm px-3 py-1.5 gap-1.5',
+        medium: 'text-sm px-5 py-2.5 gap-2',
+        large: 'text-base px-7 py-3.5 gap-2.5'
+      },
+      rounded: {
+        default: 'rounded-lg',
+        full: 'rounded-full'
+      },
+      fullWidth: {
+        yes: 'w-full',
+        no: ''
+      },
+      iconPosition: {
+        left: 'flex-row',
+        right: 'flex-row-reverse'
+      }
+    }
+  )
+%}
+
+{% set button_classes =
+  button_cva.apply({
+    variant: btn_variant,
+    size: btn_size,
+    rounded: btn_rounded,
+    fullWidth: is_full_width ? 'yes' : 'no',
+    iconPosition: btn_icon != 'none' ? btn_icon_pos : 'right'
+  })
+%}
+
+{# Icon paths #}
+{% set icon_paths = {
+  'arrow-right': 'M9 5l7 7-7 7',
+  'arrow-left': 'M15 19l-7-7 7-7',
+  'download': 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4',
+  'external-link': 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14',
+  'plus': 'M12 4v16m8-8H4',
+  'check': 'M5 13l4 4L19 7'
+} %}
+
+{% set icon_size = btn_size == 'small' ? 'w-4 h-4' : (btn_size == 'large' ? 'w-5 h-5' : 'w-4 h-4') %}
+
+{% set tag = btn_href ? 'a' : 'button' %}
+
+<{{ tag }}
+  class="{{ button_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
+  {% if btn_href %}href="{{ btn_href }}"{% endif %}
+  {% if tag == 'button' %}type="button"{% endif %}
+  {% if is_disabled %}disabled aria-disabled="true"{% endif %}
+>
+  {{ btn_label }}
+
+  {% if btn_icon != 'none' and icon_paths[btn_icon] is defined %}
+    <svg class="{{ icon_size }} {{ btn_icon_pos == 'right' ? 'order-last' : 'order-first' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ icon_paths[btn_icon] }}"/>
+    </svg>
+  {% endif %}
+</{{ tag }}>

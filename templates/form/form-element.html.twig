@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Cats theme implementation for a form element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - errors: Any errors for this form element.
+ * - prefix: Prefix for the form element.
+ * - suffix: Suffix for the form element.
+ * - required: The required marker.
+ * - type: The type of the element.
+ * - name: The name of the element.
+ * - label: A rendered label element.
+ * - label_display: Label display setting.
+ * - description: A rendered description element.
+ * - description_display: Description display setting.
+ * - children: The rendered child element.
+ * - disabled: True if the element is disabled.
+ *
+ * @see template_preprocess_form_element()
+ */
+#}
+{% set classes = [
+  'form-item',
+  'form-item--' ~ type|clean_class,
+  'mb-4',
+  disabled ? 'form-item--disabled opacity-60',
+  errors ? 'form-item--error',
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+  {% if label_display in ['before', 'invisible'] %}
+    {{ label }}
+  {% endif %}
+  
+  {% if prefix %}
+    <span class="form-item__prefix">{{ prefix }}</span>
+  {% endif %}
+  
+  {% if description_display == 'before' and description %}
+    <div class="form-item__description text-sm text-gray-500 mb-1">
+      {{ description }}
+    </div>
+  {% endif %}
+  
+  {{ children }}
+  
+  {% if suffix %}
+    <span class="form-item__suffix">{{ suffix }}</span>
+  {% endif %}
+  
+  {% if label_display == 'after' %}
+    {{ label }}
+  {% endif %}
+  
+  {% if errors %}
+    <div class="form-item__error-message text-sm text-red-600 mt-1">
+      {{ errors }}
+    </div>
+  {% endif %}
+  
+  {% if description_display in ['after', 'invisible'] and description %}
+    <div class="form-item__description text-sm text-gray-500 mt-1">
+      {{ description }}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,85 @@
+{#
+/**
+ * @file
+ * Cats theme implementation for a pager.
+ *
+ * Available variables:
+ * - heading_id: Pagination heading ID.
+ * - items: List of pager items.
+ * - current: The current page number.
+ * - ellipses: If there are more pages than shown.
+ *
+ * @see template_preprocess_pager()
+ */
+#}
+{% if items %}
+  <nav class="pager" role="navigation" aria-labelledby="{{ heading_id }}">
+    <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination'|t }}</h4>
+    <ul class="pager__items flex items-center justify-center gap-1">
+      {# Print first item if we are not on the first page. #}
+      {% if items.first %}
+        <li class="pager__item pager__item--first">
+          <a href="{{ items.first.href }}" title="{{ 'Go to first page'|t }}" class="px-3 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition-colors">
+            <span class="visually-hidden">{{ 'First page'|t }}</span>
+            <span aria-hidden="true">«</span>
+          </a>
+        </li>
+      {% endif %}
+      
+      {# Print previous item if we are not on the first page. #}
+      {% if items.previous %}
+        <li class="pager__item pager__item--previous">
+          <a href="{{ items.previous.href }}" title="{{ 'Go to previous page'|t }}" rel="prev" class="px-3 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition-colors">
+            <span class="visually-hidden">{{ 'Previous page'|t }}</span>
+            <span aria-hidden="true">‹</span>
+          </a>
+        </li>
+      {% endif %}
+      
+      {# Print ellipsis if there are further previous pages. #}
+      {% if ellipses.previous %}
+        <li class="pager__item pager__item--ellipsis px-3 py-2" role="presentation">…</li>
+      {% endif %}
+      
+      {# Print page items. #}
+      {% for key, item in items.pages %}
+        <li class="pager__item {{ current == key ? 'pager__item--active' }}">
+          {% if current == key %}
+            {% set title = 'Current page'|t %}
+          {% else %}
+            {% set title = 'Go to page @key'|t({'@key': key}) %}
+          {% endif %}
+          <a href="{{ item.href }}" title="{{ title }}" class="px-3 py-2 rounded-lg border {{ current == key ? 'bg-[var(--cats-primary)] text-white border-[var(--cats-primary)]' : 'border-gray-300 hover:bg-gray-100' }} transition-colors">
+            <span class="visually-hidden">{{ current == key ? 'Current page'|t : 'Page'|t }}</span>
+            {{ key }}
+          </a>
+        </li>
+      {% endfor %}
+      
+      {# Print ellipsis if there are further next pages. #}
+      {% if ellipses.next %}
+        <li class="pager__item pager__item--ellipsis px-3 py-2" role="presentation">…</li>
+      {% endif %}
+      
+      {# Print next item if we are not on the last page. #}
+      {% if items.next %}
+        <li class="pager__item pager__item--next">
+          <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" rel="next" class="px-3 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition-colors">
+            <span class="visually-hidden">{{ 'Next page'|t }}</span>
+            <span aria-hidden="true">›</span>
+          </a>
+        </li>
+      {% endif %}
+      
+      {# Print last item if we are not on the last page. #}
+      {% if items.last %}
+        <li class="pager__item pager__item--last">
+          <a href="{{ items.last.href }}" title="{{ 'Go to last page'|t }}" class="px-3 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition-colors">
+            <span class="visually-hidden">{{ 'Last page'|t }}</span>
+            <span aria-hidden="true">»</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

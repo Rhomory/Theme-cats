@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set map_provider = provider|default('openstreetmap') %}
 {% set map_address = address|default('') %}
 {% set map_zoom = zoom|default(14) %}
@@ -46,7 +49,7 @@
 {# URL encode the address #}
 {% set encoded_address = map_address|url_encode %}
 
-<div class="cb-map {{ map_classes }}">
+<div class="cb-map {{ map_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {% if map_provider == 'google' %}
     <iframe
       class="w-full h-full"

@@ -1,0 +1,119 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Hero
+group: Cats - Layout
+status: stable
+description: "Hero banner con imagen de fondo y contenido superpuesto."
+props:
+  type: object
+  required:
+    - height
+    - content_position
+    - overlay_opacity
+  properties:
+    height:
+      type: string
+      title: Altura
+      enum:
+        - full
+        - large
+        - medium
+        - small
+      meta:enum:
+        full: Pantalla completa
+        large: Grande
+        medium: Mediano
+        small: Pequeño
+      default: "large"
+      examples:
+        - "large"
+    content_position:
+      type: string
+      title: Posición del contenido
+      enum:
+        - top-left
+        - top-center
+        - top-right
+        - center-left
+        - center
+        - center-right
+        - bottom-left
+        - bottom-center
+        - bottom-right
+      meta:enum:
+        top-left: Arriba izquierda
+        top-center: Arriba centro
+        top-right: Arriba derecha
+        center-left: Centro izquierda
+        center: Centro
+        center-right: Centro derecha
+        bottom-left: Abajo izquierda
+        bottom-center: Abajo centro
+        bottom-right: Abajo derecha
+      default: "center-left"
+      examples:
+        - "center-left"
+    overlay_opacity:
+      type: string
+      title: Opacidad del overlay
+      enum:
+        - "0"
+        - "20"
+        - "40"
+        - "60"
+        - "80"
+      meta:enum:
+        "0": "Sin overlay"
+        "20": "20%"
+        "40": "40%"
+        "60": "60%"
+        "80": "80%"
+      default: "40"
+      examples:
+        - "40"
+    background_color:
+      type: string
+      title: Color de fondo
+      enum:
+        - primary
+        - secondary
+        - dark
+        - gradient
+      meta:enum:
+        primary: Primario
+        secondary: Secundario
+        dark: Oscuro
+        gradient: Degradado
+      default: "dark"
+      examples:
+        - "dark"
+    text_color:
+      type: string
+      title: Color del texto
+      enum:
+        - light
+        - dark
+      meta:enum:
+        light: Claro
+        dark: Oscuro
+      default: "light"
+      examples:
+        - "light"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  hero_content:
+    title: "Contenido del hero"
+  background_image:
+    title: "Imagen de fondo"

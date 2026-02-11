@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set video_source = source|default('youtube') %}
 {% set video_url = url|default('') %}
 {% set video_poster = poster|default({}) %}
@@ -69,7 +72,7 @@
 %}
 
 <div
-  class="cb-video {{ wrapper_classes }}"
+  class="cb-video {{ wrapper_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   data-cb-video
   data-source="{{ video_source }}"
   data-video-id="{{ video_id }}"

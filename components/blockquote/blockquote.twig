@@ -1,0 +1,76 @@
+{#
+/**
+ * @file
+ * Blockquote component - Cita destacada
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set bq_quote = quote|default('') %}
+{% set bq_author = author|default('') %}
+{% set bq_source = source|default('') %}
+{% set bq_style = style|default('default') %}
+{% set bq_alignment = alignment|default('left') %}
+{% set bq_color = color|default('primary') %}
+
+{% set color_classes = {
+  'primary': 'border-[var(--cats-primary)] text-[var(--cats-primary)]',
+  'secondary': 'border-[var(--cats-secondary)] text-[var(--cats-secondary)]',
+  'accent': 'border-[var(--cats-accent)] text-[var(--cats-accent)]',
+  'neutral': 'border-gray-400 text-gray-600'
+} %}
+
+{% set blockquote_cva =
+  html_cva(
+    base: ['cats-blockquote'],
+    variants: {
+      style: {
+        default: 'border-l-4 pl-6 py-2',
+        large: 'border-l-4 pl-8 py-4',
+        bordered: 'border-2 rounded-lg p-6',
+        icon: 'relative pl-12'
+      },
+      alignment: {
+        left: 'text-left',
+        center: 'text-center'
+      }
+    }
+  )
+%}
+
+{% set blockquote_classes =
+  blockquote_cva.apply({
+    style: bq_style,
+    alignment: bq_alignment
+  }) ~ ' ' ~ color_classes[bq_color]
+%}
+
+{% set quote_size = bq_style == 'large' ? 'text-xl md:text-2xl' : 'text-lg' %}
+
+<blockquote class="{{ blockquote_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {# Quote icon for icon style #}
+  {% if bq_style == 'icon' %}
+    <svg class="absolute left-0 top-0 w-8 h-8 opacity-30" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+    </svg>
+  {% endif %}
+
+  {# Quote text #}
+  <p class="{{ quote_size }} italic text-[var(--cats-foreground)] mb-4">
+    {% if bq_style == 'bordered' or bq_style == 'icon' %}"{% endif %}{{ bq_quote }}{% if bq_style == 'bordered' or bq_style == 'icon' %}"{% endif %}
+  </p>
+
+  {# Author and source #}
+  {% if bq_author or bq_source %}
+    <footer class="text-sm text-gray-500">
+      {% if bq_author %}
+        <cite class="font-medium not-italic">— {{ bq_author }}</cite>
+      {% endif %}
+      {% if bq_source %}
+        <span class="block mt-1">{{ bq_source }}</span>
+      {% endif %}
+    </footer>
+  {% endif %}
+</blockquote>

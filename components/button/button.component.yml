@@ -1,0 +1,126 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Button
+group: Cats - Content
+status: stable
+description: "Botón con múltiples variantes y tamaños."
+props:
+  type: object
+  required:
+    - label
+    - variant
+    - size
+  properties:
+    label:
+      type: string
+      title: Texto del botón
+      default: "Clic aquí"
+      examples:
+        - "Más información"
+    href:
+      type: string
+      title: URL de enlace
+      default: ""
+      examples:
+        - "#"
+    variant:
+      type: string
+      title: Variante
+      enum:
+        - primary
+        - secondary
+        - outline
+        - ghost
+        - link
+      meta:enum:
+        primary: Primario
+        secondary: Secundario
+        outline: Contorno
+        ghost: Fantasma
+        link: Enlace
+      default: "primary"
+      examples:
+        - "primary"
+    size:
+      type: string
+      title: Tamaño
+      enum:
+        - small
+        - medium
+        - large
+      meta:enum:
+        small: Pequeño
+        medium: Mediano
+        large: Grande
+      default: "medium"
+      examples:
+        - "medium"
+    icon:
+      type: string
+      title: Icono
+      enum:
+        - none
+        - arrow-right
+        - arrow-left
+        - download
+        - external-link
+        - plus
+        - check
+      meta:enum:
+        none: Sin icono
+        arrow-right: Flecha derecha
+        arrow-left: Flecha izquierda
+        download: Descargar
+        external-link: Enlace externo
+        plus: Más
+        check: Check
+      default: "none"
+      examples:
+        - "arrow-right"
+    icon_position:
+      type: string
+      title: Posición del icono
+      enum:
+        - left
+        - right
+      meta:enum:
+        left: Izquierda
+        right: Derecha
+      default: "right"
+      examples:
+        - "right"
+    full_width:
+      type: boolean
+      title: Ancho completo
+      default: false
+      examples:
+        - false
+    rounded:
+      type: string
+      title: Borde redondeado
+      enum:
+        - default
+        - full
+      meta:enum:
+        default: Por defecto
+        full: Píldora
+      default: "default"
+      examples:
+        - "default"
+    disabled:
+      type: boolean
+      title: Deshabilitado
+      default: false
+      examples:
+        - false
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-element-id"

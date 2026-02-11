@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Accordion component - Acordeón expandible
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set accordion_style = style|default('default') %}
+{% set allow_multiple = allow_multiple|default(false) %}
+{% set icon_pos = icon_position|default('right') %}
+{% set first_open = first_open|default(false) %}
+
+{% set accordion_cva =
+  html_cva(
+    base: ['cats-accordion'],
+    variants: {
+      style: {
+        default: 'border border-[var(--cats-border)] rounded-lg divide-y divide-[var(--cats-border)]',
+        bordered: 'border-2 border-[var(--cats-border)] rounded-xl divide-y divide-[var(--cats-border)]',
+        separated: 'space-y-3',
+        minimal: 'divide-y divide-[var(--cats-border)]'
+      }
+    }
+  )
+%}
+
+{% set accordion_classes =
+  accordion_cva.apply({
+    style: accordion_style
+  })
+%}
+
+<div 
+  class="{{ accordion_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
+  data-cats-accordion
+  data-allow-multiple="{{ allow_multiple ? 'true' : 'false' }}"
+  data-first-open="{{ first_open ? 'true' : 'false' }}"
+  data-icon-position="{{ icon_pos }}"
+>
+  {% block items %}
+  {% endblock %}
+</div>

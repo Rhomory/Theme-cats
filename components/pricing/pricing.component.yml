@@ -1,0 +1,123 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Pricing
+group: Cats - Widgets
+status: stable
+description: "Widget de tabla de precios con características y botón de acción."
+props:
+  type: object
+  required:
+    - title
+    - price
+    - button_text
+  properties:
+    title:
+      type: string
+      title: Título del plan
+      default: "Plan Básico"
+      examples:
+        - "Plan Básico"
+    subtitle:
+      type: string
+      title: Subtítulo/Descripción
+      default: ""
+      examples:
+        - "Para individuos"
+    price:
+      type: string
+      title: Precio
+      default: "29"
+      examples:
+        - "29"
+    currency:
+      type: string
+      title: Moneda
+      default: "$"
+      examples:
+        - "$"
+    period:
+      type: string
+      title: Período
+      enum:
+        - month
+        - year
+        - one-time
+      meta:enum:
+        month: Por mes
+        year: Por año
+        one-time: Pago único
+      default: "month"
+      examples:
+        - "month"
+    button_text:
+      type: string
+      title: Texto del botón
+      default: "Empezar"
+      examples:
+        - "Empezar"
+    button_url:
+      type: string
+      title: URL del botón
+      default: "#"
+      examples:
+        - "#"
+    badge:
+      type: string
+      title: Insignia/Etiqueta
+      default: ""
+      examples:
+        - "Más popular"
+    featured:
+      type: boolean
+      title: Destacado
+      default: false
+      examples:
+        - false
+    background:
+      type: string
+      title: Color de fondo
+      enum:
+        - white
+        - muted
+        - primary
+        - dark
+      meta:enum:
+        white: Blanco
+        muted: Gris suave
+        primary: Color primario
+        dark: Oscuro
+      default: "white"
+      examples:
+        - "white"
+    shadow:
+      type: string
+      title: Sombra
+      enum:
+        - none
+        - sm
+        - md
+        - lg
+      meta:enum:
+        none: Sin sombra
+        sm: Pequeña
+        md: Mediana
+        lg: Grande
+      default: "lg"
+      examples:
+        - "lg"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  features:
+    title: "Características del plan"

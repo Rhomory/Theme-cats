@@ -1,5 +1,5 @@
 {
-  "name": "drupal/canvas_builder_theme",
+  "name": "drupal/cats",
   "description": "Tema estilo Elementor para Drupal con componentes avanzados y opciones de personalización.",
   "type": "drupal-custom-theme",
   "license": "GPL-2.0-or-later",
@@ -18,10 +18,10 @@
     "drupal/core": "^11",
     "drupal/byte": "^1"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "extra": {
     "drupal": {
-      "version": "0.0.1",
+      "version": "0.0.2",
       "datestamp": ""
     }
   },

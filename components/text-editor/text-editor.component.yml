@@ -1,0 +1,73 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Text Editor
+group: Cats - Content
+status: stable
+description: "Contenido de texto enriquecido con estilos tipográficos."
+props:
+  type: object
+  required:
+    - prose_size
+    - align
+  properties:
+    prose_size:
+      type: string
+      title: Tamaño de prosa
+      enum:
+        - sm
+        - base
+        - lg
+        - xl
+      meta:enum:
+        sm: Pequeño
+        base: Base
+        lg: Grande
+        xl: Extra grande
+      default: "base"
+      examples:
+        - "base"
+    align:
+      type: string
+      title: Alineación
+      enum:
+        - left
+        - center
+        - right
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+      default: "left"
+      examples:
+        - "left"
+    max_width:
+      type: string
+      title: Ancho máximo
+      enum:
+        - none
+        - prose
+        - xl
+        - full
+      meta:enum:
+        none: Sin límite
+        prose: Prosa (65ch)
+        xl: Extra grande
+        full: Completo
+      examples:
+        - "prose"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  content:
+    title: "Contenido del editor"

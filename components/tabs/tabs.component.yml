@@ -1,69 +1,56 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Tabs
-group: Content
+group: Cats - Content
 status: stable
-description: "Pestañas interactivas para organizar contenido."
+description: "Contenedor de pestañas interactivas."
 props:
   type: object
+  required:
+    - style
   properties:
     style:
       type: string
       title: Estilo de pestañas
       enum:
-        - "default"
-        - "pills"
-        - "underline"
-        - "boxed"
+        - default
+        - pills
+        - underline
+        - boxed
       meta:enum:
         default: Por defecto
         pills: Píldoras
         underline: Subrayado
-        boxed: Cajas
+        boxed: Enmarcado
       default: "default"
+      examples:
+        - "default"
     alignment:
       type: string
-      title: Alineación de pestañas
+      title: Alineación
       enum:
-        - "left"
-        - "center"
-        - "right"
-        - "stretch"
+        - left
+        - center
+        - right
       meta:enum:
         left: Izquierda
         center: Centro
         right: Derecha
-        stretch: Expandir
-      default: "left"
-    tabs:
-      type: array
-      title: Pestañas
-      items:
-        type: object
-        properties:
-          title:
-            type: string
-            title: Título de la pestaña
-          icon:
-            type: string
-            title: Icono (opcional)
-          content:
-            type: string
-            title: Contenido HTML
-            pattern: "(.|\\r?\\n)*"
       examples:
-        - - title: "Pestaña 1"
-            content: "Contenido de la pestaña 1"
-          - title: "Pestaña 2"
-            content: "Contenido de la pestaña 2"
-    default_tab:
-      type: number
-      title: Pestaña activa por defecto
-      default: 0
+        - "left"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
       examples:
-        - 0
-    custom_class:
+        - "my-custom-class"
+    html_id:
       type: string
-      title: Clases CSS personalizadas
-    custom_id:
-      type: string
-      title: ID personalizado
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  tabs_content:
+    title: "Contenido de las pestañas"

@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set bar_percentage = percentage|default(75) %}
 {% set bar_label = label|default('') %}
 {% set bar_show_percentage = show_percentage|default(true) %}
@@ -66,7 +69,7 @@
 {% set track_classes = track.apply({ size: bar_size, rounded: is_rounded }) %}
 {% set bar_classes = bar.apply({ color: bar_color, rounded: is_rounded, striped: is_striped }) %}
 
-<div class="cb-progress-bar {{ additional_classes }}" data-cb-progress="{{ bar_animated ? 'true' : 'false' }}">
+<div class="cb-progress-bar {{ additional_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} data-cb-progress="{{ bar_animated ? 'true' : 'false' }}">
   {% if bar_label or bar_show_percentage %}
     <div class="flex justify-between items-center mb-2">
       {% if bar_label %}

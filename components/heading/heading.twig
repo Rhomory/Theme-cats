@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Heading component - Título con opciones de tipografía
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set heading_level = level|default(2) %}
+{% set heading_size = text_size|default('3xl') %}
+{% set heading_color = text_color|default('default') %}
+{% set heading_align = align|default('left') %}
+{% set heading_weight = font_weight|default('bold') %}
+{% set heading_content = heading_text|default('') %}
+
+{% set heading_cva =
+  html_cva(
+    base: ['font-heading'],
+    variants: {
+      textSize: {
+        sm: 'text-sm',
+        base: 'text-base',
+        lg: 'text-lg',
+        xl: 'text-xl',
+        '2xl': 'text-2xl',
+        '3xl': 'text-3xl',
+        '4xl': 'text-4xl',
+        '5xl': 'text-5xl'
+      },
+      textColor: {
+        default: 'text-[var(--cats-foreground)]',
+        primary: 'text-[var(--cats-primary)]',
+        secondary: 'text-[var(--cats-secondary)]',
+        accent: 'text-[var(--cats-accent)]',
+        muted: 'text-gray-500',
+        white: 'text-white'
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right'
+      },
+      fontWeight: {
+        normal: 'font-normal',
+        medium: 'font-medium',
+        semibold: 'font-semibold',
+        bold: 'font-bold',
+        extrabold: 'font-extrabold'
+      }
+    }
+  )
+%}
+
+{% set heading_classes =
+  heading_cva.apply({
+    textSize: heading_size,
+    textColor: heading_color,
+    align: heading_align,
+    fontWeight: heading_weight
+  })
+%}
+
+{% set tag = 'h' ~ heading_level %}
+
+<{{ tag }} class="{{ heading_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {{ heading_content }}
+</{{ tag }}>

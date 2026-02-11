@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Accordion Item component
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set item_title = title|default('') %}
+{% set item_open = is_open|default(false) %}
+
+<div class="cats-accordion-item {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}" data-accordion-item>
+  <button
+    type="button"
+    class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 transition-colors"
+    aria-expanded="{{ item_open ? 'true' : 'false' }}"
+    data-accordion-trigger
+  >
+    <span>{{ item_title }}</span>
+    <svg 
+      class="w-5 h-5 transition-transform duration-200 {{ item_open ? 'rotate-180' : '' }}" 
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24"
+      data-accordion-icon
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  
+  <div 
+    class="overflow-hidden transition-all duration-200 {{ item_open ? '' : 'hidden' }}"
+    data-accordion-content
+  >
+    <div class="p-4 pt-0 text-gray-600">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Divider
-group: Layout
+group: Cats - Layout
 status: stable
 description: "Línea divisoria con estilos personalizables."
 props:
@@ -91,3 +91,15 @@ props:
     custom_class:
       type: string
       title: Clases CSS personalizadas
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-element-id"

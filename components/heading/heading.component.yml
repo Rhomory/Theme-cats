@@ -1,0 +1,114 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Heading
+group: Cats - Content
+status: stable
+description: "Título con opciones de tamaño, color y alineación."
+props:
+  type: object
+  required:
+    - heading_text
+    - level
+    - text_size
+    - text_color
+    - align
+  properties:
+    heading_text:
+      type: string
+      title: Texto del título
+      default: "Tu título aquí"
+      examples:
+        - "Mi Título"
+    level:
+      type: number
+      title: Nivel de título
+      enum: [1, 2, 3, 4, 5, 6]
+      default: 2
+      examples:
+        - 2
+    text_size:
+      type: string
+      title: Tamaño
+      enum:
+        - sm
+        - base
+        - lg
+        - xl
+        - 2xl
+        - 3xl
+        - 4xl
+        - 5xl
+      meta:enum:
+        sm: Pequeño
+        base: Base
+        lg: Grande
+        xl: Extra grande
+        2xl: 2XL
+        3xl: 3XL
+        4xl: 4XL
+        5xl: 5XL
+      default: "3xl"
+      examples:
+        - "3xl"
+    text_color:
+      type: string
+      title: Color
+      enum:
+        - default
+        - primary
+        - secondary
+        - accent
+        - muted
+        - white
+      meta:enum:
+        default: Por defecto
+        primary: Primario
+        secondary: Secundario
+        accent: Acento
+        muted: Atenuado
+        white: Blanco
+      default: "default"
+      examples:
+        - "default"
+    align:
+      type: string
+      title: Alineación
+      enum:
+        - left
+        - center
+        - right
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+      default: "left"
+      examples:
+        - "left"
+    font_weight:
+      type: string
+      title: Peso de fuente
+      enum:
+        - normal
+        - medium
+        - semibold
+        - bold
+        - extrabold
+      meta:enum:
+        normal: Normal
+        medium: Media
+        semibold: Semi-negrita
+        bold: Negrita
+        extrabold: Extra negrita
+      examples:
+        - "bold"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-element-id"

@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set spacer_size = size|default('md') %}
 
 {% set spacer =
@@ -31,4 +34,4 @@
 
 {% set spacer_classes = spacer.apply({ size: spacer_size }, additional_classes) %}
 
-<div class="{{ spacer_classes }}" aria-hidden="true"></div>
+<div class="{{ spacer_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} aria-hidden="true"></div>

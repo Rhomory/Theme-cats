@@ -1,11 +1,15 @@
-name: Canvas Builder Theme
+name: Cats
 type: theme
-description: 'Tema estilo Elementor basado en byte_theme con componentes avanzados y opciones de personalización.'
+description: 'Tema estilo Elementor para Drupal con componentes avanzados, drag-and-drop y opciones de personalización.'
 core_version_requirement: ^11
-base theme: byte_theme
+base theme: false
+version: 0.1.0
 
 libraries:
-  - canvas_builder_theme/global
+  - cats/global
+
+dependencies:
+  - cva:cva
 
 regions:
   header: Header

@@ -1,35 +1,14 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Carousel
-group: Content
+group: Cats - Content
 status: stable
-description: "Carrusel de imágenes o contenido con navegación y autoplay."
+description: "Carrusel de contenido con navegación."
 props:
   type: object
+  required:
+    - autoplay
+    - show_navigation
   properties:
-    slides:
-      type: array
-      title: Slides
-      items:
-        type: object
-        properties:
-          image:
-            $ref: json-schema-definitions://canvas.module/image
-            title: Imagen
-            type: object
-          title:
-            type: string
-            title: Título (opcional)
-          description:
-            type: string
-            title: Descripción (opcional)
-          link:
-            type: string
-            title: Enlace (opcional)
-      examples:
-        - - image:
-              src: "https://via.placeholder.com/800x400"
-              alt: "Slide 1"
-            title: "Título del slide"
     autoplay:
       type: boolean
       title: Reproducción automática
@@ -38,51 +17,47 @@ props:
         - true
     autoplay_speed:
       type: number
-      title: Velocidad de autoplay (ms)
+      title: Velocidad (ms)
       default: 5000
       examples:
         - 5000
-    show_arrows:
+    show_navigation:
       type: boolean
-      title: Mostrar flechas de navegación
+      title: Mostrar navegación
       default: true
+      examples:
+        - true
     show_dots:
       type: boolean
       title: Mostrar indicadores
       default: true
-    loop:
-      type: boolean
-      title: Bucle infinito
-      default: true
+      examples:
+        - true
     effect:
       type: string
       title: Efecto de transición
       enum:
-        - "slide"
-        - "fade"
+        - slide
+        - fade
       meta:enum:
         slide: Deslizar
         fade: Desvanecer
-      default: "slide"
-    aspect_ratio:
+      examples:
+        - "slide"
+
+    css_class:
       type: string
-      title: Proporción de aspecto
-      enum:
-        - "auto"
-        - "16/9"
-        - "4/3"
-        - "1/1"
-        - "21/9"
-      meta:enum:
-        auto: Automático
-        "16/9": 16:9 (Panorámico)
-        "4/3": 4:3 (Clásico)
-        "1/1": 1:1 (Cuadrado)
-        "21/9": 21:9 (Ultra panorámico)
-      default: "16/9"
-    custom_class:
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
       type: string
-      title: Clases CSS personalizadas
-    custom_id:
-      type: string
-      title: ID personalizado
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  slides:
+    title: "Diapositivas"

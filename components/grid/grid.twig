@@ -5,6 +5,9 @@
  */
 #}
 
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 {% set grid_columns = columns|default('3') %}
 {% set grid_columns_tablet = columns_tablet|default('2') %}
 {% set grid_columns_mobile = columns_mobile|default('1') %}
@@ -80,7 +83,7 @@
 {% set grid_id = custom_id|default('') %}
 
 <div
-  class="{{ grid_classes }}"
+  class="{{ grid_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   {% if grid_id %}id="{{ grid_id }}"{% endif %}
 >
   {% block items %}

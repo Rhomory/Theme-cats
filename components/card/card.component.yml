@@ -1,0 +1,100 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Card
+group: Cats - Content
+status: stable
+description: "Tarjeta con imagen, título, descripción y botón."
+props:
+  type: object
+  required:
+    - title
+    - style
+  properties:
+    title:
+      type: string
+      title: Título
+      default: "Título de la tarjeta"
+      examples:
+        - "Mi tarjeta"
+    description:
+      type: string
+      title: Descripción
+      default: ""
+      examples:
+        - "Descripción de la tarjeta"
+    button_text:
+      type: string
+      title: Texto del botón
+      default: ""
+      examples:
+        - "Ver más"
+    button_url:
+      type: string
+      title: URL del botón
+      default: "#"
+      examples:
+        - "#"
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - default
+        - bordered
+        - elevated
+        - minimal
+      meta:enum:
+        default: Por defecto
+        bordered: Con borde
+        elevated: Elevada
+        minimal: Minimalista
+      default: "default"
+      examples:
+        - "default"
+    image_position:
+      type: string
+      title: Posición de imagen
+      enum:
+        - top
+        - left
+        - right
+        - background
+      meta:enum:
+        top: Arriba
+        left: Izquierda
+        right: Derecha
+        background: Fondo
+      default: "top"
+      examples:
+        - "top"
+    align:
+      type: string
+      title: Alineación del contenido
+      enum:
+        - left
+        - center
+        - right
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+      default: "left"
+      examples:
+        - "left"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  card_image:
+    title: "Imagen de la tarjeta"
+  card_content:
+    title: "Contenido adicional"

@@ -1,0 +1,71 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Navbar
+group: Cats - Layout
+status: stable
+description: "Barra de navegación con logo y menú."
+props:
+  type: object
+  required:
+    - style
+  properties:
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - light
+        - dark
+        - transparent
+      meta:enum:
+        light: Claro (blanco)
+        dark: Oscuro
+        transparent: Transparente
+      default: "light"
+      examples:
+        - "light"
+    menu_align:
+      type: string
+      title: Alineación del menú
+      enum:
+        - left
+        - center
+        - right
+      meta:enum:
+        left: Izquierda
+        center: Centro
+        right: Derecha
+      default: "center"
+      examples:
+        - "center"
+    sticky:
+      type: boolean
+      title: Fijo al hacer scroll
+      default: true
+      examples:
+        - true
+    shadow:
+      type: boolean
+      title: Mostrar sombra
+      default: true
+      examples:
+        - true
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  logo:
+    title: "Logo"
+  navigation:
+    title: "Menú de navegación"
+  cta:
+    title: "Botones de acción"

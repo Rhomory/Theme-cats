@@ -1,6 +1,6 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Progress Bar
-group: Content
+group: Cats - Content
 status: stable
 description: "Barra de progreso animada con etiqueta y porcentaje."
 props:
@@ -66,3 +66,15 @@ props:
     custom_class:
       type: string
       title: Clases CSS personalizadas
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-element-id"

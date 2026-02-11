@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Text Editor component - Contenido de texto enriquecido
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set editor_prose_size = prose_size|default('base') %}
+{% set editor_align = align|default('left') %}
+{% set editor_max_width = max_width|default('prose') %}
+
+{% set editor_cva =
+  html_cva(
+    base: ['cats-prose prose'],
+    variants: {
+      proseSize: {
+        sm: 'prose-sm',
+        base: 'prose-base',
+        lg: 'prose-lg',
+        xl: 'prose-xl'
+      },
+      align: {
+        left: '',
+        center: 'mx-auto text-center',
+        right: 'ml-auto text-right'
+      },
+      maxWidth: {
+        none: 'max-w-none',
+        prose: 'max-w-prose',
+        xl: 'max-w-xl',
+        full: 'max-w-full'
+      }
+    }
+  )
+%}
+
+{% set editor_classes =
+  editor_cva.apply({
+    proseSize: editor_prose_size,
+    align: editor_align,
+    maxWidth: editor_max_width
+  })
+%}
+
+<div class="{{ editor_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {% block content %}
+  {% endblock %}
+</div>

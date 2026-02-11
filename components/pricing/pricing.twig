@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * Pricing component - Widget de tabla de precios
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set plan_title = title|default('Plan Básico') %}
+{% set plan_subtitle = subtitle|default('') %}
+{% set plan_price = price|default('29') %}
+{% set plan_currency = currency|default('$') %}
+{% set plan_period = period|default('month') %}
+{% set plan_button_text = button_text|default('Empezar') %}
+{% set plan_button_url = button_url|default('#') %}
+{% set plan_badge = badge|default('') %}
+
+{% set is_featured = featured|default(false) %}
+{% set plan_bg = background|default('white') %}
+{% set plan_shadow = shadow|default('lg') %}
+
+{# Period text #}
+{% set period_text_map = {
+  'month': '/mes',
+  'year': '/año',
+  'one-time': ''
+} %}
+{% set period_text = period_text_map[plan_period] ?? '' %}
+
+{# Container CVA #}
+{% set container_cva =
+  html_cva(
+    base: ['cats-pricing relative overflow-hidden flex flex-col rounded-xl'],
+    variants: {
+      background: {
+        white: 'bg-white border border-[var(--cats-border)]',
+        muted: 'bg-[var(--cats-muted)] border border-[var(--cats-border)]',
+        primary: 'bg-[var(--cats-primary)] text-white',
+        dark: 'bg-slate-900 text-white'
+      },
+      shadow: {
+        none: 'shadow-none',
+        sm: 'shadow-sm',
+        md: 'shadow-md',
+        lg: 'shadow-lg'
+      }
+    }
+  )
+%}
+
+{% set featured_class = is_featured ? 'ring-2 ring-[var(--cats-primary)] scale-105 z-10' : '' %}
+
+{% set container_classes =
+  container_cva.apply({
+    background: plan_bg,
+    shadow: plan_shadow
+  }, featured_class)
+%}
+
+<div class="{{ container_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {# Badge #}
+  {% if plan_badge %}
+    <div class="absolute top-4 right-4 bg-[var(--cats-accent)] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+      {{ plan_badge }}
+    </div>
+  {% endif %}
+
+  {# Header #}
+  <div class="p-6 text-center border-b border-[var(--cats-border)]">
+    {% if plan_title %}
+      <h3 class="text-xl font-bold mb-1">{{ plan_title }}</h3>
+    {% endif %}
+    {% if plan_subtitle %}
+      <p class="text-sm text-gray-500">{{ plan_subtitle }}</p>
+    {% endif %}
+  </div>
+
+  {# Price #}
+  <div class="p-6 text-center">
+    <div class="flex items-baseline justify-center gap-1">
+      <span class="text-2xl font-medium">{{ plan_currency }}</span>
+      <span class="text-5xl font-bold">{{ plan_price }}</span>
+      {% if period_text %}
+        <span class="text-gray-500">{{ period_text }}</span>
+      {% endif %}
+    </div>
+  </div>
+
+  {# Features Slot #}
+  <div class="px-6 pb-6 flex-1">
+    {% block features %}
+    {% endblock %}
+  </div>
+
+  {# Button #}
+  <div class="p-6 pt-0 mt-auto">
+    <a
+      href="{{ plan_button_url }}"
+      class="block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-200 {{ is_featured or plan_bg in ['primary', 'dark'] ? 'bg-white text-[var(--cats-primary)] hover:bg-gray-100' : 'bg-[var(--cats-primary)] text-white hover:bg-[var(--cats-primary-dark)]' }}"
+    >
+      {{ plan_button_text }}
+    </a>
+  </div>
+</div>

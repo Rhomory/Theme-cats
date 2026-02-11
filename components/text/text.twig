@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Text component - Bloque de texto
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set text_value = text_content|default('') %}
+{% set size = text_size|default('base') %}
+{% set color = text_color|default('default') %}
+{% set alignment = align|default('left') %}
+{% set leading = line_height|default('normal') %}
+
+{% set text_cva =
+  html_cva(
+    base: ['font-body'],
+    variants: {
+      textSize: {
+        sm: 'text-sm',
+        base: 'text-base',
+        lg: 'text-lg',
+        xl: 'text-xl'
+      },
+      textColor: {
+        default: 'text-[var(--cats-foreground)]',
+        primary: 'text-[var(--cats-primary)]',
+        secondary: 'text-[var(--cats-secondary)]',
+        muted: 'text-gray-500',
+        white: 'text-white'
+      },
+      align: {
+        left: 'text-left',
+        center: 'text-center',
+        right: 'text-right',
+        justify: 'text-justify'
+      },
+      lineHeight: {
+        tight: 'leading-tight',
+        normal: 'leading-normal',
+        relaxed: 'leading-relaxed'
+      }
+    }
+  )
+%}
+
+{% set text_classes =
+  text_cva.apply({
+    textSize: size,
+    textColor: color,
+    align: alignment,
+    lineHeight: leading
+  })
+%}
+
+<p class="{{ text_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+  {{ text_value }}
+</p>

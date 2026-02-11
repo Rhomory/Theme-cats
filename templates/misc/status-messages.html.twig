@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Cats theme implementation for status messages.
+ *
+ * Displays status, error, and warning messages.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed.
+ * - status_headings: List of status headings.
+ * - attributes: HTML attributes for the element.
+ *
+ * @see template_preprocess_status_messages()
+ */
+#}
+<div data-drupal-messages class="messages-container">
+  {% for type, messages in message_list %}
+    {% set classes = [
+      'messages',
+      'messages--' ~ type,
+      'p-4',
+      'mb-4',
+      'rounded-lg',
+      'border',
+      type == 'status' ? 'bg-green-50 border-green-200 text-green-800',
+      type == 'warning' ? 'bg-yellow-50 border-yellow-200 text-yellow-800',
+      type == 'error' ? 'bg-red-50 border-red-200 text-red-800',
+    ] %}
+    <div role="{{ type == 'error' ? 'alert' : 'status' }}" aria-label="{{ status_headings[type] }}"{{ attributes.addClass(classes)|without('role', 'aria-label') }}>
+      {% if status_headings[type] %}
+        <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+      {% endif %}
+      {% if messages|length > 1 %}
+        <ul class="messages__list list-disc list-inside">
+          {% for message in messages %}
+            <li class="messages__item">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="messages__content">{{ messages|first }}</div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

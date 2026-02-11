@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Cats theme implementation for an image.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the img tag.
+ * - style_name: The image style applied.
+ *
+ * @see template_preprocess_image()
+ */
+#}
+{% set classes = [
+  'image',
+  'max-w-full',
+  'h-auto',
+  style_name ? 'image-style-' ~ style_name|clean_class,
+] %}
+<img{{ attributes.addClass(classes) }} />

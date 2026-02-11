@@ -1,0 +1,67 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Accordion
+group: Cats - Content
+status: stable
+description: "Acordeón expandible para FAQ o contenido colapsable."
+props:
+  type: object
+  required:
+    - style
+  properties:
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - default
+        - bordered
+        - separated
+        - minimal
+      meta:enum:
+        default: Por defecto
+        bordered: Con borde
+        separated: Separados
+        minimal: Minimalista
+      default: "default"
+      examples:
+        - "default"
+    allow_multiple:
+      type: boolean
+      title: Permitir múltiples abiertos
+      default: false
+      examples:
+        - false
+    icon_position:
+      type: string
+      title: Posición del icono
+      enum:
+        - left
+        - right
+      meta:enum:
+        left: Izquierda
+        right: Derecha
+      default: "right"
+      examples:
+        - "right"
+    first_open:
+      type: boolean
+      title: Primer item abierto
+      default: false
+      examples:
+        - false
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  items:
+    title: "Items del acordeón"

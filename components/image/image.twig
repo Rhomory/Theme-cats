@@ -1,0 +1,97 @@
+{#
+/**
+ * @file
+ * Image component - Imagen con efectos
+ */
+#}
+
+
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
+{% set img_ratio = aspect_ratio|default('auto') %}
+{% set img_rounded = rounded|default('none') %}
+{% set img_shadow = shadow|default('none') %}
+{% set img_hover = hover_effect|default('none') %}
+{% set img_caption = caption|default('') %}
+{% set img_link = link_url|default('') %}
+
+{% set image_cva =
+  html_cva(
+    base: ['cats-image block w-full'],
+    variants: {
+      aspectRatio: {
+        auto: '',
+        '1:1': 'aspect-square',
+        '4:3': 'aspect-[4/3]',
+        '16:9': 'aspect-video',
+        '3:2': 'aspect-[3/2]',
+        '2:1': 'aspect-[2/1]'
+      },
+      rounded: {
+        none: 'rounded-none',
+        sm: 'rounded',
+        md: 'rounded-lg',
+        lg: 'rounded-xl',
+        full: 'rounded-full'
+      },
+      shadow: {
+        none: '',
+        sm: 'shadow-sm',
+        md: 'shadow-md',
+        lg: 'shadow-lg'
+      },
+      hoverEffect: {
+        none: '',
+        zoom: 'transition-transform duration-300 hover:scale-105',
+        brightness: 'transition-all duration-300 hover:brightness-110',
+        grayscale: 'grayscale hover:grayscale-0 transition-all duration-300'
+      }
+    }
+  )
+%}
+
+{% set image_classes =
+  image_cva.apply({
+    aspectRatio: img_ratio,
+    rounded: img_rounded,
+    shadow: img_shadow,
+    hoverEffect: img_hover
+  })
+%}
+
+{% set wrapper_classes = img_hover == 'zoom' ? 'overflow-hidden block ' ~ (img_rounded != 'none' ? 'rounded-' ~ (img_rounded == 'sm' ? '' : img_rounded == 'md' ? 'lg' : img_rounded == 'lg' ? 'xl' : 'full') : '') : '' %}
+
+{% if img_caption %}
+<figure>
+{% endif %}
+
+{% if img_link %}
+  <a href="{{ img_link }}" class="{{ wrapper_classes }}">
+{% elseif img_hover == 'zoom' %}
+  <div class="{{ wrapper_classes }}">
+{% endif %}
+
+{% if media and media.src %}
+  <img
+    src="{{ media.src }}"
+    alt="{{ media.alt|default('') }}"
+    width="{{ media.width|default('') }}"
+    height="{{ media.height|default('') }}"
+    class="{{ image_classes }} {{ custom_class }} object-cover"{% if custom_id %} id="{{ custom_id }}"{% endif %}
+    loading="lazy"
+    decoding="async"
+  >
+{% endif %}
+
+{% if img_link %}
+  </a>
+{% elseif img_hover == 'zoom' %}
+  </div>
+{% endif %}
+
+{% if img_caption %}
+  <figcaption class="mt-2 text-sm text-gray-500 text-center">
+    {{ img_caption }}
+  </figcaption>
+</figure>
+{% endif %}

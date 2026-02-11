@@ -1,0 +1,124 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Testimonial
+group: Cats - Widgets
+status: stable
+description: "Testimonio con imagen, nombre, cargo y cita."
+props:
+  type: object
+  required:
+    - quote
+    - author_name
+    - layout
+  properties:
+    quote:
+      type: string
+      title: Cita/Testimonio
+      default: "Este es un testimonio de ejemplo."
+      examples:
+        - "Excelente servicio, muy recomendado."
+    author_name:
+      type: string
+      title: Nombre del autor
+      default: "Juan Pérez"
+      examples:
+        - "María García"
+    author_title:
+      type: string
+      title: Cargo
+      default: ""
+      examples:
+        - "CEO"
+    author_company:
+      type: string
+      title: Empresa
+      default: ""
+      examples:
+        - "Empresa ABC"
+    rating:
+      type: number
+      title: Calificación (estrellas)
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      default: 5
+      examples:
+        - 5
+    layout:
+      type: string
+      title: Diseño
+      enum:
+        - card
+        - minimal
+        - quote
+      meta:enum:
+        card: Tarjeta
+        minimal: Minimalista
+        quote: Con comillas
+      default: "card"
+      examples:
+        - "card"
+    alignment:
+      type: string
+      title: Alineación
+      enum:
+        - left
+        - center
+      meta:enum:
+        left: Izquierda
+        center: Centro
+      default: "center"
+      examples:
+        - "center"
+    background:
+      type: string
+      title: Color de fondo
+      enum:
+        - white
+        - muted
+        - primary
+        - dark
+      meta:enum:
+        white: Blanco
+        muted: Gris suave
+        primary: Primario
+        dark: Oscuro
+      default: "white"
+      examples:
+        - "white"
+    shadow:
+      type: string
+      title: Sombra
+      enum:
+        - none
+        - sm
+        - md
+        - lg
+      meta:enum:
+        none: Sin sombra
+        sm: Pequeña
+        md: Mediana
+        lg: Grande
+      default: "md"
+      examples:
+        - "md"
+
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+      examples:
+        - "my-custom-class"
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+      examples:
+        - "my-section-id"
+
+slots:
+  author_image:
+    title: "Foto del autor"
