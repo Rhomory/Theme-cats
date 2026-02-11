@@ -10,12 +10,12 @@ Agrega esto en la seccion `repositories` de tu `composer.json`:
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Rhomory/Theme---cats"
-        }
-    ]
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Rhomory/Theme-cats"
+    }
+  ]
 }
 ```
 
@@ -53,60 +53,66 @@ Los componentes apareceran en el panel lateral de Canvas agrupados como "Cats - 
 ## Componentes incluidos (33)
 
 ### Layout
-| Componente | Descripcion |
-|------------|-------------|
-| Section | Contenedor con grid de 1-4 columnas |
-| Container | Envoltorio con ancho maximo |
-| Grid | Cuadricula flexible |
-| Row | Fila horizontal con flexbox |
-| Column | Columna individual |
-| Navbar | Barra de navegacion |
-| Hero | Banner con imagen de fondo |
-| Footer Section | Pie de pagina multi-columna |
-| Spacer | Espaciador vertical |
-| Divider | Linea divisoria |
+
+| Componente     | Descripcion                         |
+| -------------- | ----------------------------------- |
+| Section        | Contenedor con grid de 1-4 columnas |
+| Container      | Envoltorio con ancho maximo         |
+| Grid           | Cuadricula flexible                 |
+| Row            | Fila horizontal con flexbox         |
+| Column         | Columna individual                  |
+| Navbar         | Barra de navegacion                 |
+| Hero           | Banner con imagen de fondo          |
+| Footer Section | Pie de pagina multi-columna         |
+| Spacer         | Espaciador vertical                 |
+| Divider        | Linea divisoria                     |
 
 ### Contenido
-| Componente | Descripcion |
-|------------|-------------|
-| Heading | Titulos H1-H6 |
-| Text | Parrafos de texto |
+
+| Componente  | Descripcion           |
+| ----------- | --------------------- |
+| Heading     | Titulos H1-H6         |
+| Text        | Parrafos de texto     |
 | Text Editor | Contenido enriquecido |
-| Blockquote | Citas destacadas |
+| Blockquote  | Citas destacadas      |
 
 ### Interactivo
-| Componente | Descripcion |
-|------------|-------------|
-| Button | Botones con 5 variantes |
-| Accordion | Paneles expandibles |
-| Accordion Item | Item de acordeon |
-| Tabs | Pestanas |
-| Carousel | Carrusel de slides |
+
+| Componente     | Descripcion             |
+| -------------- | ----------------------- |
+| Button         | Botones con 5 variantes |
+| Accordion      | Paneles expandibles     |
+| Accordion Item | Item de acordeon        |
+| Tabs           | Pestanas                |
+| Carousel       | Carrusel de slides      |
 
 ### Multimedia
-| Componente | Descripcion |
-|------------|-------------|
-| Image | Imagenes con efectos |
-| Video | YouTube, Vimeo, local |
-| Map | Google Maps |
+
+| Componente   | Descripcion              |
+| ------------ | ------------------------ |
+| Image        | Imagenes con efectos     |
+| Video        | YouTube, Vimeo, local    |
+| Map          | Google Maps              |
 | Social Icons | Iconos de redes sociales |
 
 ### Datos
-| Componente | Descripcion |
-|------------|-------------|
-| Counter | Contador animado |
+
+| Componente   | Descripcion       |
+| ------------ | ----------------- |
+| Counter      | Contador animado  |
 | Progress Bar | Barra de progreso |
 
 ### Marketing
-| Componente | Descripcion |
-|------------|-------------|
-| Card | Tarjeta de contenido |
-| Icon Box | Caja con icono |
-| CTA | Llamada a la accion |
-| Pricing | Tabla de precios |
-| Testimonial | Testimonios |
-| Alert | Mensajes de alerta |
-| Badge | Etiquetas |
+
+| Componente  | Descripcion          |
+| ----------- | -------------------- |
+| Card        | Tarjeta de contenido |
+| Icon Box    | Caja con icono       |
+| CTA         | Llamada a la accion  |
+| Pricing     | Tabla de precios     |
+| Testimonial | Testimonios          |
+| Alert       | Mensajes de alerta   |
+| Badge       | Etiquetas            |
 
 ---
 
