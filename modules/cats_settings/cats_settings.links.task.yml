@@ -1,0 +1,10 @@
+cats_settings.settings:
+  title: 'General'
+  route_name: cats_settings.settings
+  base_route: cats_settings.settings
+
+cats_settings.colors:
+  title: 'Colores'
+  route_name: cats_settings.colors
+  base_route: cats_settings.settings
+  weight: 10

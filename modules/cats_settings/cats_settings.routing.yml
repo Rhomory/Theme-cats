@@ -1,0 +1,15 @@
+cats_settings.settings:
+  path: '/admin/config/cats/settings'
+  defaults:
+    _form: '\Drupal\cats_settings\Form\CatsSettingsForm'
+    _title: 'Cats - Configuración de Tema'
+  requirements:
+    _permission: 'administer site configuration'
+
+cats_settings.colors:
+  path: '/admin/config/cats/colors'
+  defaults:
+    _form: '\Drupal\cats_settings\Form\CatsColorsForm'
+    _title: 'Cats - Colores Personalizados'
+  requirements:
+    _permission: 'administer site configuration'

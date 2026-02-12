@@ -22,7 +22,7 @@
     variants: {
       style: {
         default: 'bg-white',
-        bordered: 'bg-white border border-[var(--cats-border)]',
+        bordered: 'bg-white border cats-border-muted',
         elevated: 'bg-white shadow-lg hover:shadow-xl',
         minimal: 'bg-transparent'
       },
@@ -76,7 +76,7 @@
   {# Content #}
   <div class="p-6 {{ card_image_position == 'background' ? 'relative z-10 text-white mt-auto' : '' }} {{ card_image_position in ['left', 'right'] ? 'flex-1' : '' }}">
     {% if card_title %}
-      <h3 class="text-xl font-bold mb-2 {{ card_image_position == 'background' ? 'text-white' : 'text-[var(--cats-foreground)]' }}">
+      <h3 class="text-xl font-bold mb-2 {{ card_image_position == 'background' ? 'text-white' : 'cats-text-foreground' }}">
         {{ card_title }}
       </h3>
     {% endif %}
@@ -94,7 +94,7 @@
     {% if card_button_text %}
       <a
         href="{{ card_button_url }}"
-        class="inline-flex items-center gap-2 font-medium transition-colors {{ card_image_position == 'background' ? 'text-white hover:text-white/80' : 'text-[var(--cats-primary)] hover:text-[var(--cats-primary-dark)]' }}"
+        class="inline-flex items-center gap-2 font-medium transition-colors {{ card_image_position == 'background' ? 'text-white hover:text-white/80' : 'cats-text-primary hover:opacity-80' }}"
       >
         {{ card_button_text }}
         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

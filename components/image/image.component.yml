@@ -17,6 +17,20 @@ props:
           alt: "Imagen de ejemplo"
           width: 800
           height: 600
+    width:
+      type: string
+      title: Ancho
+      enum:
+        - auto
+        - full
+        - full-viewport
+      meta:enum:
+        auto: Automático
+        full: 100% del contenedor
+        full-viewport: Ancho completo (rompe contenedor)
+      default: "auto"
+      examples:
+        - "auto"
     aspect_ratio:
       type: string
       title: Proporción

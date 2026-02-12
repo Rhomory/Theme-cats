@@ -3,33 +3,34 @@
  *
  * Variables CSS personalizables para colores y estilos
  * Los colores se pueden modificar desde /admin/config/cats/settings
+ * El modulo cats_settings inyecta los valores personalizados
  */
 
 :root {
-  /* Colores primarios personalizables */
-  --cats-primary: var(--color-primary, #3b82f6);
-  --cats-primary-light: var(--color-primary-light, #60a5fa);
-  --cats-primary-dark: var(--color-primary-dark, #2563eb);
+  /* Colores primarios - Valores por defecto (cats_settings los sobrescribe) */
+  --cats-primary: #3b82f6;
+  --cats-primary-light: #60a5fa;
+  --cats-primary-dark: #2563eb;
   --cats-primary-foreground: #ffffff;
 
   /* Colores secundarios */
-  --cats-secondary: var(--color-secondary, #64748b);
-  --cats-secondary-light: var(--color-secondary-light, #94a3b8);
-  --cats-secondary-dark: var(--color-secondary-dark, #475569);
+  --cats-secondary: #64748b;
+  --cats-secondary-light: #94a3b8;
+  --cats-secondary-dark: #475569;
   --cats-secondary-foreground: #ffffff;
 
   /* Colores de acento */
-  --cats-accent: var(--color-accent, #f59e0b);
-  --cats-accent-light: var(--color-accent-light, #fbbf24);
-  --cats-accent-dark: var(--color-accent-dark, #d97706);
+  --cats-accent: #f59e0b;
+  --cats-accent-light: #fbbf24;
+  --cats-accent-dark: #d97706;
   --cats-accent-foreground: #000000;
 
   /* Colores neutros */
-  --cats-background: var(--color-background, #ffffff);
-  --cats-foreground: var(--color-foreground, #0f172a);
-  --cats-muted: var(--color-muted, #f1f5f9);
+  --cats-background: #ffffff;
+  --cats-foreground: #0f172a;
+  --cats-muted: #f1f5f9;
   --cats-muted-foreground: #64748b;
-  --cats-border: var(--color-border, #e2e8f0);
+  --cats-border: #e2e8f0;
 
   /* Colores de estado */
   --cats-success: #22c55e;
@@ -87,3 +88,676 @@
 .cats-text-shadow-md { text-shadow: 2px 2px 4px rgb(0 0 0 / 0.2); }
 .cats-text-shadow-lg { text-shadow: 4px 4px 8px rgb(0 0 0 / 0.3); }
 .cats-text-shadow-custom { text-shadow: var(--text-shadow-x, 2px) var(--text-shadow-y, 2px) var(--text-shadow-blur, 4px) var(--text-shadow-color, rgba(0,0,0,0.3)); }
+
+/* ==========================================================================
+   Full Width - Rompe contenedores padres
+   ========================================================================== */
+
+/* Ancho completo que rompe cualquier contenedor padre */
+.cats-full-width {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+/* Ancho completo para imagenes */
+.cats-full-width-img {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Contenedor sin restricciones de ancho */
+.cats-break-out {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* ==========================================================================
+   Clases de color utilitarias usando variables CSS
+   ========================================================================== */
+
+/* Fondos */
+.cats-bg-primary { background-color: var(--cats-primary) !important; }
+.cats-bg-primary-light { background-color: var(--cats-primary-light) !important; }
+.cats-bg-primary-dark { background-color: var(--cats-primary-dark) !important; }
+.cats-bg-secondary { background-color: var(--cats-secondary) !important; }
+.cats-bg-secondary-light { background-color: var(--cats-secondary-light) !important; }
+.cats-bg-secondary-dark { background-color: var(--cats-secondary-dark) !important; }
+.cats-bg-accent { background-color: var(--cats-accent) !important; }
+.cats-bg-accent-light { background-color: var(--cats-accent-light) !important; }
+.cats-bg-accent-dark { background-color: var(--cats-accent-dark) !important; }
+.cats-bg-muted { background-color: var(--cats-muted) !important; }
+.cats-bg-background { background-color: var(--cats-background) !important; }
+.cats-bg-success { background-color: var(--cats-success) !important; }
+.cats-bg-warning { background-color: var(--cats-warning) !important; }
+.cats-bg-error { background-color: var(--cats-error) !important; }
+.cats-bg-info { background-color: var(--cats-info) !important; }
+
+/* Textos */
+.cats-text-primary { color: var(--cats-primary) !important; }
+.cats-text-primary-light { color: var(--cats-primary-light) !important; }
+.cats-text-primary-dark { color: var(--cats-primary-dark) !important; }
+.cats-text-secondary { color: var(--cats-secondary) !important; }
+.cats-text-secondary-light { color: var(--cats-secondary-light) !important; }
+.cats-text-secondary-dark { color: var(--cats-secondary-dark) !important; }
+.cats-text-accent { color: var(--cats-accent) !important; }
+.cats-text-accent-light { color: var(--cats-accent-light) !important; }
+.cats-text-accent-dark { color: var(--cats-accent-dark) !important; }
+.cats-text-foreground { color: var(--cats-foreground) !important; }
+.cats-text-muted { color: var(--cats-muted-foreground) !important; }
+.cats-text-success { color: var(--cats-success) !important; }
+.cats-text-warning { color: var(--cats-warning) !important; }
+.cats-text-error { color: var(--cats-error) !important; }
+.cats-text-info { color: var(--cats-info) !important; }
+
+/* Bordes */
+.cats-border-primary { border-color: var(--cats-primary) !important; }
+.cats-border-secondary { border-color: var(--cats-secondary) !important; }
+.cats-border-accent { border-color: var(--cats-accent) !important; }
+.cats-border-muted { border-color: var(--cats-border) !important; }
+
+/* ==========================================================================
+   Canvas XB Overrides - Asegura que los componentes funcionen correctamente
+   ========================================================================== */
+
+/* Permitir que los componentes de Canvas tengan ancho completo */
+[data-xb-component-id] .cats-full-width,
+.xb-component .cats-full-width {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+}
+
+/* Asegurar que las imagenes puedan expandirse */
+[data-xb-component-id] img,
+.xb-component img {
+  max-width: 100%;
+  height: auto;
+}
+
+[data-xb-component-id] .cats-full-width-img,
+.xb-component .cats-full-width-img {
+  max-width: 100vw !important;
+}
+
+/* Reset de contenedores de Canvas que puedan limitar el ancho */
+.layout-content,
+.region-content,
+main.main-content {
+  overflow-x: visible;
+}
+
+/* ==========================================================================
+   Tailwind-like utilities - Estilos necesarios para componentes
+   ========================================================================== */
+
+/* Reset de página - Eliminar padding/margin global */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.layout-container,
+.layout-content,
+.cats-main {
+  padding: 0;
+  margin: 0;
+}
+
+/* Display */
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+
+/* Width */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.max-w-full { max-width: 100%; }
+
+/* Height */
+.h-auto { height: auto; }
+
+/* Object fit */
+.object-cover { object-fit: cover; }
+.object-contain { object-fit: contain; }
+
+/* Aspect Ratio */
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-\[4\/3\] { aspect-ratio: 4 / 3; }
+.aspect-\[3\/2\] { aspect-ratio: 3 / 2; }
+.aspect-\[2\/1\] { aspect-ratio: 2 / 1; }
+
+/* Border Radius */
+.rounded-none { border-radius: 0; }
+.rounded { border-radius: 0.25rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-3xl { border-radius: 1.5rem; }
+.rounded-full { border-radius: 9999px; }
+
+/* Shadows */
+.shadow-none { box-shadow: none; }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+
+/* Transitions */
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.duration-300 { transition-duration: 300ms; }
+
+/* Transform - Hover effects */
+.hover\:scale-105:hover { transform: scale(1.05); }
+.hover\:brightness-110:hover { filter: brightness(1.1); }
+.grayscale { filter: grayscale(100%); }
+.hover\:grayscale-0:hover { filter: grayscale(0); }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-visible { overflow: visible; }
+
+/* Position */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.inset-0 { inset: 0; }
+
+/* Flexbox */
+.items-center { align-items: center; }
+.items-stretch { align-items: stretch; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* Grid */
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Spacing - Margin */
+.m-0 { margin: 0; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-0 { margin-top: 0; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+.mt-16 { margin-top: 4rem; }
+.mb-0 { margin-bottom: 0; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mb-16 { margin-bottom: 4rem; }
+
+/* Spacing - Padding */
+.p-0 { padding: 0 !important; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.p-12 { padding: 3rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.pt-0 { padding-top: 0; }
+.pt-4 { padding-top: 1rem; }
+.pt-8 { padding-top: 2rem; }
+.pt-12 { padding-top: 3rem; }
+.pb-0 { padding-bottom: 0; }
+.pb-4 { padding-bottom: 1rem; }
+.pb-8 { padding-bottom: 2rem; }
+.pb-12 { padding-bottom: 3rem; }
+
+/* Typography */
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-center { text-align: center; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* Colors */
+.text-white { color: #ffffff; }
+.text-gray-500 { color: #6b7280; }
+.bg-transparent { background-color: transparent; }
+.bg-white { background-color: #ffffff; }
+.bg-slate-900 { background-color: #0f172a; }
+
+/* Focus states */
+.focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+.focus\:ring-2:focus { box-shadow: 0 0 0 2px var(--cats-primary); }
+.focus\:ring-offset-2:focus { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--cats-primary); }
+
+/* Container widths */
+.max-w-3xl { max-width: 48rem; }
+.max-w-7xl { max-width: 80rem; }
+.max-w-\[90\%\] { max-width: 90%; }
+.max-w-\[80\%\] { max-width: 80%; }
+.max-w-\[75\%\] { max-width: 75%; }
+.max-w-\[50\%\] { max-width: 50%; }
+.max-w-\[1400px\] { max-width: 1400px; }
+
+/* Responsive - md: (768px) */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:grid-cols-\[3fr_1fr\] { grid-template-columns: 3fr 1fr; }
+  .md\:grid-cols-\[1fr_3fr\] { grid-template-columns: 1fr 3fr; }
+  .md\:grid-cols-\[2fr_1fr\] { grid-template-columns: 2fr 1fr; }
+  .md\:grid-cols-\[1fr_2fr\] { grid-template-columns: 1fr 2fr; }
+  .md\:gap-6 { gap: 1.5rem; }
+  .md\:p-8 { padding: 2rem; }
+  .md\:p-12 { padding: 3rem; }
+  .md\:mt-6 { margin-top: 1.5rem; }
+  .md\:mt-12 { margin-top: 3rem; }
+  .md\:mt-16 { margin-top: 4rem; }
+  .md\:mt-24 { margin-top: 6rem; }
+  .md\:mb-6 { margin-bottom: 1.5rem; }
+  .md\:mb-8 { margin-bottom: 2rem; }
+  .md\:mb-12 { margin-bottom: 3rem; }
+  .md\:mb-16 { margin-bottom: 4rem; }
+  .md\:mb-24 { margin-bottom: 6rem; }
+}
+
+/* Responsive - lg: (1024px) */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Responsive - xl: (1280px) */
+@media (min-width: 1280px) {
+  .xl\:gap-8 { gap: 2rem; }
+}
+
+/* Responsive - sm: (640px) */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   Full-width mejorado - Sin overflow
+   ========================================================================== */
+
+.cats-full-width,
+.cats-full-width-img {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.cats-full-width-img {
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Prevenir overflow horizontal en toda la pagina */
+html {
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Canvas XB Reset - Eliminar padding de Canvas
+   ========================================================================== */
+
+/* Reset de contenedores de Canvas Experience Builder */
+.xb-page,
+.xb-page-content,
+.xb-region,
+.xb-component,
+[data-xb-component-id],
+.canvas-component,
+.experience-builder-content {
+  padding: 0;
+  margin: 0;
+}
+
+/* Permitir que los componentes ocupen todo el ancho */
+.xb-component > *,
+[data-xb-component-id] > * {
+  max-width: 100%;
+}
+
+/* Drupal layout builder reset */
+.layout,
+.layout__region,
+.block-layout-builder {
+  padding: 0;
+  margin: 0;
+}
+
+/* Reset general de Drupal */
+#content,
+.content,
+.region,
+.region-content,
+main,
+article {
+  padding: 0;
+  margin: 0;
+}
+
+/* Asegurar que la imagen llene su contenedor */
+.cats-image {
+  display: block;
+  width: 100%;
+}
+
+.cats-image.cats-full-width-img {
+  width: 100vw;
+  max-width: none;
+}
+
+/* ==========================================================================
+   Layout Container Reset - Clases del template
+   ========================================================================== */
+
+.layout-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.cats-header,
+.cats-primary-menu,
+.cats-main,
+.cats-footer,
+.layout-sidebar-first,
+.layout-sidebar-second {
+  padding: 0;
+  margin: 0;
+}
+
+/* Contenedor principal de contenido */
+.layout-content {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Background colors con variables CSS - Para componentes
+   ========================================================================== */
+
+/* Clases de Tailwind JIT simuladas */
+.bg-\[var\(--cats-primary\)\] { background-color: var(--cats-primary); }
+.bg-\[var\(--cats-secondary\)\] { background-color: var(--cats-secondary); }
+.bg-\[var\(--cats-accent\)\] { background-color: var(--cats-accent); }
+.bg-\[var\(--cats-muted\)\] { background-color: var(--cats-muted); }
+.bg-\[var\(--cats-background\)\] { background-color: var(--cats-background); }
+.bg-\[var\(--cats-foreground\)\] { background-color: var(--cats-foreground); }
+
+/* Width utilities adicionales */
+.max-w-none { max-width: none; }
+
+/* Padding responsive adicional */
+@media (min-width: 768px) {
+  .md\:p-16 { padding: 4rem; }
+}
+
+/* ==========================================================================
+   Hover states para colores
+   ========================================================================== */
+
+.hover\:cats-bg-primary:hover { background-color: var(--cats-primary) !important; }
+.hover\:cats-bg-secondary:hover { background-color: var(--cats-secondary) !important; }
+.hover\:cats-bg-accent:hover { background-color: var(--cats-accent) !important; }
+.hover\:opacity-90:hover { opacity: 0.9; }
+
+/* Focus ring */
+.focus\:ring-2:focus {
+  box-shadow: 0 0 0 2px var(--cats-primary);
+  outline: none;
+}
+
+/* Background foreground */
+.cats-bg-foreground { background-color: var(--cats-foreground) !important; }
+
+/* ==========================================================================
+   Container sin padding - Override para Canvas
+   ========================================================================== */
+
+/* Asegurar que p-0 funcione en contenedores */
+.p-0,
+.p-0.relative,
+div.p-0 {
+  padding: 0 !important;
+}
+
+/* Reset de padding en slots de Canvas */
+.p-0 > *:first-child {
+  margin-top: 0;
+}
+
+.p-0 > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover opacity */
+.hover\:opacity-80:hover { opacity: 0.8; }
+.hover\:text-white\/80:hover { color: rgba(255, 255, 255, 0.8); }
+
+/* ==========================================================================
+   Clases adicionales para componentes
+   ========================================================================== */
+
+/* Background con opacidad */
+.bg-black\/10 { background-color: rgba(0, 0, 0, 0.1); }
+.bg-black\/30 { background-color: rgba(0, 0, 0, 0.3); }
+.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
+.bg-white\/90 { background-color: rgba(255, 255, 255, 0.9); }
+
+/* Group hover states */
+.group:hover .group-hover\:bg-black { background-color: #000; }
+.group:hover .group-hover\:bg-black\/40 { background-color: rgba(0, 0, 0, 0.4); }
+.group:hover .group-hover\:bg-white { background-color: #fff; }
+.group:hover .group-hover\:scale-110 { transform: scale(1.1); }
+.group:hover .group-hover\:translate-x-1 { transform: translateX(0.25rem); }
+
+/* Text color primary */
+.text-primary { color: var(--cats-primary); }
+
+/* Width fractions responsive */
+@media (min-width: 768px) {
+  .md\:w-6\/12 { width: 50%; }
+  .md\:w-10 { width: 2.5rem; }
+  .md\:w-20 { width: 5rem; }
+  .md\:h-20 { height: 5rem; }
+  .md\:w-10 { width: 2.5rem; }
+  .md\:h-10 { height: 2.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:w-1\/12 { width: 8.333333%; }
+  .lg\:w-2\/12 { width: 16.666667%; }
+  .lg\:w-3\/12 { width: 25%; }
+  .lg\:w-4\/12 { width: 33.333333%; }
+  .lg\:w-5\/12 { width: 41.666667%; }
+  .lg\:w-6\/12 { width: 50%; }
+  .lg\:w-7\/12 { width: 58.333333%; }
+  .lg\:w-8\/12 { width: 66.666667%; }
+  .lg\:w-9\/12 { width: 75%; }
+  .lg\:w-10\/12 { width: 83.333333%; }
+  .lg\:w-11\/12 { width: 91.666667%; }
+}
+
+/* Width and height utilities */
+.w-16 { width: 4rem; }
+.w-8 { width: 2rem; }
+.h-16 { height: 4rem; }
+.h-8 { height: 2rem; }
+.h-full { height: 100%; }
+.min-h-screen { height: 100vh;
+  max-height: 1000px; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+
+/* Transition colors */
+.transition-colors { 
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Group class marker */
+.group { position: relative; }
+
+/* ML utility */
+.ml-1 { margin-left: 0.25rem; }
+
+/* ==========================================================================
+   Hero Component
+   ========================================================================== */
+
+.cats-hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heights */
+.cats-hero.min-h-screen {
+  height: 100vh;
+  max-height: 1000px;
+}
+
+.cats-hero-large {
+  min-height: 500px;
+}
+
+.cats-hero-medium {
+  min-height: 400px;
+}
+
+.cats-hero-small {
+  min-height: 300px;
+}
+
+@media (min-width: 768px) {
+  .cats-hero-large {
+    min-height: 700px;
+  }
+  
+  .cats-hero-medium {
+    min-height: 500px;
+  }
+  
+  .cats-hero-small {
+    min-height: 350px;
+  }
+}
+
+/* Background */
+.cats-hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cats-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cats-hero-bg-center .cats-hero-img {
+  object-position: center;
+}
+
+.cats-hero-bg-top .cats-hero-img {
+  object-position: top;
+}
+
+.cats-hero-bg-bottom .cats-hero-img {
+  object-position: bottom;
+}
+
+/* Overlay */
+.cats-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #000;
+}
+
+.cats-hero-overlay-light {
+  opacity: 0.2;
+}
+
+.cats-hero-overlay-medium {
+  opacity: 0.4;
+}
+
+.cats-hero-overlay-dark {
+  opacity: 0.6;
+}
+
+/* Content - ocupa todo el espacio */
+.cats-hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero xlarge height */
+.cats-hero-xlarge {
+  min-height: 600px;
+}
+
+@media (min-width: 768px) {
+  .cats-hero-xlarge {
+    min-height: 800px;
+  }
+}
+
+/* Justify content */
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+
+/* Align items */
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }

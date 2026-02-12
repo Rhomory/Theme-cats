@@ -4,8 +4,10 @@ global:
     theme:
       css/cats.css: {}
       css/custom.css: {}
+      css/components/video.css: {}
   js:
     js/cats.js: {}
+    js/components/video.js: {}
   dependencies:
     - core/drupal
     - core/once

@@ -1,0 +1,130 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Cats Settings module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function cats_settings_help(string $route_name, RouteMatchInterface $route_match): ?string {
+  if ($route_name === 'help.page.cats_settings') {
+    $output = '<h3>' . t('About') . '</h3>';
+    $output .= '<p>' . t('The Cats Settings module provides a configuration interface for customizing the Cats theme colors, typography, and spacing. It injects CSS custom properties based on your settings.') . '</p>';
+    return $output;
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function cats_settings_page_attachments(array &$attachments): void {
+  $config = \Drupal::config('cats_settings.settings');
+
+  if (!$config->get('global_styles_enabled')) {
+    return;
+  }
+
+  $css_variables = [];
+
+  // Add color variables.
+  $colors = $config->get('colors') ?? [];
+  foreach ($colors as $key => $value) {
+    if (!empty($value)) {
+      $css_key = str_replace('_', '-', $key);
+      $css_variables["--cats-{$css_key}"] = $value;
+    }
+  }
+
+  // Add custom color variables.
+  $custom_colors = $config->get('custom_colors') ?? [];
+  foreach ($custom_colors as $color) {
+    if (!empty($color['name']) && !empty($color['value'])) {
+      $css_variables["--cats-{$color['name']}"] = $color['value'];
+    }
+  }
+
+  // Add typography variables.
+  $typography = $config->get('typography') ?? [];
+  $font_stacks = [
+    'system' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    'inter' => '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    'roboto' => '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    'open-sans' => '"Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    'lato' => '"Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    'poppins' => '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    'montserrat' => '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    'playfair' => '"Playfair Display", Georgia, "Times New Roman", serif',
+    'merriweather' => '"Merriweather", Georgia, "Times New Roman", serif',
+  ];
+
+  if (!empty($typography['font_family'])) {
+    $font_family = $typography['font_family'];
+    $css_variables['--cats-font-family'] = $font_stacks[$font_family] ?? $font_stacks['system'];
+  }
+
+  if (!empty($typography['heading_font'])) {
+    $heading_font = $typography['heading_font'];
+    $css_variables['--cats-heading-font'] = $font_stacks[$heading_font] ?? $font_stacks['system'];
+  }
+
+  // Add spacing variables.
+  $spacing = $config->get('spacing') ?? [];
+  if (!empty($spacing['container_width'])) {
+    $css_variables['--cats-container-width'] = $spacing['container_width'] . 'px';
+  }
+
+  // Generate inline CSS.
+  if (!empty($css_variables)) {
+    $css = 'html:root {' . PHP_EOL;
+    foreach ($css_variables as $property => $value) {
+      $css .= "  {$property}: {$value};" . PHP_EOL;
+    }
+    $css .= '}' . PHP_EOL;
+
+    // Add body styles.
+    $body_styles = [];
+    
+    if (isset($css_variables['--cats-font-family'])) {
+      $body_styles[] = 'font-family: var(--cats-font-family)';
+    }
+    if (isset($css_variables['--cats-background'])) {
+      $body_styles[] = 'background-color: var(--cats-background)';
+    }
+    if (isset($css_variables['--cats-foreground'])) {
+      $body_styles[] = 'color: var(--cats-foreground)';
+    }
+    
+    if (!empty($body_styles)) {
+      $css .= 'body { ' . implode('; ', $body_styles) . '; }' . PHP_EOL;
+    }
+    
+    if (isset($css_variables['--cats-heading-font'])) {
+      $css .= 'h1, h2, h3, h4, h5, h6 { font-family: var(--cats-heading-font); }' . PHP_EOL;
+    }
+
+    $attachments['#attached']['html_head'][] = [
+      [
+        '#tag' => 'style',
+        '#value' => $css,
+        '#attributes' => [
+          'id' => 'cats-settings-variables',
+        ],
+      ],
+      'cats_settings_variables',
+    ];
+  }
+}
+
+/**
+ * Implements hook_cache_flush().
+ */
+function cats_settings_cache_flush(): void {
+  // Clear cache when settings are updated.
+}

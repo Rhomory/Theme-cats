@@ -1,0 +1,25 @@
+global_styles_enabled: true
+colors:
+  primary: '#3b82f6'
+  primary_light: '#60a5fa'
+  primary_dark: '#2563eb'
+  secondary: '#64748b'
+  secondary_light: '#94a3b8'
+  secondary_dark: '#475569'
+  accent: '#f59e0b'
+  accent_light: '#fbbf24'
+  accent_dark: '#d97706'
+  background: '#ffffff'
+  foreground: '#0f172a'
+  muted: '#f1f5f9'
+  border: '#e2e8f0'
+  success: '#22c55e'
+  warning: '#f59e0b'
+  error: '#ef4444'
+  info: '#3b82f6'
+custom_colors: {}
+typography:
+  font_family: 'system'
+  heading_font: 'system'
+spacing:
+  container_width: '1280'

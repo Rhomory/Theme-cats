@@ -17,12 +17,14 @@ props:
       title: Ancho de sección
       enum:
         - "100"
+        - "full-viewport"
         - "90"
         - "80"
         - "75"
         - "50"
       meta:enum:
         "100": "100%"
+        "full-viewport": "Viewport completo (rompe contenedor)"
         "90": "90%"
         "80": "80%"
         "75": "75%"

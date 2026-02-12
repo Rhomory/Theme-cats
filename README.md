@@ -25,14 +25,31 @@ Agrega esto en la seccion `repositories` de tu `composer.json`:
 ddev composer require rhomory/cats:dev-main
 ```
 
-### 3. Habilitar el tema
+### 3. Habilitar modulo y tema
 
 ```bash
+# Habilitar dependencias
 ddev drush en cva -y
+ddev drush en cats_settings -y
+
+# Habilitar y establecer tema por defecto
 ddev drush theme:enable cats -y
 ddev drush config:set system.theme default cats -y
 ddev drush cr
 ```
+
+### 4. Configurar colores (opcional)
+
+Accede al panel de configuracion de colores:
+
+```bash
+ddev launch /admin/config/cats/settings
+```
+
+Aqui puedes personalizar:
+- Colores primarios, secundarios y de acento
+- Tipografia
+- Espaciados
 
 ## Verificar instalacion
 
@@ -125,11 +142,13 @@ Los componentes apareceran en el panel lateral de Canvas agrupados como "Cats - 
 - **Variantes de estilo**: Multiples opciones de color, tamano y apariencia
 - **CVA (Class Variance Authority)**: Sistema de variantes para estilos consistentes
 - **TailwindCSS**: Clases utilitarias integradas
-- **Colores personalizables**: Variables CSS para personalizar la paleta de colores
+- **Colores personalizables**: Variables CSS configurables desde /admin/config/cats/settings
 
 ---
 
 ## Variables CSS
+
+Los colores se pueden modificar desde `/admin/config/cats/settings` o directamente en CSS:
 
 ```css
 :root {

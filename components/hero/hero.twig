@@ -1,114 +1,97 @@
 {#
 /**
  * @file
- * Hero component - Banner con imagen de fondo
+ * Hero component - Banner con imagen de fondo flexible
  */
 #}
 
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+{% set hero_height = height|default("large") %}
+{% set hero_overlay = overlay|default("medium") %}
+{% set hero_bg_position = background_position|default("center") %}
+{% set hero_align_h = content_align_horizontal|default("center") %}
+{% set hero_align_v = content_align_vertical|default("center") %}
+{% set bg_image = background_image|default({}) %}
 
-{% set custom_class = css_class|default('') %}
-{% set custom_id = html_id|default('') %}
-{% set hero_height = height|default('large') %}
-{% set hero_position = content_position|default('center-left') %}
-{% set hero_overlay = overlay_opacity|default('40') %}
-{% set hero_bg_color = background_color|default('dark') %}
-{% set hero_text_color = text_color|default('light') %}
+{# Height classes #}
+{% set height_class = "" %}
+{% if hero_height == "full" %}
+  {% set height_class = "min-h-screen" %}
+{% elseif hero_height == "xlarge" %}
+  {% set height_class = "cats-hero-xlarge" %}
+{% elseif hero_height == "large" %}
+  {% set height_class = "cats-hero-large" %}
+{% elseif hero_height == "medium" %}
+  {% set height_class = "cats-hero-medium" %}
+{% elseif hero_height == "small" %}
+  {% set height_class = "cats-hero-small" %}
+{% endif %}
 
-{% set hero_cva =
-  html_cva(
-    base: ['cats-hero relative w-full overflow-hidden'],
-    variants: {
-      height: {
-        full: 'min-h-screen',
-        large: 'min-h-[600px] md:min-h-[700px]',
-        medium: 'min-h-[400px] md:min-h-[500px]',
-        small: 'min-h-[300px] md:min-h-[350px]'
-      },
-      backgroundColor: {
-        primary: 'bg-[var(--cats-primary)]',
-        secondary: 'bg-[var(--cats-secondary)]',
-        dark: 'bg-slate-900',
-        gradient: 'bg-gradient-to-br from-[var(--cats-primary)] to-[var(--cats-accent)]'
-      },
-      textColor: {
-        light: 'text-white',
-        dark: 'text-slate-900'
-      }
-    }
-  )
-%}
+{# Horizontal alignment (align-items con flex-direction: column) #}
+{% set align_h_class = "" %}
+{% if hero_align_h == "left" %}
+  {% set align_h_class = "items-start" %}
+{% elseif hero_align_h == "center" %}
+  {% set align_h_class = "items-center" %}
+{% elseif hero_align_h == "right" %}
+  {% set align_h_class = "items-end" %}
+{% endif %}
 
-{% set hero_classes =
-  hero_cva.apply({
-    height: hero_height,
-    backgroundColor: hero_bg_color,
-    textColor: hero_text_color
-  })
-%}
+{# Vertical alignment (justify-content con flex-direction: column) #}
+{% set align_v_class = "" %}
+{% if hero_align_v == "top" %}
+  {% set align_v_class = "justify-start" %}
+{% elseif hero_align_v == "center" %}
+  {% set align_v_class = "justify-center" %}
+{% elseif hero_align_v == "bottom" %}
+  {% set align_v_class = "justify-end" %}
+{% endif %}
 
-{% set content_cva =
-  html_cva(
-    base: ['relative z-10 container mx-auto px-4 h-full flex'],
-    variants: {
-      position: {
-        'top-left': 'items-start justify-start pt-12',
-        'top-center': 'items-start justify-center pt-12 text-center',
-        'top-right': 'items-start justify-end pt-12 text-right',
-        'center-left': 'items-center justify-start',
-        'center': 'items-center justify-center text-center',
-        'center-right': 'items-center justify-end text-right',
-        'bottom-left': 'items-end justify-start pb-12',
-        'bottom-center': 'items-end justify-center pb-12 text-center',
-        'bottom-right': 'items-end justify-end pb-12 text-right'
-      }
-    }
-  )
-%}
+{# Overlay classes #}
+{% set overlay_class = "" %}
+{% if hero_overlay == "light" %}
+  {% set overlay_class = "cats-hero-overlay-light" %}
+{% elseif hero_overlay == "medium" %}
+  {% set overlay_class = "cats-hero-overlay-medium" %}
+{% elseif hero_overlay == "dark" %}
+  {% set overlay_class = "cats-hero-overlay-dark" %}
+{% endif %}
 
-{% set content_classes =
-  content_cva.apply({
-    position: hero_position
-  })
-%}
+{# Background position #}
+{% set bg_position_class = "" %}
+{% if hero_bg_position == "top" %}
+  {% set bg_position_class = "cats-hero-bg-top" %}
+{% elseif hero_bg_position == "bottom" %}
+  {% set bg_position_class = "cats-hero-bg-bottom" %}
+{% else %}
+  {% set bg_position_class = "cats-hero-bg-center" %}
+{% endif %}
 
-{% set overlay_cva =
-  html_cva(
-    base: ['absolute inset-0 bg-black z-[1]'],
-    variants: {
-      opacity: {
-        '0': 'opacity-0',
-        '20': 'opacity-20',
-        '40': 'opacity-40',
-        '60': 'opacity-60',
-        '80': 'opacity-80'
-      }
-    }
-  )
-%}
-
-{% set overlay_classes =
-  overlay_cva.apply({
-    opacity: hero_overlay
-  })
-%}
-
-<div class="{{ hero_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
-  {# Background Image Slot #}
-  <div class="absolute inset-0 z-0">
-    {% block background_image %}
-    {% endblock %}
-  </div>
-
-  {# Overlay #}
-  {% if hero_overlay != '0' %}
-    <div class="{{ overlay_classes }}"></div>
+<div
+  class="cats-hero relative w-full overflow-hidden {{ height_class }} {{ custom_class }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {# Background Image #}
+  {% if bg_image.src %}
+    <div class="cats-hero-background {{ bg_position_class }}">
+      <img
+        src="{{ bg_image.src }}"
+        alt="{{ bg_image.alt|default('') }}"
+        class="cats-hero-img"
+        loading="eager"
+      />
+    </div>
   {% endif %}
 
-  {# Content #}
-  <div class="{{ content_classes }}">
-    <div class="max-w-3xl">
-      {% block hero_content %}
-      {% endblock %}
-    </div>
+  {# Overlay #}
+  {% if hero_overlay != "none" %}
+    <div class="cats-hero-overlay {{ overlay_class }}"></div>
+  {% endif %}
+
+  {# Content con alineacion #}
+  <div class="cats-hero-content relative z-10 flex {{ align_h_class }} {{ align_v_class }}">
+    {% block content %}
+    {% endblock %}
   </div>
 </div>

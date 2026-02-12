@@ -1,0 +1,9 @@
+name: Cats Settings
+type: module
+description: 'Panel de configuración para el tema Cats con colores personalizables y variables CSS globales.'
+core_version_requirement: ^11
+package: Cats Theme
+configure: cats_settings.settings
+
+dependencies:
+  - drupal:system

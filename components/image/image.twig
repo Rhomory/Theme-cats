@@ -8,6 +8,7 @@
 
 {% set custom_class = css_class|default('') %}
 {% set custom_id = html_id|default('') %}
+{% set img_width = width|default("auto") %}
 {% set img_ratio = aspect_ratio|default('auto') %}
 {% set img_rounded = rounded|default('none') %}
 {% set img_shadow = shadow|default('none') %}
@@ -17,8 +18,13 @@
 
 {% set image_cva =
   html_cva(
-    base: ['cats-image block w-full'],
+    base: ['cats-image block'],
     variants: {
+      width: {
+        auto: 'w-auto max-w-full',
+        full: 'w-full',
+        'full-viewport': 'cats-full-width-img'
+      },
       aspectRatio: {
         auto: '',
         '1:1': 'aspect-square',
@@ -52,6 +58,7 @@
 
 {% set image_classes =
   image_cva.apply({
+    width: img_width,
     aspectRatio: img_ratio,
     rounded: img_rounded,
     shadow: img_shadow,

@@ -2,103 +2,95 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sd
 name: Hero
 group: Cats - Layout
 status: stable
-description: "Hero banner con imagen de fondo y contenido superpuesto."
+description: "Hero con imagen de fondo y contenido flexible."
 props:
   type: object
-  required:
-    - height
-    - content_position
-    - overlay_opacity
   properties:
+    background_image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Imagen de fondo
+      type: object
+      examples:
+        - src: "https://placehold.co/1920x1080"
+          alt: "Hero background"
     height:
       type: string
       title: Altura
       enum:
         - full
+        - xlarge
         - large
         - medium
         - small
+        - auto
       meta:enum:
-        full: Pantalla completa
-        large: Grande
-        medium: Mediano
-        small: Pequeño
+        full: Pantalla completa (100vh)
+        xlarge: Extra grande (800px)
+        large: Grande (600px)
+        medium: Mediano (450px)
+        small: Pequeno (300px)
+        auto: Automatico
       default: "large"
       examples:
         - "large"
-    content_position:
+    content_align_horizontal:
       type: string
-      title: Posición del contenido
+      title: Alineacion horizontal
       enum:
-        - top-left
-        - top-center
-        - top-right
-        - center-left
+        - left
         - center
-        - center-right
-        - bottom-left
-        - bottom-center
-        - bottom-right
+        - right
       meta:enum:
-        top-left: Arriba izquierda
-        top-center: Arriba centro
-        top-right: Arriba derecha
-        center-left: Centro izquierda
+        left: Izquierda
         center: Centro
-        center-right: Centro derecha
-        bottom-left: Abajo izquierda
-        bottom-center: Abajo centro
-        bottom-right: Abajo derecha
-      default: "center-left"
+        right: Derecha
+      default: "center"
       examples:
-        - "center-left"
-    overlay_opacity:
+        - "center"
+    content_align_vertical:
       type: string
-      title: Opacidad del overlay
+      title: Alineacion vertical
       enum:
-        - "0"
-        - "20"
-        - "40"
-        - "60"
-        - "80"
+        - top
+        - center
+        - bottom
       meta:enum:
-        "0": "Sin overlay"
-        "20": "20%"
-        "40": "40%"
-        "60": "60%"
-        "80": "80%"
-      default: "40"
+        top: Arriba
+        center: Centro
+        bottom: Abajo
+      default: "center"
       examples:
-        - "40"
-    background_color:
+        - "center"
+    overlay:
       type: string
-      title: Color de fondo
+      title: Overlay oscuro
       enum:
-        - primary
-        - secondary
-        - dark
-        - gradient
-      meta:enum:
-        primary: Primario
-        secondary: Secundario
-        dark: Oscuro
-        gradient: Degradado
-      default: "dark"
-      examples:
-        - "dark"
-    text_color:
-      type: string
-      title: Color del texto
-      enum:
+        - none
         - light
+        - medium
         - dark
       meta:enum:
-        light: Claro
-        dark: Oscuro
-      default: "light"
+        none: Sin overlay
+        light: Ligero (20%)
+        medium: Medio (40%)
+        dark: Oscuro (60%)
+      default: "medium"
       examples:
-        - "light"
-
+        - "medium"
+    background_position:
+      type: string
+      title: Posicion de imagen
+      enum:
+        - center
+        - top
+        - bottom
+      meta:enum:
+        center: Centro
+        top: Arriba
+        bottom: Abajo
+      default: "center"
+      examples:
+        - "center"
     css_class:
       type: string
       title: Clases CSS adicionales
@@ -110,10 +102,8 @@ props:
       title: ID HTML
       default: ""
       examples:
-        - "my-section-id"
+        - "my-hero-id"
 
 slots:
-  hero_content:
-    title: "Contenido del hero"
-  background_image:
-    title: "Imagen de fondo"
+  content:
+    title: "Contenido"

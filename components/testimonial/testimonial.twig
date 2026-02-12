@@ -34,7 +34,7 @@
       background: {
         white: 'bg-white',
         muted: 'bg-gray-50',
-        primary: 'bg-[var(--cats-primary)] text-white',
+        primary: 'cats-bg-primary text-white',
         dark: 'bg-slate-900 text-white'
       },
       shadow: {
@@ -57,12 +57,12 @@
 %}
 
 {% set text_color = test_bg in ['primary', 'dark'] ? 'text-white' : 'text-gray-600' %}
-{% set name_color = test_bg in ['primary', 'dark'] ? 'text-white' : 'text-[var(--cats-foreground)]' %}
+{% set name_color = test_bg in ['primary', 'dark'] ? 'text-white' : 'cats-text-foreground' %}
 
 <div class="{{ testimonial_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {# Quote icon for quote layout #}
   {% if test_layout == 'quote' %}
-    <svg class="w-12 h-12 {{ test_bg in ['primary', 'dark'] ? 'text-white/20' : 'text-[var(--cats-primary)]/20' }} {{ test_alignment == 'center' ? 'mx-auto' : '' }} mb-4" fill="currentColor" viewBox="0 0 24 24">
+    <svg class="w-12 h-12 {{ test_bg in ['primary', 'dark'] ? 'text-white/20' : 'cats-text-primary/20' }} {{ test_alignment == 'center' ? 'mx-auto' : '' }} mb-4" fill="currentColor" viewBox="0 0 24 24">
       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
     </svg>
   {% endif %}

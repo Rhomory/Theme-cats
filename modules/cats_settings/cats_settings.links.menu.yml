@@ -1,0 +1,13 @@
+cats_settings.admin:
+  title: 'Cats Theme'
+  description: 'Configuración del tema Cats'
+  parent: system.admin_config_ui
+  route_name: cats_settings.settings
+  weight: 10
+
+cats_settings.colors:
+  title: 'Colores Personalizados'
+  description: 'Agregar y gestionar colores personalizados'
+  parent: cats_settings.admin
+  route_name: cats_settings.colors
+  weight: 20

@@ -16,9 +16,9 @@
 {% set bq_color = color|default('primary') %}
 
 {% set color_classes = {
-  'primary': 'border-[var(--cats-primary)] text-[var(--cats-primary)]',
-  'secondary': 'border-[var(--cats-secondary)] text-[var(--cats-secondary)]',
-  'accent': 'border-[var(--cats-accent)] text-[var(--cats-accent)]',
+  'primary': 'cats-border-primary cats-text-primary',
+  'secondary': 'cats-border-secondary cats-text-secondary',
+  'accent': 'cats-border-accent cats-text-accent',
   'neutral': 'border-gray-400 text-gray-600'
 } %}
 
@@ -58,7 +58,7 @@
   {% endif %}
 
   {# Quote text #}
-  <p class="{{ quote_size }} italic text-[var(--cats-foreground)] mb-4">
+  <p class="{{ quote_size }} italic cats-text-foreground mb-4">
     {% if bq_style == 'bordered' or bq_style == 'icon' %}"{% endif %}{{ bq_quote }}{% if bq_style == 'bordered' or bq_style == 'icon' %}"{% endif %}
   </p>
 

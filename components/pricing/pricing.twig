@@ -35,9 +35,9 @@
     base: ['cats-pricing relative overflow-hidden flex flex-col rounded-xl'],
     variants: {
       background: {
-        white: 'bg-white border border-[var(--cats-border)]',
-        muted: 'bg-[var(--cats-muted)] border border-[var(--cats-border)]',
-        primary: 'bg-[var(--cats-primary)] text-white',
+        white: 'bg-white border cats-border-muted',
+        muted: 'cats-bg-muted border cats-border-muted',
+        primary: 'cats-bg-primary text-white',
         dark: 'bg-slate-900 text-white'
       },
       shadow: {
@@ -62,13 +62,13 @@
 <div class="{{ container_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {# Badge #}
   {% if plan_badge %}
-    <div class="absolute top-4 right-4 bg-[var(--cats-accent)] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+    <div class="absolute top-4 right-4 cats-bg-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
       {{ plan_badge }}
     </div>
   {% endif %}
 
   {# Header #}
-  <div class="p-6 text-center border-b border-[var(--cats-border)]">
+  <div class="p-6 text-center border-b cats-border-muted">
     {% if plan_title %}
       <h3 class="text-xl font-bold mb-1">{{ plan_title }}</h3>
     {% endif %}
@@ -98,7 +98,7 @@
   <div class="p-6 pt-0 mt-auto">
     <a
       href="{{ plan_button_url }}"
-      class="block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-200 {{ is_featured or plan_bg in ['primary', 'dark'] ? 'bg-white text-[var(--cats-primary)] hover:bg-gray-100' : 'bg-[var(--cats-primary)] text-white hover:bg-[var(--cats-primary-dark)]' }}"
+      class="block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-200 {{ is_featured or plan_bg in ['primary', 'dark'] ? 'bg-white cats-text-primary hover:bg-gray-100' : 'cats-bg-primary text-white hover:cats-bg-primary-dark' }}"
     >
       {{ plan_button_text }}
     </a>

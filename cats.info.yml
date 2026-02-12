@@ -10,6 +10,7 @@ libraries:
 
 dependencies:
   - cva:cva
+  - cats_settings:cats_settings
 
 regions:
   header: Header

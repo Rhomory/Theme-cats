@@ -27,11 +27,11 @@
     ],
     variants: {
       variant: {
-        primary: 'bg-[var(--cats-primary)] text-white hover:bg-[var(--cats-primary)]/90 focus:ring-[var(--cats-primary)]',
-        secondary: 'bg-[var(--cats-secondary)] text-white hover:bg-[var(--cats-secondary)]/90 focus:ring-[var(--cats-secondary)]',
-        outline: 'border-2 border-[var(--cats-primary)] text-[var(--cats-primary)] bg-transparent hover:bg-[var(--cats-primary)] hover:text-white',
-        ghost: 'bg-transparent text-[var(--cats-foreground)] hover:bg-[var(--cats-muted)]',
-        link: 'bg-transparent text-[var(--cats-primary)] underline-offset-4 hover:underline p-0'
+        primary: 'cats-bg-primary text-white hover:cats-bg-primary/90 focus:ring-2',
+        secondary: 'cats-bg-secondary text-white hover:cats-bg-secondary/90 focus:ring-[var(--cats-secondary)]',
+        outline: 'border-2 cats-border-primary cats-text-primary bg-transparent hover:cats-bg-primary hover:text-white',
+        ghost: 'bg-transparent cats-text-foreground hover:cats-bg-muted',
+        link: 'bg-transparent cats-text-primary underline-offset-4 hover:underline p-0'
       },
       size: {
         small: 'text-sm px-3 py-1.5 gap-1.5',

@@ -73,9 +73,9 @@
         square: 'rounded-lg'
       },
       color: {
-        primary: 'bg-[var(--cats-primary)]/10 text-[var(--cats-primary)]',
-        secondary: 'bg-[var(--cats-secondary)]/10 text-[var(--cats-secondary)]',
-        accent: 'bg-[var(--cats-accent)]/10 text-[var(--cats-accent)]'
+        primary: 'cats-bg-primary/10 cats-text-primary',
+        secondary: 'cats-bg-secondary/10 cats-text-secondary',
+        accent: 'cats-bg-accent/10 cats-text-accent'
       }
     }
   )
@@ -106,7 +106,7 @@
   {# Content #}
   <div class="{{ box_layout == 'horizontal' ? 'flex-1' : '' }}">
     {% if box_title %}
-      <h3 class="text-lg font-semibold mb-2 text-[var(--cats-foreground)]">
+      <h3 class="text-lg font-semibold mb-2 cats-text-foreground">
         {{ box_title }}
       </h3>
     {% endif %}
@@ -121,7 +121,7 @@
     {% endblock %}
 
     {% if box_link_url %}
-      <a href="{{ box_link_url }}" class="inline-flex items-center gap-1 text-[var(--cats-primary)] font-medium hover:underline">
+      <a href="{{ box_link_url }}" class="inline-flex items-center gap-1 cats-text-primary font-medium hover:underline">
         {{ box_link_text }}
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
