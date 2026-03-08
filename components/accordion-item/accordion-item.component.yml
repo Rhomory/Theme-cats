@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
-name: Accordion Item
-group: Cats - Content
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Accordion Item'
+group: 'Cats - Interactive'
 status: stable
-description: "Item individual del acordeón."
+description: 'Item individual del acordeón.'
 props:
   type: object
   required:
@@ -11,29 +11,28 @@ props:
     title:
       type: string
       title: Título
-      default: "Pregunta o título"
+      default: 'Pregunta o título'
       examples:
-        - "¿Cuál es tu pregunta?"
+        - 'Pregunta o título'
     is_open:
       type: boolean
-      title: Abierto por defecto
+      title: 'Abierto por defecto'
       default: false
-      examples:
-        - false
-
+    icon_position:
+      type: string
+      title: 'Posición del icono'
+      enum:
+        - left
+        - right
+      default: right
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   content:
-    title: "Contenido del item"
+    title: 'Contenido del item'

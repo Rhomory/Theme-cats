@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Pagination component
+ */
+#}
+
+{% set pg_current = current_page|default(1) %}
+{% set pg_total = total_pages|default(10) %}
+{% set pg_first_last = show_first_last|default(true) %}
+{% set pg_prev_next = show_prev_next|default(true) %}
+{% set pg_style = style|default("default") %}
+{% set pg_size = size|default("md") %}
+{% set pg_alignment = alignment|default("center") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set size_classes = {
+  sm: "h-8 w-8 text-sm",
+  md: "h-10 w-10 text-base",
+  lg: "h-12 w-12 text-lg"
+} %}
+
+{% set style_classes = {
+  default: "border border-border hover:bg-muted",
+  rounded: "rounded-full border border-border hover:bg-muted",
+  minimal: "hover:text-primary"
+} %}
+
+{% set align_classes = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end"
+} %}
+
+{% set classes = [
+  "cats-pagination flex items-center gap-1",
+  align_classes[pg_alignment],
+  custom_class
+]|join(" ")|trim %}
+
+<nav {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+  aria-label="Paginacion"
+>
+  {% if pg_first_last and pg_current > 1 %}
+    <a href="?page=1" class="flex items-center justify-center {{ size_classes[pg_size] }} {{ style_classes[pg_style] }} rounded transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+    </a>
+  {% endif %}
+
+  {% if pg_prev_next and pg_current > 1 %}
+    <a href="?page={{ pg_current - 1 }}" class="flex items-center justify-center {{ size_classes[pg_size] }} {{ style_classes[pg_style] }} rounded transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </a>
+  {% endif %}
+
+  {# Page numbers #}
+  {% for i in 1..pg_total %}
+    {% if i == pg_current %}
+      <span class="flex items-center justify-center {{ size_classes[pg_size] }} bg-primary text-white rounded font-medium">{{ i }}</span>
+    {% elseif i == 1 or i == pg_total or (i >= pg_current - 2 and i <= pg_current + 2) %}
+      <a href="?page={{ i }}" class="flex items-center justify-center {{ size_classes[pg_size] }} {{ style_classes[pg_style] }} rounded transition-colors">{{ i }}</a>
+    {% elseif i == pg_current - 3 or i == pg_current + 3 %}
+      <span class="flex items-center justify-center {{ size_classes[pg_size] }} text-muted">...</span>
+    {% endif %}
+  {% endfor %}
+
+  {% if pg_prev_next and pg_current < pg_total %}
+    <a href="?page={{ pg_current + 1 }}" class="flex items-center justify-center {{ size_classes[pg_size] }} {{ style_classes[pg_style] }} rounded transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  {% endif %}
+
+  {% if pg_first_last and pg_current < pg_total %}
+    <a href="?page={{ pg_total }}" class="flex items-center justify-center {{ size_classes[pg_size] }} {{ style_classes[pg_style] }} rounded transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+    </a>
+  {% endif %}
+</nav>

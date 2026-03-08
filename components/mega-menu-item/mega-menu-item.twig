@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Mega Menu Item component
+ */
+#}
+
+{% set item_title = title|default("") %}
+{% set item_url = url|default("#") %}
+{% set item_icon = icon|default("") %}
+{% set item_desc = description|default("") %}
+{% set item_has_submenu = has_submenu|default(false) %}
+{% set item_highlighted = highlighted|default(false) %}
+{% set item_badge = badge|default("") %}
+{% set custom_class = css_class|default("") %}
+
+<div {{ attributes }} class="cats-megamenu-item {{ item_has_submenu ? 'cats-megamenu-item--has-submenu' : '' }} {{ item_highlighted ? 'cats-megamenu-item--highlighted' : '' }} {{ custom_class }}">
+  <a
+    href="{{ item_url }}"
+    class="cats-megamenu-item__link flex items-center gap-2 px-4 py-2 text-foreground hover:text-primary transition-colors"
+    {% if item_has_submenu %}aria-haspopup="true" aria-expanded="false"{% endif %}
+  >
+    {% if item_icon %}
+      <span class="cats-megamenu-item__icon w-5 h-5">
+        {{ item_icon|raw }}
+      </span>
+    {% endif %}
+
+    <span class="cats-megamenu-item__title font-medium">{{ item_title }}</span>
+
+    {% if item_badge %}
+      <span class="cats-megamenu-item__badge px-2 py-0.5 text-xs font-semibold bg-primary text-white rounded-full">
+        {{ item_badge }}
+      </span>
+    {% endif %}
+
+    {% if item_has_submenu %}
+      <svg class="cats-megamenu-item__arrow w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    {% endif %}
+  </a>
+
+  {% if item_desc %}
+    <p class="cats-megamenu-item__desc text-sm text-muted px-4">{{ item_desc }}</p>
+  {% endif %}
+
+  {% if item_has_submenu %}
+    <div class="cats-megamenu-item__submenu absolute left-0 top-full w-full bg-white shadow-xl border-t border-border opacity-0 invisible transition-all">
+      <div class="max-w-7xl mx-auto px-4 py-6">
+        {% block submenu %}{% endblock %}
+      </div>
+    </div>
+  {% endif %}
+</div>

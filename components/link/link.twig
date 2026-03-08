@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Link component - Enlaces estilizados
+ */
+#}
+
+{% set link_text = text|default("Enlace") %}
+{% set link_url = url|default("#") %}
+{% set link_variant = variant|default("default") %}
+{% set link_target = target|default("_self") %}
+{% set link_icon = icon|default("none") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set variant_classes = {
+  default: "text-foreground hover:text-primary transition-colors",
+  primary: "text-primary hover:text-primary/80 transition-colors",
+  muted: "text-muted hover:text-foreground transition-colors",
+  underline: "text-foreground underline underline-offset-4 hover:text-primary transition-colors"
+} %}
+
+{% set classes = [
+  "cats-link inline-flex items-center gap-1",
+  variant_classes[link_variant],
+  custom_class
+]|join(" ")|trim %}
+
+<a {{ attributes }}
+  href="{{ link_url }}"
+  class="{{ classes }}"
+  {% if link_target == "_blank" %}target="_blank" rel="noopener noreferrer"{% endif %}
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {{ link_text }}
+  {% if link_icon != "none" %}
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      {% if link_icon == "arrow-right" %}
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      {% elseif link_icon == "external-link" %}
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      {% elseif link_icon == "download" %}
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+      {% endif %}
+    </svg>
+  {% endif %}
+</a>

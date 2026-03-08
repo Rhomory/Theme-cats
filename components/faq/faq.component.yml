@@ -1,0 +1,51 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: FAQ
+group: Cats - Marketing
+status: stable
+description: "Preguntas frecuentes con acordeon."
+props:
+  type: object
+  properties:
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "default"
+        - "boxed"
+        - "bordered"
+      default: "default"
+    icon_position:
+      type: string
+      title: Posicion del icono
+      enum:
+        - "left"
+        - "right"
+      default: "right"
+    allow_multiple:
+      type: boolean
+      title: Permitir multiples abiertos
+      default: false
+    first_open:
+      type: boolean
+      title: Primer item abierto
+      default: true
+    spacing:
+      type: string
+      title: Espaciado
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  items:
+    title: "Preguntas y respuestas"

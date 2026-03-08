@@ -1,0 +1,240 @@
+/**
+ * Cats Theme - Main CSS Entry Point
+ *
+ * Tailwind CSS v4 with inline theme configuration
+ * Build: npm run build
+ * Watch: npm run dev
+ */
+
+/* Tailwind CSS v4 */
+@import "tailwindcss";
+@source "../components/**/*.twig";
+@source "../templates/**/*.twig";
+@source "../../../../../modules/contrib/canvas/**/*.twig";
+
+/* Theme configuration */
+@import "./theme.css";
+
+/* Google Fonts (self-hosted) */
+@import "./fonts.css";
+
+/* Custom component styles */
+@import "./components.css";
+
+/* ==========================================================================
+   Tailwind Theme Configuration
+   Uses CSS variables from theme.css for integration with cats_settings
+   ========================================================================== */
+
+@theme inline {
+  /* Colors - Mapped to CSS variables for dynamic theming */
+  --color-primary: var(--cats-primary, #3b82f6);
+  --color-primary-light: var(--cats-primary-light, #60a5fa);
+  --color-primary-dark: var(--cats-primary-dark, #2563eb);
+  --color-primary-foreground: var(--cats-primary-foreground, #ffffff);
+
+  --color-secondary: var(--cats-secondary, #64748b);
+  --color-secondary-light: var(--cats-secondary-light, #94a3b8);
+  --color-secondary-dark: var(--cats-secondary-dark, #475569);
+  --color-secondary-foreground: var(--cats-secondary-foreground, #ffffff);
+
+  --color-accent: var(--cats-accent, #f59e0b);
+  --color-accent-light: var(--cats-accent-light, #fbbf24);
+  --color-accent-dark: var(--cats-accent-dark, #d97706);
+  --color-accent-foreground: var(--cats-accent-foreground, #000000);
+
+  --color-background: var(--cats-background, #ffffff);
+  --color-foreground: var(--cats-foreground, #0f172a);
+  --color-muted: var(--cats-muted, #f1f5f9);
+  --color-muted-foreground: var(--cats-muted-foreground, #64748b);
+  --color-border: var(--cats-border, #e2e8f0);
+
+  --color-success: var(--cats-success, #22c55e);
+  --color-warning: var(--cats-warning, #f59e0b);
+  --color-error: var(--cats-error, #ef4444);
+  --color-info: var(--cats-info, #3b82f6);
+
+  /* Font families */
+  --font-sans: var(--cats-font-sans, system-ui, -apple-system, sans-serif);
+  --font-serif: var(--cats-font-serif, Georgia, serif);
+  --font-mono: var(--cats-font-mono, monospace);
+
+  /* Border radius */
+  --radius-sm: var(--cats-radius-sm, 0.25rem);
+  --radius-md: var(--cats-radius-md, 0.5rem);
+  --radius-lg: var(--cats-radius-lg, 1rem);
+  --radius-full: var(--cats-radius-full, 9999px);
+
+  /* Shadows */
+  --shadow-sm: var(--cats-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  --shadow-md: var(--cats-shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+  --shadow-lg: var(--cats-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1));
+  --shadow-xl: var(--cats-shadow-xl, 0 20px 25px -5px rgb(0 0 0 / 0.1));
+
+  /* Transitions */
+  --transition-fast: var(--cats-transition-fast, 150ms ease);
+  --transition-normal: var(--cats-transition-normal, 300ms ease);
+  --transition-slow: var(--cats-transition-slow, 500ms ease);
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+@layer base {
+  html {
+    overflow-x: hidden;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+  }
+}
+
+/* ==========================================================================
+   Drupal & Canvas XB Resets
+   ========================================================================== */
+
+@layer base {
+  /* Reset Drupal containers */
+  .layout-container,
+  .layout-content,
+  .region,
+  .region-content,
+  main,
+  article,
+  #content,
+  .content {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Canvas Experience Builder reset */
+  .xb-page,
+  .xb-page-content,
+  .xb-region,
+  .xb-component,
+  [data-xb-component-id],
+  .canvas-component,
+  .experience-builder-content {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Layout builder reset */
+  .layout,
+  .layout__region,
+  .block-layout-builder {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* ==========================================================================
+   Custom Utilities
+   ========================================================================== */
+
+@layer utilities {
+  /* Full viewport width - breaks out of containers */
+  .cats-full-width {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .cats-full-width-img {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Text shadows */
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgb(0 0 0 / 0.1);
+  }
+
+  .text-shadow-md {
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 0.2);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgb(0 0 0 / 0.3);
+  }
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@layer utilities {
+  @keyframes cats-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes cats-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cats-slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cats-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in {
+    animation: cats-fade-in var(--transition-normal);
+  }
+
+  .animate-slide-up {
+    animation: cats-slide-up var(--transition-normal);
+  }
+
+  .animate-slide-down {
+    animation: cats-slide-down var(--transition-normal);
+  }
+
+  .animate-scale-in {
+    animation: cats-scale-in var(--transition-normal);
+  }
+}

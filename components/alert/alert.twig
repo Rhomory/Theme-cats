@@ -73,7 +73,7 @@
   variant: alert_variant
 }) ~ ' ' ~ color_classes[alert_type][alert_variant] %}
 
-<div class="{{ alert_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} role="alert" data-cats-alert>
+<div {{ attributes }} class="{{ alert_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} role="alert" data-cats-alert>
   {# Icon #}
   {% if has_icon %}
     <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Breadcrumbs component
+ */
+#}
+
+{% set bc_separator = separator|default("chevron") %}
+{% set bc_size = size|default("sm") %}
+{% set bc_show_home = show_home|default(true) %}
+{% set bc_home_icon = home_icon|default(true) %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set size_classes = {
+  sm: "text-sm",
+  md: "text-base"
+} %}
+
+{% set separator_svg = {
+  slash: "<span {{ attributes }} class=\"mx-2 text-muted\">/</span>",
+  chevron: "<svg class=\"w-4 h-4 mx-2 text-muted\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"/></svg>",
+  arrow: "<svg class=\"w-4 h-4 mx-2 text-muted\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M17 8l4 4m0 0l-4 4m4-4H3\"/></svg>",
+  dot: "<span class=\"mx-2 text-muted\">.</span>"
+} %}
+
+{% set classes = [
+  "cats-breadcrumbs flex items-center flex-wrap",
+  size_classes[bc_size],
+  custom_class
+]|join(" ")|trim %}
+
+<nav
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+  aria-label="Breadcrumb"
+>
+  <ol class="flex items-center flex-wrap">
+    {% if bc_show_home %}
+      <li class="flex items-center">
+        <a href="/" class="text-muted hover:text-primary transition-colors">
+          {% if bc_home_icon %}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          {% else %}
+            Inicio
+          {% endif %}
+        </a>
+        {{ separator_svg[bc_separator]|raw }}
+      </li>
+    {% endif %}
+    {% block items %}{% endblock %}
+  </ol>
+</nav>

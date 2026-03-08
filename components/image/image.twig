@@ -69,7 +69,7 @@
 {% set wrapper_classes = img_hover == 'zoom' ? 'overflow-hidden block ' ~ (img_rounded != 'none' ? 'rounded-' ~ (img_rounded == 'sm' ? '' : img_rounded == 'md' ? 'lg' : img_rounded == 'lg' ? 'xl' : 'full') : '') : '' %}
 
 {% if img_caption %}
-<figure>
+<figure {{ attributes }}>
 {% endif %}
 
 {% if img_link %}

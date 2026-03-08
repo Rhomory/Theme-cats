@@ -5,16 +5,15 @@
  */
 #}
 
-
-{% set custom_class = css_class|default('') %}
-{% set custom_id = html_id|default('') %}
 {% set row_direction = direction|default('row') %}
 {% set row_wrap = wrap|default('wrap') %}
-{% set row_gap = gap|default('medium') %}
+{% set row_gap = gap|default('md') %}
 {% set row_align = align_items|default('stretch') %}
 {% set row_justify = justify_content|default('start') %}
 {% set row_padding = padding|default('none') %}
 {% set row_bg = background_color|default('transparent') %}
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 
 {% set row =
   html_cva(
@@ -33,10 +32,10 @@
       },
       gap: {
         none: 'gap-0',
-        small: 'gap-2',
-        medium: 'gap-4',
-        large: 'gap-6',
-        xlarge: 'gap-8'
+        sm: 'gap-4',
+        md: 'gap-6',
+        lg: 'gap-8',
+        xl: 'gap-12'
       },
       alignItems: {
         start: 'items-start',
@@ -55,28 +54,22 @@
       },
       padding: {
         none: 'p-0',
-        small: 'p-2',
-        medium: 'p-4',
-        large: 'p-6'
+        sm: 'p-4',
+        md: 'p-6',
+        lg: 'p-8'
       },
       backgroundColor: {
         transparent: 'bg-transparent',
-        primary: 'bg-primary text-primary-foreground',
-        secondary: 'bg-secondary text-secondary-foreground',
-        accent: 'bg-accent text-accent-foreground',
-        muted: 'bg-muted text-muted-foreground',
-        white: 'bg-white text-foreground',
+        primary: 'cats-bg-primary text-white',
+        secondary: 'cats-bg-secondary text-white',
+        accent: 'cats-bg-accent text-white',
+        muted: 'cats-bg-muted',
+        white: 'bg-white',
         dark: 'bg-slate-900 text-white'
       }
     }
   )
 %}
-
-{# Normalizar clases personalizadas #}
-{% set additional_classes = custom_class|default('') %}
-{% if additional_classes is iterable %}
-  {% set additional_classes = additional_classes|join(' ') %}
-{% endif %}
 
 {% set row_classes =
   row.apply({
@@ -87,14 +80,12 @@
     justifyContent: row_justify,
     padding: row_padding,
     backgroundColor: row_bg
-  }, additional_classes)
+  }, custom_class)|trim
 %}
 
-{% set row_id = custom_id|default('') %}
-
-<div
-  class="{{ row_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
-  {% if row_id %}id="{{ row_id }}"{% endif %}
+<div {{ attributes }}
+  class="{{ row_classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
 >
   {% block columns %}
   {% endblock %}

@@ -1,13 +1,36 @@
+# Cats - Main admin menu item (first level, same as Content, Structure, etc.)
 cats_settings.admin:
-  title: 'Cats Theme'
-  description: 'Configuración del tema Cats'
-  parent: system.admin_config_ui
-  route_name: cats_settings.settings
+  title: 'Cats'
+  description: 'Cats theme configuration and components'
+  parent: system.admin
+  route_name: cats_settings.dashboard
+  weight: 15
+  menu_name: admin
+  options:
+    icon:
+      pack_id: cats_settings
+      icon_id: cat
+
+# Cats - Styles submenu
+cats_settings.styles:
+  title: 'Styles'
+  description: 'Colors, typography, and spacing settings'
+  parent: cats_settings.admin
+  route_name: cats_settings.styles
+  weight: 0
+
+# Cats - Components submenu
+cats_settings.components:
+  title: 'Components'
+  description: 'Browse available SDC components'
+  parent: cats_settings.admin
+  route_name: cats_settings.components
   weight: 10
 
-cats_settings.colors:
-  title: 'Colores Personalizados'
-  description: 'Agregar y gestionar colores personalizados'
+# Cats - Export/Import submenu
+cats_settings.export_import:
+  title: 'Export/Import'
+  description: 'Export or import theme configuration'
   parent: cats_settings.admin
-  route_name: cats_settings.colors
+  route_name: cats_settings.export_import
   weight: 20

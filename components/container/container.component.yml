@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Container
-group: Cats - Layout
+group: 'Cats - Layout'
 status: stable
-description: "Contenedor flexible con opciones de ancho, fondo y espaciado."
+description: 'Contenedor flexible con opciones de ancho, fondo y espaciado.'
 props:
   type: object
   required:
@@ -18,17 +18,12 @@ props:
         - boxed
         - narrow
         - wide
-      meta:enum:
-        full: Ancho completo
-        boxed: Estándar (1200px)
-        narrow: Angosto (800px)
-        wide: Amplio (1400px)
-      default: "boxed"
+      default: boxed
       examples:
-        - "boxed"
+        - boxed
     background_color:
       type: string
-      title: Color de fondo
+      title: 'Color de fondo'
       enum:
         - transparent
         - primary
@@ -37,52 +32,32 @@ props:
         - muted
         - white
         - dark
-      meta:enum:
-        transparent: Transparente
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
-        muted: Atenuado
-        white: Blanco
-        dark: Oscuro
-      default: "transparent"
+      default: transparent
       examples:
-        - "transparent"
+        - transparent
     padding:
       type: string
-      title: Espaciado interno
+      title: 'Espaciado interno'
       enum:
         - none
         - sm
         - md
         - lg
         - xl
-      meta:enum:
-        none: Sin espaciado
-        sm: Pequeño
-        md: Mediano
-        lg: Grande
-        xl: Extra grande
-      default: "md"
+      default: md
       examples:
-        - "md"
+        - md
     border_radius:
       type: string
-      title: Bordes redondeados
+      title: 'Bordes redondeados'
       enum:
         - none
         - sm
         - md
         - lg
+        - xl
         - full
-      meta:enum:
-        none: Sin redondeo
-        sm: Pequeño
-        md: Mediano
-        lg: Grande
-        full: Completo
-      examples:
-        - "none"
+      default: none
     shadow:
       type: string
       title: Sombra
@@ -91,27 +66,15 @@ props:
         - sm
         - md
         - lg
-      meta:enum:
-        none: Sin sombra
-        sm: Pequeña
-        md: Mediana
-        lg: Grande
-      examples:
-        - "none"
-
+      default: none
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   content:
-    title: "Contenido"
+    title: Contenido

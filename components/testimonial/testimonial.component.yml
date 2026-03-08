@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Testimonial
-group: Cats - Widgets
+group: 'Cats - Marketing'
 status: stable
-description: "Testimonio con imagen, nombre, cargo y cita."
+description: 'Testimonio con imagen, nombre, cargo y cita.'
 props:
   type: object
   required:
@@ -13,30 +13,26 @@ props:
     quote:
       type: string
       title: Cita/Testimonio
-      default: "Este es un testimonio de ejemplo."
+      default: 'Este es un testimonio de ejemplo.'
       examples:
-        - "Excelente servicio, muy recomendado."
+        - 'Este es un testimonio de ejemplo.'
     author_name:
       type: string
-      title: Nombre del autor
-      default: "Juan Pérez"
+      title: 'Nombre del autor'
+      default: 'Juan Pérez'
       examples:
-        - "María García"
+        - 'Juan Pérez'
     author_title:
       type: string
       title: Cargo
-      default: ""
-      examples:
-        - "CEO"
+      default: ''
     author_company:
       type: string
       title: Empresa
-      default: ""
-      examples:
-        - "Empresa ABC"
+      default: ''
     rating:
       type: number
-      title: Calificación (estrellas)
+      title: 'Calificación (estrellas)'
       enum:
         - 0
         - 1
@@ -45,8 +41,6 @@ props:
         - 4
         - 5
       default: 5
-      examples:
-        - 5
     layout:
       type: string
       title: Diseño
@@ -54,41 +48,25 @@ props:
         - card
         - minimal
         - quote
-      meta:enum:
-        card: Tarjeta
-        minimal: Minimalista
-        quote: Con comillas
-      default: "card"
+      default: card
       examples:
-        - "card"
+        - card
     alignment:
       type: string
       title: Alineación
       enum:
         - left
         - center
-      meta:enum:
-        left: Izquierda
-        center: Centro
-      default: "center"
-      examples:
-        - "center"
+      default: center
     background:
       type: string
-      title: Color de fondo
+      title: 'Color de fondo'
       enum:
         - white
         - muted
         - primary
         - dark
-      meta:enum:
-        white: Blanco
-        muted: Gris suave
-        primary: Primario
-        dark: Oscuro
-      default: "white"
-      examples:
-        - "white"
+      default: white
     shadow:
       type: string
       title: Sombra
@@ -97,28 +75,15 @@ props:
         - sm
         - md
         - lg
-      meta:enum:
-        none: Sin sombra
-        sm: Pequeña
-        md: Mediana
-        lg: Grande
-      default: "md"
-      examples:
-        - "md"
-
+      default: md
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   author_image:
-    title: "Foto del autor"
+    title: 'Foto del autor'

@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Feature List component
+ */
+#}
+
+{% set fl_layout = layout|default("vertical") %}
+{% set fl_icon_style = icon_style|default("check") %}
+{% set fl_icon_color = icon_color|default("success") %}
+{% set fl_spacing = spacing|default("md") %}
+{% set fl_columns = columns|default("2") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set layout_classes = {
+  'vertical': "flex flex-col",
+  'horizontal': "flex flex-row flex-wrap",
+  'grid': "grid"
+} %}
+
+{% set spacing_classes = {
+  'sm': "gap-2",
+  'md': "gap-4",
+  'lg': "gap-6"
+} %}
+
+{% set columns_classes = {
+  "2": "grid-cols-1 md:grid-cols-2",
+  "3": "grid-cols-1 md:grid-cols-3",
+  "4": "grid-cols-2 md:grid-cols-4"
+} %}
+
+{% set color_classes = {
+  'primary': "text-primary",
+  'secondary': "text-secondary",
+  'accent': "text-accent",
+  'success': "text-green-500"
+} %}
+
+{% set classes = [
+  "cats-feature-list",
+  layout_classes[fl_layout],
+  spacing_classes[fl_spacing],
+  fl_layout == "grid" ? columns_classes[fl_columns] : "",
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+  data-icon-style="{{ fl_icon_style }}"
+  data-icon-color="{{ fl_icon_color }}"
+>
+  {% block items %}{% endblock %}
+</div>

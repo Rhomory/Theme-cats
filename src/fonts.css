@@ -1,0 +1,63 @@
+/**
+ * Cats Theme - Fonts
+ *
+ * Google Fonts (self-hosted)
+ * Fonts are loaded from /fonts/ directory
+ *
+ * To add a new font:
+ * 1. Download from Google Fonts
+ * 2. Place files in ../fonts/
+ * 3. Add @font-face declaration here
+ * 4. Update --cats-font-sans in theme.css
+ */
+
+/* ==========================================================================
+   Inter - Modern sans-serif font
+   https://fonts.google.com/specimen/Inter
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/inter/inter-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/inter/inter-medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/inter/inter-semibold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/inter/inter-bold.woff2') format('woff2');
+}
+
+/* ==========================================================================
+   Additional fonts can be added below
+   ========================================================================== */
+
+/* Example: Playfair Display for headings
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/playfair/playfair-bold.woff2') format('woff2');
+}
+*/

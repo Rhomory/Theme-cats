@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Tooltip component
+ */
+#}
+
+{% set tt_content = content|default("Informacion adicional") %}
+{% set tt_position = position|default("top") %}
+{% set tt_trigger = trigger_type|default("hover") %}
+{% set tt_style = style|default("dark") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("tooltip-" ~ random()) %}
+
+{% set style_classes = {
+  'dark': "bg-slate-900 text-white",
+  'light': "bg-white text-slate-900 shadow-lg border border-border"
+} %}
+
+{% set position_classes = {
+  'top': "bottom-full left-1/2 -translate-x-1/2 mb-2",
+  'bottom': "top-full left-1/2 -translate-x-1/2 mt-2",
+  'left': "right-full top-1/2 -translate-y-1/2 mr-2",
+  'right': "left-full top-1/2 -translate-y-1/2 ml-2"
+} %}
+
+{% set classes = [
+  "cats-tooltip relative inline-block",
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  id="{{ custom_id }}"
+  data-tooltip-trigger="{{ tt_trigger }}"
+>
+  {# Trigger element #}
+  <div class="cats-tooltip-trigger">
+    {% block trigger %}{% endblock %}
+  </div>
+
+  {# Tooltip content #}
+  <div
+    class="cats-tooltip-content absolute z-50 px-3 py-2 text-sm rounded-lg whitespace-nowrap opacity-0 invisible transition-all {{ style_classes[tt_style] }} {{ position_classes[tt_position] }}"
+    role="tooltip"
+  >
+    {{ tt_content }}
+    {# Arrow #}
+    <div class="absolute w-2 h-2 {{ tt_style == 'dark' ? 'bg-slate-900' : 'bg-white' }} transform rotate-45
+      {% if tt_position == 'top' %}top-full left-1/2 -translate-x-1/2 -mt-1
+      {% elseif tt_position == 'bottom' %}bottom-full left-1/2 -translate-x-1/2 -mb-1
+      {% elseif tt_position == 'left' %}left-full top-1/2 -translate-y-1/2 -ml-1
+      {% else %}right-full top-1/2 -translate-y-1/2 -mr-1{% endif %}"></div>
+  </div>
+</div>

@@ -55,6 +55,6 @@
   })
 %}
 
-<p class="{{ text_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<p {{ attributes }} class="{{ text_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {{ text_value }}
 </p>

@@ -1,94 +1,65 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Counter
-group: Cats - Content
+group: Cats - Data
 status: stable
+library: cats/counter
 description: "Contador animado que se activa al hacer scroll."
 props:
   type: object
   properties:
     number:
       type: number
-      title: Número final
+      title: Numero final
       default: 100
-      examples:
-        - 100
     prefix:
       type: string
       title: Prefijo
-      description: "Texto antes del número (ej: $, +)"
-      examples:
-        - "$"
-        - "+"
+      description: "Texto antes del numero (ej: $, +)"
+      default: ""
     suffix:
       type: string
       title: Sufijo
-      description: "Texto después del número (ej: %, K, M)"
-      examples:
-        - "%"
-        - "K"
+      description: "Texto despues del numero (ej: %, K, M)"
+      default: ""
     title:
       type: string
-      title: Título
-      examples:
-        - "Clientes satisfechos"
+      title: Titulo
+      default: ""
     duration:
       type: number
-      title: Duración de la animación (ms)
+      title: Duracion de la animacion (ms)
       default: 2000
-      examples:
-        - 2000
     size:
       type: string
-      title: Tamaño del número
+      title: Tamano del numero
       enum:
-        - "small"
-        - "medium"
-        - "large"
-        - "xlarge"
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-        xlarge: Extra grande
-      default: "large"
+        - "sm"
+        - "md"
+        - "lg"
+        - "xl"
+      default: "lg"
     color:
       type: string
-      title: Color del número
+      title: Color del numero
       enum:
         - "default"
         - "primary"
         - "secondary"
         - "accent"
-      meta:enum:
-        default: Por defecto
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
       default: "primary"
     alignment:
       type: string
-      title: Alineación
+      title: Alineacion
       enum:
         - "left"
         - "center"
         - "right"
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
       default: "center"
-    custom_class:
-      type: string
-      title: Clases CSS personalizadas
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-element-id"

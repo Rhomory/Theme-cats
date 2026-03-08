@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: CTA
-group: Cats - Content
+group: 'Cats - Marketing'
 status: stable
-description: "Llamada a la acción con título, descripción y botones."
+description: 'Llamada a la accion con titulo, descripcion y botones.'
 props:
   type: object
   required:
@@ -11,16 +11,14 @@ props:
   properties:
     heading:
       type: string
-      title: Título
-      default: "¿Listo para empezar?"
+      title: Titulo
+      default: 'Listo para empezar?'
       examples:
-        - "¿Listo para empezar?"
+        - 'Listo para empezar?'
     description:
       type: string
-      title: Descripción
-      default: ""
-      examples:
-        - "Únete a miles de usuarios satisfechos."
+      title: Descripcion
+      default: ''
     style:
       type: string
       title: Estilo
@@ -29,62 +27,38 @@ props:
         - primary
         - dark
         - gradient
-      meta:enum:
-        default: Por defecto
-        primary: Color primario
-        dark: Oscuro
-        gradient: Degradado
-      default: "primary"
+      default: primary
       examples:
-        - "primary"
+        - primary
     alignment:
       type: string
-      title: Alineación
+      title: Alineacion
       enum:
         - left
         - center
-      meta:enum:
-        left: Izquierda
-        center: Centro
-      default: "center"
-      examples:
-        - "center"
+      default: center
     size:
       type: string
-      title: Tamaño
+      title: Tamano
       enum:
-        - small
-        - medium
-        - large
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
-      examples:
-        - "medium"
+        - sm
+        - md
+        - lg
+      default: md
     rounded:
       type: boolean
-      title: Bordes redondeados
+      title: 'Bordes redondeados'
       default: true
-      examples:
-        - true
-
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   buttons:
-    title: "Botones de acción"
+    title: 'Botones de accion'
   background:
-    title: "Imagen de fondo"
+    title: 'Imagen de fondo'

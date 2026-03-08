@@ -1,0 +1,57 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Share Buttons
+group: Cats - Social
+status: stable
+description: "Botones para compartir en redes sociales."
+props:
+  type: object
+  properties:
+    networks:
+      type: array
+      title: Redes a mostrar
+      default: ["facebook", "twitter", "linkedin", "whatsapp"]
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "default"
+        - "outlined"
+        - "minimal"
+        - "colored"
+      default: "colored"
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    shape:
+      type: string
+      title: Forma
+      enum:
+        - "circle"
+        - "rounded"
+        - "square"
+      default: "circle"
+    show_labels:
+      type: boolean
+      title: Mostrar etiquetas
+      default: false
+    alignment:
+      type: string
+      title: Alineacion
+      enum:
+        - "left"
+        - "center"
+        - "right"
+      default: "left"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Mega Menu component
+ */
+#}
+
+{% set mm_style = style|default("fullwidth") %}
+{% set mm_columns = columns|default(4) %}
+{% set mm_icons = show_icons|default(true) %}
+{% set mm_desc = show_descriptions|default(true) %}
+{% set mm_animation = animation|default("fade") %}
+{% set mm_sticky = sticky|default(false) %}
+{% set mm_transparent = transparent_header|default(false) %}
+{% set mm_breakpoint = mobile_breakpoint|default("lg") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("mega-menu-" ~ random()) %}
+
+{% set style_classes = {
+  fullwidth: "cats-megamenu--fullwidth",
+  dropdown: "cats-megamenu--dropdown",
+  sidebar: "cats-megamenu--sidebar"
+} %}
+
+{% set animation_classes = {
+  fade: "cats-megamenu--fade",
+  slide: "cats-megamenu--slide",
+  none: ""
+} %}
+
+{% set column_classes = {
+  2: "grid-cols-2",
+  3: "grid-cols-3",
+  4: "grid-cols-4",
+  5: "grid-cols-5"
+} %}
+
+<nav {{ attributes }}
+  class="cats-megamenu {{ style_classes[mm_style] }} {{ animation_classes[mm_animation] }} {{ mm_sticky ? 'cats-megamenu--sticky' : '' }} {{ mm_transparent ? 'cats-megamenu--transparent' : '' }} {{ custom_class }}"
+  id="{{ custom_id }}"
+  data-columns="{{ mm_columns }}"
+  data-breakpoint="{{ mm_breakpoint }}"
+  data-show-icons="{{ mm_icons ? 'true' : 'false' }}"
+  data-show-descriptions="{{ mm_desc ? 'true' : 'false' }}"
+>
+  <div class="cats-megamenu__container max-w-7xl mx-auto px-4">
+    {# Logo #}
+    {% if logo is not empty %}
+      <div class="cats-megamenu__logo">
+        {% block logo %}{% endblock %}
+      </div>
+    {% endif %}
+
+    {# Mobile toggle #}
+    <button type="button" class="cats-megamenu__toggle {{ mm_breakpoint }}:hidden" aria-label="Menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path class="cats-megamenu__toggle-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        <path class="cats-megamenu__toggle-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    {# Menu items #}
+    <div class="cats-megamenu__nav hidden {{ mm_breakpoint }}:flex">
+      {% block items %}{% endblock %}
+    </div>
+
+    {# Actions #}
+    {% if actions is not empty %}
+      <div class="cats-megamenu__actions hidden {{ mm_breakpoint }}:flex">
+        {% block actions %}{% endblock %}
+      </div>
+    {% endif %}
+  </div>
+</nav>

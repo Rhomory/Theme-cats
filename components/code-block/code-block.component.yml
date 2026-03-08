@@ -1,0 +1,48 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Code Block
+group: Cats - Content
+status: stable
+description: "Bloque de codigo con resaltado de sintaxis."
+props:
+  type: object
+  properties:
+    code:
+      type: string
+      title: Codigo
+      default: "// Tu codigo aqui"
+    language:
+      type: string
+      title: Lenguaje
+      enum:
+        - "text"
+        - "html"
+        - "css"
+        - "javascript"
+        - "php"
+        - "twig"
+        - "bash"
+        - "json"
+      default: "text"
+    show_line_numbers:
+      type: boolean
+      title: Mostrar numeros de linea
+      default: false
+    show_copy_button:
+      type: boolean
+      title: Boton copiar
+      default: true
+    theme:
+      type: string
+      title: Tema
+      enum:
+        - "dark"
+        - "light"
+      default: "dark"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

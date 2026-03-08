@@ -67,7 +67,7 @@
   })
 %}
 
-<div class="{{ container_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<div {{ attributes }} class="{{ container_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {% block content %}
   {% endblock %}
 </div>

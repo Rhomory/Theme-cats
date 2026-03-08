@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Heading
-group: Cats - Content
+group: 'Cats - Content'
 status: stable
-description: "Título con opciones de tamaño, color y alineación."
+description: 'Título con opciones de tamaño, color y alineación.'
 props:
   type: object
   required:
@@ -14,14 +14,20 @@ props:
   properties:
     heading_text:
       type: string
-      title: Texto del título
-      default: "Tu título aquí"
+      title: 'Texto del título'
+      default: 'Tu título aquí'
       examples:
-        - "Mi Título"
+        - 'Tu título aquí'
     level:
       type: number
-      title: Nivel de título
-      enum: [1, 2, 3, 4, 5, 6]
+      title: 'Nivel de título'
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
       default: 2
       examples:
         - 2
@@ -37,18 +43,9 @@ props:
         - 3xl
         - 4xl
         - 5xl
-      meta:enum:
-        sm: Pequeño
-        base: Base
-        lg: Grande
-        xl: Extra grande
-        2xl: 2XL
-        3xl: 3XL
-        4xl: 4XL
-        5xl: 5XL
-      default: "3xl"
+      default: 3xl
       examples:
-        - "3xl"
+        - 3xl
     text_color:
       type: string
       title: Color
@@ -59,16 +56,9 @@ props:
         - accent
         - muted
         - white
-      meta:enum:
-        default: Por defecto
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
-        muted: Atenuado
-        white: Blanco
-      default: "default"
+      default: default
       examples:
-        - "default"
+        - default
     align:
       type: string
       title: Alineación
@@ -76,39 +66,23 @@ props:
         - left
         - center
         - right
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
-      default: "left"
+      default: left
       examples:
-        - "left"
+        - left
     font_weight:
       type: string
-      title: Peso de fuente
+      title: 'Peso de fuente'
       enum:
         - normal
         - medium
         - semibold
         - bold
         - extrabold
-      meta:enum:
-        normal: Normal
-        medium: Media
-        semibold: Semi-negrita
-        bold: Negrita
-        extrabold: Extra negrita
-      examples:
-        - "bold"
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-element-id"
+      title: 'ID HTML'
+      default: ''

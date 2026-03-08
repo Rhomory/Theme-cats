@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Icon component - Iconos con tamano y color configurable
+ */
+#}
+
+{% set icon_name = name|default("star") %}
+{% set icon_pack = pack|default("heroicons_outline") %}
+{% set icon_size = size|default("md") %}
+{% set icon_color = color|default("default") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{# Size classes #}
+{% set size_classes = {
+  xs: "w-4 h-4",
+  sm: "w-5 h-5",
+  md: "w-6 h-6",
+  lg: "w-8 h-8",
+  xl: "w-10 h-10",
+  "2xl": "w-12 h-12"
+} %}
+
+{# Color classes #}
+{% set color_classes = {
+  default: "text-current",
+  primary: "text-primary",
+  secondary: "text-secondary",
+  accent: "text-accent",
+  muted: "text-muted",
+  success: "text-green-500",
+  warning: "text-amber-500",
+  error: "text-red-500"
+} %}
+
+{% set classes = [
+  "cats-icon inline-flex items-center justify-center",
+  size_classes[icon_size],
+  color_classes[icon_color],
+  custom_class
+]|join(" ")|trim %}
+
+<span {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+  aria-hidden="true"
+>
+  {{ icon(icon_name, icon_pack) }}
+</span>

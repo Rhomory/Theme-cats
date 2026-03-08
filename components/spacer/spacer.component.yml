@@ -8,7 +8,7 @@ props:
   properties:
     size:
       type: string
-      title: Tamaño
+      title: Tamano
       enum:
         - "xs"
         - "sm"
@@ -17,27 +17,12 @@ props:
         - "xl"
         - "2xl"
         - "3xl"
-      meta:enum:
-        xs: Extra pequeño (8px)
-        sm: Pequeño (16px)
-        md: Mediano (24px)
-        lg: Grande (32px)
-        xl: Extra grande (48px)
-        2xl: 2XL (64px)
-        3xl: 3XL (96px)
       default: "md"
-    custom_class:
-      type: string
-      title: Clases CSS personalizadas
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-element-id"

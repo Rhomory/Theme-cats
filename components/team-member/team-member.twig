@@ -1,0 +1,82 @@
+{#
+/**
+ * @file
+ * Team Member component
+ */
+#}
+
+{% set member_image = image|default({}) %}
+{% set member_name = name|default("Nombre Apellido") %}
+{% set member_position = position|default("") %}
+{% set member_bio = bio|default("") %}
+{% set member_layout = layout|default("card") %}
+{% set member_image_style = image_style|default("circle") %}
+{% set member_alignment = alignment|default("center") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set image_classes = {
+  'square': "rounded-none",
+  'rounded': "rounded-lg",
+  'circle': "rounded-full"
+} %}
+
+{% set align_classes = {
+  'left': "text-left items-start",
+  'center': "text-center items-center"
+} %}
+
+{% set layout_classes = {
+  'card': "flex flex-col p-6 bg-white rounded-xl shadow-sm",
+  'horizontal': "flex flex-row gap-6 p-4 items-center",
+  'minimal': "flex flex-col"
+} %}
+
+{% set classes = [
+  "cats-team-member",
+  layout_classes[member_layout]|default(layout_classes.card),
+  member_layout != "horizontal" ? align_classes[member_alignment]|default(align_classes.center) : "",
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {# Image #}
+  {% if member_image.src %}
+    <div class="flex-shrink-0 {{ member_layout == 'card' ? 'mb-4' : '' }}">
+      <img
+        src="{{ member_image.src }}"
+        alt="{{ member_image.alt|default(member_name) }}"
+        class="object-cover {{ image_classes[member_image_style]|default(image_classes.circle) }} {{ member_layout == 'horizontal' ? 'w-24 h-24' : 'w-32 h-32' }}"
+      />
+    </div>
+  {% endif %}
+
+  <div class="flex-1">
+    {% if member_name %}
+      <h3 class="text-lg font-bold cats-text-foreground">
+        {{ member_name }}
+      </h3>
+    {% endif %}
+
+    {% if member_position %}
+      <p class="text-sm font-medium cats-text-primary mb-2">
+        {{ member_position }}
+      </p>
+    {% endif %}
+
+    {% if member_bio %}
+      <p class="text-sm text-gray-600 mb-4">
+        {{ member_bio }}
+      </p>
+    {% endif %}
+
+    {% if social is defined and social|render|trim is not empty %}
+      <div class="mt-auto">
+        {{ social }}
+      </div>
+    {% endif %}
+  </div>
+</div>

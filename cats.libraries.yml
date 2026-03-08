@@ -1,7 +1,12 @@
 global:
-  version: 0.0.2
+  version: 0.1.0
   css:
     theme:
+      # Tailwind compiled output (priority)
+      build/cats.min.css: { minified: true }
+      # Grid responsive fix (loaded after Tailwind)
+      build/grid-fix.css: {}
+      # Legacy CSS (fallback until full migration)
       css/cats.css: {}
       css/custom.css: {}
       css/components/video.css: {}
@@ -12,7 +17,7 @@ global:
     - core/drupal
     - core/once
 
-# Componentes específicos
+# Componentes especificos
 carousel:
   version: 0.0.2
   css:
@@ -41,7 +46,7 @@ counter:
     component:
       css/components/counter.css: {}
   js:
-    js/components/counter.js: {}
+    components/counter/counter.js: {}
   dependencies:
     - core/drupal
     - core/once
@@ -65,3 +70,23 @@ text-editor:
     - core/drupal
     - core/once
     - core/ckeditor5
+
+accordion:
+  version: 0.1.0
+  js:
+    components/accordion/accordion.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+mega-menu:
+  version: 0.1.0
+  css:
+    component:
+      components/mega-menu/mega-menu.css: {}
+      components/mega-menu-item/mega-menu-item.css: {}
+  js:
+    components/mega-menu/mega-menu.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

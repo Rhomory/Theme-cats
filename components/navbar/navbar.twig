@@ -1,110 +1,73 @@
 {#
 /**
  * @file
- * Navbar component - Barra de navegación
+ * Cats Navbar component - Simple navigation bar with logo, menu, and CTAs.
  */
 #}
-
-
-{% set custom_class = css_class|default('') %}
-{% set custom_id = html_id|default('') %}
-{% set navbar_style = style|default('light') %}
-{% set navbar_menu_align = menu_align|default('center') %}
-{% set is_sticky = sticky|default(true) %}
-{% set has_shadow = shadow|default(true) %}
-
-{% set navbar_cva =
-  html_cva(
-    base: ['cats-navbar w-full z-50 transition-all duration-300'],
-    variants: {
-      style: {
-        light: 'bg-white text-slate-900',
-        dark: 'bg-slate-900 text-white',
-        transparent: 'bg-transparent text-white'
-      },
-      sticky: {
-        yes: 'sticky top-0',
-        no: 'relative'
-      },
-      shadow: {
-        yes: 'shadow-md',
-        no: ''
-      }
-    }
-  )
-%}
-
-{% set navbar_classes =
-  navbar_cva.apply({
-    style: navbar_style,
-    sticky: is_sticky ? 'yes' : 'no',
-    shadow: has_shadow ? 'yes' : 'no'
-  })
-%}
+{% set navbar_classes = [
+  'cats-navbar',
+  'relative z-50 w-full',
+  sticky ? 'sticky top-0' : '',
+  transparent ? 'bg-transparent' : 'bg-background border-b border-border',
+] %}
 
 {% set nav_align_classes = {
   'left': 'justify-start',
-  'center': 'justify-center',
+  'center': 'justify-center', 
   'right': 'justify-end'
 } %}
 
-{# Capture slot content into variables to reuse in desktop and mobile #}
-{% set logo_content %}
-  {% block logo %}
-  {% endblock %}
-{% endset %}
-
-{% set navigation_content %}
-  {% block navigation %}
-  {% endblock %}
-{% endset %}
-
-{% set cta_content %}
-  {% block cta %}
-  {% endblock %}
-{% endset %}
-
-<nav class="{{ navbar_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} data-cats-navbar>
+<nav {{ attributes }} class="{{ navbar_classes|join(' ')|trim }}">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16 md:h-20">
+      
       {# Logo #}
-      <div class="flex-shrink-0">
-        {{ logo_content }}
+      <div class="cats-navbar__logo flex-shrink-0">
+        {% block logo %}
+          <a href="/" class="flex items-center">
+            <span class="text-xl font-bold text-foreground">{{ 'Site Logo'|t }}</span>
+          </a>
+        {% endblock %}
       </div>
 
-      {# Desktop Navigation #}
-      <div class="hidden md:flex flex-1 items-center gap-8 px-8 {{ nav_align_classes[navbar_menu_align] }}">
-        {{ navigation_content }}
+      {# Navigation - Desktop #}
+      <div class="cats-navbar__nav hidden md:flex flex-1 px-8 {{ nav_align_classes[menu_align|default('center')] }}">
+        {% block navigation %}
+          <div class="flex items-center gap-6">
+            <a href="#" class="text-foreground/80 hover:text-foreground transition-colors">{{ 'Home'|t }}</a>
+            <a href="#" class="text-foreground/80 hover:text-foreground transition-colors">{{ 'Features'|t }}</a>
+            <a href="#" class="text-foreground/80 hover:text-foreground transition-colors">{{ 'Pricing'|t }}</a>
+            <a href="#" class="text-foreground/80 hover:text-foreground transition-colors">{{ 'Contact'|t }}</a>
+          </div>
+        {% endblock %}
       </div>
 
-      {# CTA Buttons #}
-      <div class="flex items-center gap-4">
-        <div class="hidden md:flex items-center gap-3">
-          {{ cta_content }}
-        </div>
-
-        {# Mobile Menu Button #}
-        <button
-          type="button"
-          class="md:hidden p-2 rounded-lg hover:bg-black/10 transition-colors"
-          aria-label="Abrir menú"
-          data-navbar-toggle
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+      {# CTA Links #}
+      <div class="cats-navbar__links hidden md:flex items-center gap-3">
+        {% block links %}
+        {% endblock %}
       </div>
+
+      {# Mobile menu button #}
+      <button 
+        class="cats-navbar__toggle md:hidden p-2 text-foreground"
+        aria-label="{{ 'Toggle menu'|t }}"
+        data-navbar-toggle
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
     </div>
   </div>
 
-  {# Mobile Menu #}
-  <div class="hidden" data-navbar-menu>
-    <div class="md:hidden px-4 py-4 space-y-4 border-t {{ navbar_style == 'light' ? 'border-gray-200 bg-white' : 'border-white/20 bg-slate-900' }}">
-      {{ navigation_content }}
-
-      <div class="pt-4 border-t {{ navbar_style == 'light' ? 'border-gray-200' : 'border-white/20' }}">
-        {{ cta_content }}
+  {# Mobile menu #}
+  <div class="cats-navbar__mobile hidden md:hidden bg-background border-t border-border" data-navbar-menu>
+    <div class="container mx-auto px-4 py-4">
+      {{ block('navigation') }}
+      <div class="mt-4 flex flex-col gap-2">
+        {{ block('links') }}
       </div>
     </div>
   </div>

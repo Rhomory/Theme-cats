@@ -1,0 +1,74 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Mega Menu
+group: Cats - Navigation
+status: stable
+library: cats/mega-menu
+description: "Menu de navegacion con submenus multi-columna, iconos y descripciones."
+props:
+  type: object
+  properties:
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - fullwidth
+        - dropdown
+        - sidebar
+      default: fullwidth
+    columns:
+      type: integer
+      title: Columnas por submenu
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+      default: 4
+    show_icons:
+      type: boolean
+      title: Mostrar iconos
+      default: true
+    show_descriptions:
+      type: boolean
+      title: Mostrar descripciones
+      default: true
+    animation:
+      type: string
+      title: Animacion
+      enum:
+        - fade
+        - slide
+        - none
+      default: fade
+    sticky:
+      type: boolean
+      title: Menu fijo al scroll
+      default: false
+    transparent_header:
+      type: boolean
+      title: Header transparente
+      default: false
+    mobile_breakpoint:
+      type: string
+      title: Breakpoint movil
+      enum:
+        - sm
+        - md
+        - lg
+      default: lg
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  logo:
+    title: "Logo"
+  items:
+    title: "Items del menu"
+  actions:
+    title: "Acciones (botones, busqueda, etc.)"

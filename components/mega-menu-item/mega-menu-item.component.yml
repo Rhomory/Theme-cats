@@ -1,0 +1,47 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Mega Menu Item'
+group: 'Cats - Navigation'
+status: stable
+library: cats/mega-menu
+description: 'Item individual del mega menu con submenu opcional.'
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: 'Titulo - "Productos"'
+      examples:
+        - Productos
+    url:
+      type: string
+      title: URL
+      default: '#'
+    icon:
+      type: string
+      title: 'Icono (heroicons o fontawesome)'
+      default: ''
+    description:
+      type: string
+      title: Descripcion
+      default: ''
+    has_submenu:
+      type: boolean
+      title: 'Tiene submenu'
+      default: false
+    highlighted:
+      type: boolean
+      title: Destacado
+      default: false
+    badge:
+      type: string
+      title: 'Badge (ej. Nuevo, Popular)'
+      default: ''
+    css_class:
+      type: string
+      title: 'Clases CSS adicionales'
+      default: ''
+slots:
+  submenu:
+    title: 'Contenido del submenu'

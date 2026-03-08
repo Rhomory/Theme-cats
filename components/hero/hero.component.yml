@@ -9,30 +9,17 @@ props:
     background_image:
       $ref: json-schema-definitions://canvas.module/image
       title: Imagen de fondo
-      type: object
-      examples:
-        - src: "https://placehold.co/1920x1080"
-          alt: "Hero background"
     height:
       type: string
       title: Altura
       enum:
-        - full
-        - xlarge
-        - large
-        - medium
-        - small
         - auto
-      meta:enum:
-        full: Pantalla completa (100vh)
-        xlarge: Extra grande (800px)
-        large: Grande (600px)
-        medium: Mediano (450px)
-        small: Pequeno (300px)
-        auto: Automatico
-      default: "large"
-      examples:
-        - "large"
+        - sm
+        - md
+        - lg
+        - xl
+        - full
+      default: "lg"
     content_align_horizontal:
       type: string
       title: Alineacion horizontal
@@ -40,13 +27,7 @@ props:
         - left
         - center
         - right
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
       default: "center"
-      examples:
-        - "center"
     content_align_vertical:
       type: string
       title: Alineacion vertical
@@ -54,29 +35,16 @@ props:
         - top
         - center
         - bottom
-      meta:enum:
-        top: Arriba
-        center: Centro
-        bottom: Abajo
       default: "center"
-      examples:
-        - "center"
     overlay:
       type: string
       title: Overlay oscuro
       enum:
         - none
         - light
-        - medium
+        - md
         - dark
-      meta:enum:
-        none: Sin overlay
-        light: Ligero (20%)
-        medium: Medio (40%)
-        dark: Oscuro (60%)
-      default: "medium"
-      examples:
-        - "medium"
+      default: "md"
     background_position:
       type: string
       title: Posicion de imagen
@@ -84,25 +52,15 @@ props:
         - center
         - top
         - bottom
-      meta:enum:
-        center: Centro
-        top: Arriba
-        bottom: Abajo
       default: "center"
-      examples:
-        - "center"
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-hero-id"
 
 slots:
   content:

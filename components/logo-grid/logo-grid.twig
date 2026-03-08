@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Logo Grid component
+ */
+#}
+
+{% set lg_columns = columns|default("4") %}
+{% set lg_style = style|default("grayscale") %}
+{% set lg_alignment = alignment|default("center") %}
+{% set lg_gap = gap|default("md") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set columns_classes = {
+  "3": "grid-cols-3",
+  "4": "grid-cols-2 md:grid-cols-4",
+  "5": "grid-cols-2 md:grid-cols-5",
+  "6": "grid-cols-3 md:grid-cols-6"
+} %}
+
+{% set gap_classes = {
+  'sm': "gap-4",
+  'md': "gap-6",
+  'lg': "gap-8"
+} %}
+
+{% set style_classes = {
+  'default': "",
+  'grayscale': "cats-logo-grayscale",
+  'bordered': "cats-logo-bordered"
+} %}
+
+{% set classes = [
+  "cats-logo-grid grid items-center",
+  columns_classes[lg_columns],
+  gap_classes[lg_gap],
+  style_classes[lg_style],
+  lg_alignment == "center" ? "justify-items-center" : "justify-items-start",
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {% block logos %}{% endblock %}
+</div>
+
+<style>
+  .cats-logo-grayscale img {
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s;
+  }
+  .cats-logo-grayscale img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+  .cats-logo-bordered > * {
+    padding: 1rem;
+    border: 1px solid var(--cats-border, #e5e7eb);
+    border-radius: 0.5rem;
+  }
+</style>

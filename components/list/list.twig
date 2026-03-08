@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * List component - Listas con iconos personalizables
+ */
+#}
+
+{% set list_style = style|default("bullet") %}
+{% set list_icon_color = icon_color|default("primary") %}
+{% set list_spacing = spacing|default("md") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set spacing_classes = {
+  sm: "space-y-1",
+  md: "space-y-2",
+  lg: "space-y-4"
+} %}
+
+{% set color_classes = {
+  default: "text-foreground",
+  primary: "text-primary",
+  secondary: "text-secondary",
+  accent: "text-accent",
+  success: "text-green-500"
+} %}
+
+{% set tag = list_style == "number" ? "ol" : "ul" %}
+{% set list_type_class = list_style == "number" ? "list-decimal" : (list_style == "bullet" ? "list-disc" : "list-none") %}
+
+{% set classes = [
+  "cats-list",
+  spacing_classes[list_spacing],
+  list_style in ["bullet", "number"] ? list_type_class ~ " pl-5" : "",
+  custom_class
+]|join(" ")|trim %}
+
+<{{ tag }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {% block items %}{% endblock %}
+</{{ tag }}>

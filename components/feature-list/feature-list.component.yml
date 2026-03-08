@@ -1,0 +1,62 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Feature List
+group: Cats - Marketing
+status: stable
+description: "Lista de caracteristicas con iconos."
+props:
+  type: object
+  properties:
+    layout:
+      type: string
+      title: Diseno
+      enum:
+        - "vertical"
+        - "horizontal"
+        - "grid"
+      default: "vertical"
+    icon_style:
+      type: string
+      title: Estilo de icono
+      enum:
+        - "check"
+        - "circle"
+        - "arrow"
+        - "custom"
+      default: "check"
+    icon_color:
+      type: string
+      title: Color del icono
+      enum:
+        - "primary"
+        - "secondary"
+        - "accent"
+        - "success"
+      default: "success"
+    spacing:
+      type: string
+      title: Espaciado
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    columns:
+      type: string
+      title: Columnas (solo grid)
+      enum:
+        - "2"
+        - "3"
+        - "4"
+      default: "2"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  items:
+    title: "Items de la lista"

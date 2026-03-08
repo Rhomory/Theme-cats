@@ -1,0 +1,54 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Newsletter
+group: Cats - Marketing
+status: stable
+description: "Formulario de suscripcion a newsletter."
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: Titulo
+      default: "Suscribete a nuestro newsletter"
+    description:
+      type: string
+      title: Descripcion
+      default: ""
+    placeholder:
+      type: string
+      title: Placeholder del campo
+      default: "Tu email"
+    button_text:
+      type: string
+      title: Texto del boton
+      default: "Suscribirse"
+    layout:
+      type: string
+      title: Diseno
+      enum:
+        - "inline"
+        - "stacked"
+      default: "inline"
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "default"
+        - "boxed"
+        - "minimal"
+      default: "default"
+    alignment:
+      type: string
+      title: Alineacion
+      enum:
+        - "left"
+        - "center"
+      default: "center"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

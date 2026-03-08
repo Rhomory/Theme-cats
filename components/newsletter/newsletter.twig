@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Newsletter component
+ */
+#}
+
+{% set nl_heading = heading|default("Suscribete a nuestro newsletter") %}
+{% set nl_description = description|default("") %}
+{% set nl_placeholder = placeholder|default("Tu email") %}
+{% set nl_button = button_text|default("Suscribirse") %}
+{% set nl_layout = layout|default("inline") %}
+{% set nl_style = style|default("default") %}
+{% set nl_alignment = alignment|default("center") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set align_classes = {
+  left: "text-left",
+  center: "text-center"
+} %}
+
+{% set style_classes = {
+  default: "",
+  boxed: "bg-white p-8 rounded-xl shadow-sm",
+  minimal: ""
+} %}
+
+{% set classes = [
+  "cats-newsletter",
+  style_classes[nl_style],
+  align_classes[nl_alignment],
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {% if nl_heading %}
+    <h3 class="text-xl font-semibold text-foreground mb-2">{{ nl_heading }}</h3>
+  {% endif %}
+  {% if nl_description %}
+    <p class="text-muted mb-4">{{ nl_description }}</p>
+  {% endif %}
+
+  <form class="cats-newsletter-form {{ nl_layout == 'inline' ? 'flex gap-2' : 'space-y-3' }} {{ nl_alignment == 'center' ? 'justify-center' : '' }}" method="post">
+    <input
+      type="email"
+      name="email"
+      placeholder="{{ nl_placeholder }}"
+      required
+      class="px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 {{ nl_layout == 'stacked' ? 'w-full' : 'flex-1 max-w-xs' }}"
+    />
+    <button
+      type="submit"
+      class="px-6 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors {{ nl_layout == 'stacked' ? 'w-full' : '' }}"
+    >
+      {{ nl_button }}
+    </button>
+  </form>
+</div>

@@ -2,7 +2,7 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sd
 name: Column
 group: Cats - Layout
 status: stable
-description: "Columna flexible con control de ancho y alineación."
+description: "Columna flexible con control de ancho y alineacion."
 props:
   type: object
   properties:
@@ -24,23 +24,7 @@ props:
         - "10/12"
         - "11/12"
         - "12/12"
-      meta:enum:
-        auto: Automático
-        "1/12": 1/12 (~8%)
-        "2/12": 2/12 (~17%)
-        "3/12": 3/12 (25%)
-        "4/12": 4/12 (~33%)
-        "5/12": 5/12 (~42%)
-        "6/12": 6/12 (50%)
-        "7/12": 7/12 (~58%)
-        "8/12": 8/12 (~67%)
-        "9/12": 9/12 (75%)
-        "10/12": 10/12 (~83%)
-        "11/12": 11/12 (~92%)
-        "12/12": 12/12 (100%)
       default: "auto"
-      examples:
-        - "6/12"
     width_tablet:
       type: string
       title: Ancho (Tablet)
@@ -48,50 +32,32 @@ props:
         - "auto"
         - "6/12"
         - "12/12"
-      meta:enum:
-        auto: Automático
-        "6/12": 50%
-        "12/12": 100%
       default: "auto"
     width_mobile:
       type: string
-      title: Ancho (Móvil)
+      title: Ancho (Movil)
       enum:
         - "auto"
         - "12/12"
-      meta:enum:
-        auto: Automático
-        "12/12": 100%
       default: "12/12"
     align_self:
       type: string
-      title: Alineación propia
+      title: Alineacion propia
       enum:
         - "auto"
         - "start"
         - "center"
         - "end"
         - "stretch"
-      meta:enum:
-        auto: Automático
-        start: Arriba
-        center: Centro
-        end: Abajo
-        stretch: Estirar
       default: "auto"
     padding:
       type: string
       title: Padding interno
       enum:
         - "none"
-        - "small"
-        - "medium"
-        - "large"
-      meta:enum:
-        none: Sin padding
-        small: Pequeño
-        medium: Mediano
-        large: Grande
+        - "sm"
+        - "md"
+        - "lg"
       default: "none"
     background_color:
       type: string
@@ -104,48 +70,25 @@ props:
         - "muted"
         - "white"
         - "dark"
-      meta:enum:
-        transparent: Transparente
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
-        muted: Atenuado
-        white: Blanco
-        dark: Oscuro
       default: "transparent"
     border_radius:
       type: string
       title: Borde redondeado
       enum:
         - "none"
-        - "small"
-        - "medium"
-        - "large"
-      meta:enum:
-        none: Sin borde
-        small: Pequeño
-        medium: Mediano
-        large: Grande
+        - "sm"
+        - "md"
+        - "lg"
+        - "full"
       default: "none"
-    custom_class:
-      type: string
-      title: Clases CSS personalizadas
-    custom_id:
-      type: string
-      title: ID personalizado
-
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-section-id"
 
 slots:
   content:

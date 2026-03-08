@@ -1,0 +1,51 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Timeline
+group: Cats - Content
+status: stable
+description: "Linea de tiempo vertical u horizontal."
+props:
+  type: object
+  properties:
+    layout:
+      type: string
+      title: Orientacion
+      enum:
+        - "vertical"
+        - "horizontal"
+      default: "vertical"
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "default"
+        - "alternating"
+        - "compact"
+      default: "default"
+    line_color:
+      type: string
+      title: Color de linea
+      enum:
+        - "default"
+        - "primary"
+        - "gradient"
+      default: "primary"
+    marker_style:
+      type: string
+      title: Estilo de marcador
+      enum:
+        - "dot"
+        - "number"
+        - "icon"
+      default: "dot"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  items:
+    title: "Eventos de la linea de tiempo"

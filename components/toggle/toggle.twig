@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Toggle component
+ */
+#}
+
+{% set tg_label = label|default("") %}
+{% set tg_checked = checked|default(false) %}
+{% set tg_disabled = disabled|default(false) %}
+{% set tg_size = size|default("md") %}
+{% set tg_color = color|default("primary") %}
+{% set tg_label_pos = label_position|default("right") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("toggle-" ~ random()) %}
+
+{% set size_classes = {
+  sm: { track: "w-8 h-4", thumb: "w-3 h-3", translate: "translate-x-4" },
+  md: { track: "w-11 h-6", thumb: "w-5 h-5", translate: "translate-x-5" },
+  lg: { track: "w-14 h-7", thumb: "w-6 h-6", translate: "translate-x-7" }
+} %}
+
+{% set color_classes = {
+  primary: "peer-checked:bg-primary",
+  secondary: "peer-checked:bg-secondary",
+  accent: "peer-checked:bg-accent",
+  success: "peer-checked:bg-green-500"
+} %}
+
+{% set classes = [
+  "cats-toggle inline-flex items-center gap-3",
+  tg_label_pos == "left" ? "flex-row-reverse" : "",
+  tg_disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
+  custom_class
+]|join(" ")|trim %}
+
+<label {{ attributes }} class="{{ classes }}">
+  <input
+    type="checkbox"
+    id="{{ custom_id }}"
+    class="peer sr-only"
+    {{ tg_checked ? "checked" : "" }}
+    {{ tg_disabled ? "disabled" : "" }}
+  />
+  <span class="relative {{ size_classes[tg_size].track }} bg-gray-200 rounded-full {{ color_classes[tg_color] }} transition-colors">
+    <span class="absolute top-0.5 left-0.5 {{ size_classes[tg_size].thumb }} bg-white rounded-full shadow transition-transform peer-checked:{{ size_classes[tg_size].translate }}"></span>
+  </span>
+  {% if tg_label %}
+    <span class="text-sm text-foreground">{{ tg_label }}</span>
+  {% endif %}
+</label>

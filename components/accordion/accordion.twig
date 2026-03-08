@@ -5,40 +5,60 @@
  */
 #}
 
-
 {% set custom_class = css_class|default('') %}
 {% set custom_id = html_id|default('') %}
 {% set accordion_style = style|default('default') %}
 {% set allow_multiple = allow_multiple|default(false) %}
 {% set icon_pos = icon_position|default('right') %}
 {% set first_open = first_open|default(false) %}
+{% set has_border = show_border ?? true %}
+{% set br_radius = radius|default('md') %}
+
+{# Build dynamic classes for radius #}
+{% set radius_map = {
+  'none': 'rounded-none',
+  'sm': 'rounded-[var(--cats-radius-sm)]',
+  'md': 'rounded-[var(--cats-radius-md)]',
+  'lg': 'rounded-[var(--cats-radius-lg)]',
+  'xl': 'rounded-[var(--cats-radius-xl)]',
+  'full': 'rounded-[var(--cats-radius-full)]'
+} %}
 
 {% set accordion_cva =
   html_cva(
-    base: ['cats-accordion'],
+    base: ['cats-accordion overflow-hidden'],
     variants: {
-      style: {
-        default: 'border cats-border-muted rounded-lg divide-y divide-[var(--cats-border)]',
-        bordered: 'border-2 cats-border-muted rounded-xl divide-y divide-[var(--cats-border)]',
-        separated: 'space-y-3',
-        minimal: 'divide-y divide-[var(--cats-border)]'
+      'style': {
+        'default': 'divide-y divide-[var(--cats-border)]',
+        'bordered': 'divide-y divide-[var(--cats-border)]',
+        'separated': 'space-y-4 !rounded-none !border-none !divide-y-0',
+        'minimal': 'divide-y divide-[var(--cats-border)]'
+      },
+      'border': {
+        'true': 'border cats-border-muted',
+        'false': 'border-0'
       }
     }
   )
 %}
 
-{% set accordion_classes =
+{% set accordion_classes = [
   accordion_cva.apply({
-    style: accordion_style
-  })
-%}
+    style: accordion_style,
+    border: has_border ? 'true' : 'false'
+  }),
+  accordion_style != 'separated' ? radius_map[br_radius] : '',
+  custom_class
+]|join(' ')|trim %}
 
-<div 
-  class="{{ accordion_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
+<div {{ attributes }} 
+  class="{{ accordion_classes }}"
+  {% if custom_id %} id="{{ custom_id }}"{% endif %}
   data-cats-accordion
   data-allow-multiple="{{ allow_multiple ? 'true' : 'false' }}"
   data-first-open="{{ first_open ? 'true' : 'false' }}"
   data-icon-position="{{ icon_pos }}"
+  style="--accordion-radius: var(--cats-radius-{{ br_radius }}); --accordion-border-width: {{ has_border ? (accordion_style == 'bordered' ? '2px' : '1px') : '0px' }};"
 >
   {% block items %}
   {% endblock %}

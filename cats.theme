@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Cats theme.
+ */
+
+declare(strict_types=1);
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Adds rendered_by_canvas variable for Canvas Experience Builder compatibility.
+ */
+function cats_preprocess_page(array &$variables): void {
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+
+  // Check if this is a Canvas page or Canvas editor.
+  if ($route_name === 'entity.canvas_page.canonical' || str_starts_with($route_match->getRouteObject()?->getPath() ?? '', '/canvas/')) {
+    $variables['rendered_by_canvas'] = TRUE;
+  }
+  // Check if this is a node with a Canvas content template.
+  elseif ($route_name === 'entity.node.canonical') {
+    $node = $route_match->getParameter('node');
+    if ($node instanceof NodeInterface) {
+      $variables['rendered_by_canvas'] = (bool) \Drupal::entityTypeManager()
+        ->getStorage('content_template')
+        ->getQuery()
+        ->accessCheck(FALSE)
+        ->count()
+        ->condition('content_entity_type_id', 'node')
+        ->condition('content_entity_type_bundle', $node->getType())
+        ->condition('content_entity_type_view_mode', 'full')
+        ->condition('status', TRUE)
+        ->execute();
+    }
+    else {
+      $variables['rendered_by_canvas'] = FALSE;
+    }
+  }
+  else {
+    $variables['rendered_by_canvas'] = FALSE;
+  }
+}

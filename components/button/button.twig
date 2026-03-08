@@ -11,7 +11,7 @@
 {% set btn_label = label|default('Clic aquí') %}
 {% set btn_href = href|default('') %}
 {% set btn_variant = variant|default('primary') %}
-{% set btn_size = size|default('medium') %}
+{% set btn_size = size|default('md') %}
 {% set btn_icon = icon|default('none') %}
 {% set btn_icon_pos = icon_position|default('right') %}
 {% set is_full_width = full_width|default(false) %}
@@ -74,7 +74,7 @@
   'check': 'M5 13l4 4L19 7'
 } %}
 
-{% set icon_size = btn_size == 'small' ? 'w-4 h-4' : (btn_size == 'large' ? 'w-5 h-5' : 'w-4 h-4') %}
+{% set icon_size = btn_size == 'sm' ? 'w-4 h-4' : (btn_size == 'lg' ? 'w-5 h-5' : 'w-4 h-4') %}
 
 {% set tag = btn_href ? 'a' : 'button' %}
 
@@ -87,7 +87,7 @@
   {{ btn_label }}
 
   {% if btn_icon != 'none' and icon_paths[btn_icon] is defined %}
-    <svg class="{{ icon_size }} {{ btn_icon_pos == 'right' ? 'order-last' : 'order-first' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg {{ attributes }} class="{{ icon_size }} {{ btn_icon_pos == 'right' ? 'order-last' : 'order-first' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ icon_paths[btn_icon] }}"/>
     </svg>
   {% endif %}

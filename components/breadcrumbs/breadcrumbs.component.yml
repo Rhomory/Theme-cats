@@ -1,0 +1,44 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Breadcrumbs
+group: Cats - Navigation
+status: stable
+description: "Migas de pan para navegacion."
+props:
+  type: object
+  properties:
+    separator:
+      type: string
+      title: Separador
+      enum:
+        - "slash"
+        - "chevron"
+        - "arrow"
+        - "dot"
+      default: "chevron"
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+      default: "sm"
+    show_home:
+      type: boolean
+      title: Mostrar inicio
+      default: true
+    home_icon:
+      type: boolean
+      title: Icono en inicio
+      default: true
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  items:
+    title: "Items del breadcrumb"

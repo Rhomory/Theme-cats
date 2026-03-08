@@ -1,0 +1,56 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Pagination
+group: Cats - Navigation
+status: stable
+description: "Navegacion de paginacion."
+props:
+  type: object
+  properties:
+    current_page:
+      type: number
+      title: Pagina actual
+      default: 1
+    total_pages:
+      type: number
+      title: Total de paginas
+      default: 10
+    show_first_last:
+      type: boolean
+      title: Mostrar primera/ultima
+      default: true
+    show_prev_next:
+      type: boolean
+      title: Mostrar anterior/siguiente
+      default: true
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "default"
+        - "rounded"
+        - "minimal"
+      default: "default"
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    alignment:
+      type: string
+      title: Alineacion
+      enum:
+        - "left"
+        - "center"
+        - "right"
+      default: "center"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

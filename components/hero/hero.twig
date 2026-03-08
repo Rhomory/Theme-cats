@@ -7,8 +7,8 @@
 
 {% set custom_class = css_class|default("") %}
 {% set custom_id = html_id|default("") %}
-{% set hero_height = height|default("large") %}
-{% set hero_overlay = overlay|default("medium") %}
+{% set hero_height = height|default("lg") %}
+{% set hero_overlay = overlay|default("md") %}
 {% set hero_bg_position = background_position|default("center") %}
 {% set hero_align_h = content_align_horizontal|default("center") %}
 {% set hero_align_v = content_align_vertical|default("center") %}
@@ -18,14 +18,14 @@
 {% set height_class = "" %}
 {% if hero_height == "full" %}
   {% set height_class = "min-h-screen" %}
-{% elseif hero_height == "xlarge" %}
-  {% set height_class = "cats-hero-xlarge" %}
-{% elseif hero_height == "large" %}
-  {% set height_class = "cats-hero-large" %}
-{% elseif hero_height == "medium" %}
-  {% set height_class = "cats-hero-medium" %}
-{% elseif hero_height == "small" %}
-  {% set height_class = "cats-hero-small" %}
+{% elseif hero_height == "xl" %}
+  {% set height_class = "cats-hero-xl" %}
+{% elseif hero_height == "lg" %}
+  {% set height_class = "cats-hero-lg" %}
+{% elseif hero_height == "md" %}
+  {% set height_class = "cats-hero-md" %}
+{% elseif hero_height == "sm" %}
+  {% set height_class = "cats-hero-sm" %}
 {% endif %}
 
 {# Horizontal alignment (align-items con flex-direction: column) #}
@@ -52,8 +52,8 @@
 {% set overlay_class = "" %}
 {% if hero_overlay == "light" %}
   {% set overlay_class = "cats-hero-overlay-light" %}
-{% elseif hero_overlay == "medium" %}
-  {% set overlay_class = "cats-hero-overlay-medium" %}
+{% elseif hero_overlay == "md" %}
+  {% set overlay_class = "cats-hero-overlay-md" %}
 {% elseif hero_overlay == "dark" %}
   {% set overlay_class = "cats-hero-overlay-dark" %}
 {% endif %}
@@ -68,7 +68,7 @@
   {% set bg_position_class = "cats-hero-bg-center" %}
 {% endif %}
 
-<div
+<div {{ attributes }}
   class="cats-hero relative w-full overflow-hidden {{ height_class }} {{ custom_class }}"
   {% if custom_id %}id="{{ custom_id }}"{% endif %}
 >

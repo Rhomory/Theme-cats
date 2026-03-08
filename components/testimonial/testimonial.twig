@@ -59,7 +59,7 @@
 {% set text_color = test_bg in ['primary', 'dark'] ? 'text-white' : 'text-gray-600' %}
 {% set name_color = test_bg in ['primary', 'dark'] ? 'text-white' : 'cats-text-foreground' %}
 
-<div class="{{ testimonial_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<div {{ attributes }} class="{{ testimonial_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {# Quote icon for quote layout #}
   {% if test_layout == 'quote' %}
     <svg class="w-12 h-12 {{ test_bg in ['primary', 'dark'] ? 'text-white/20' : 'cats-text-primary/20' }} {{ test_alignment == 'center' ? 'mx-auto' : '' }} mb-4" fill="currentColor" viewBox="0 0 24 24">

@@ -5,13 +5,12 @@
  */
 #}
 
-
+{% set social_style = style|default('default') %}
+{% set social_size = size|default('md') %}
+{% set social_alignment = alignment|default('center') %}
+{% set social_gap = gap|default('md') %}
 {% set custom_class = css_class|default('') %}
 {% set custom_id = html_id|default('') %}
-{% set social_style = style|default('default') %}
-{% set social_size = size|default('medium') %}
-{% set social_alignment = alignment|default('center') %}
-{% set social_gap = gap|default('medium') %}
 
 {% set wrapper =
   html_cva(
@@ -23,9 +22,11 @@
         right: 'justify-end'
       },
       gap: {
-        small: 'gap-2',
-        medium: 'gap-3',
-        large: 'gap-4'
+        none: 'gap-0',
+        sm: 'gap-2',
+        md: 'gap-4',
+        lg: 'gap-6',
+        xl: 'gap-8'
       }
     }
   )
@@ -35,10 +36,15 @@
   wrapper.apply({
     alignment: social_alignment,
     gap: social_gap
-  })
+  }, custom_class)|trim
 %}
 
-<div class="{{ wrapper_classes }} {{ custom_class }}" data-style="{{ social_style }}" data-size="{{ social_size }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<div {{ attributes }} 
+  class="{{ wrapper_classes }}" 
+  data-style="{{ social_style }}" 
+  data-size="{{ social_size }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
   {% block icons %}
   {% endblock %}
 </div>

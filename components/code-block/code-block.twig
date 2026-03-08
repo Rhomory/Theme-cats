@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Code Block component
+ */
+#}
+
+{% set code_content = code|default("// Tu codigo aqui") %}
+{% set code_language = language|default("text") %}
+{% set code_line_numbers = show_line_numbers|default(false) %}
+{% set code_copy = show_copy_button|default(true) %}
+{% set code_theme = theme|default("dark") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set theme_classes = {
+  dark: "bg-slate-900 text-slate-100",
+  light: "bg-slate-100 text-slate-900"
+} %}
+
+{% set classes = [
+  "cats-code-block relative rounded-lg overflow-hidden",
+  theme_classes[code_theme],
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {# Header with language badge #}
+  <div class="flex items-center justify-between px-4 py-2 {{ code_theme == 'dark' ? 'bg-slate-800' : 'bg-slate-200' }}">
+    <span class="text-xs font-medium uppercase tracking-wide {{ code_theme == 'dark' ? 'text-slate-400' : 'text-slate-600' }}">
+      {{ code_language }}
+    </span>
+    {% if code_copy %}
+      <button
+        type="button"
+        class="cats-copy-btn text-xs {{ code_theme == 'dark' ? 'text-slate-400' : 'text-slate-600' }} hover:opacity-70 transition-opacity flex items-center gap-1"
+        data-code-target
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        <span>Copiar</span>
+      </button>
+    {% endif %}
+  </div>
+
+  {# Code content #}
+  <div class="relative">
+    <pre class="p-4 overflow-x-auto text-sm leading-relaxed {% if code_line_numbers %}pl-12{% endif %}"><code class="language-{{ code_language }}">{{ code_content }}</code></pre>
+    {% if code_line_numbers %}
+      <div class="absolute left-0 top-0 bottom-0 w-10 flex flex-col items-end pr-3 py-4 text-sm leading-relaxed {{ code_theme == 'dark' ? 'text-slate-600' : 'text-slate-400' }} border-r {{ code_theme == 'dark' ? 'border-slate-700' : 'border-slate-300' }} select-none">
+        {% for i in 1..code_content|split('\n')|length %}
+          <span>{{ i }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

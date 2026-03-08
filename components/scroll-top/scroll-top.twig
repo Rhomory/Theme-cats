@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Scroll Top component
+ */
+#}
+
+{% set st_position = position|default("bottom-right") %}
+{% set st_style = style|default("circle") %}
+{% set st_color = color|default("primary") %}
+{% set st_size = size|default("md") %}
+{% set st_show_after = show_after|default(300) %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("scroll-top") %}
+
+{% set position_classes = {
+  "bottom-right": "right-6 bottom-6",
+  "bottom-left": "left-6 bottom-6",
+  "bottom-center": "left-1/2 -translate-x-1/2 bottom-6"
+} %}
+
+{% set style_classes = {
+  circle: "rounded-full",
+  rounded: "rounded-lg",
+  square: "rounded-none"
+} %}
+
+{% set color_classes = {
+  primary: "bg-primary text-white hover:bg-primary/90",
+  secondary: "bg-secondary text-white hover:bg-secondary/90",
+  dark: "bg-slate-900 text-white hover:bg-slate-800"
+} %}
+
+{% set size_classes = {
+  sm: "w-10 h-10",
+  md: "w-12 h-12",
+  lg: "w-14 h-14"
+} %}
+
+{% set classes = [
+  "cats-scroll-top fixed z-50 flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible",
+  position_classes[st_position],
+  style_classes[st_style],
+  color_classes[st_color],
+  size_classes[st_size],
+  custom_class
+]|join(" ")|trim %}
+
+<button {{ attributes }}
+  type="button"
+  class="{{ classes }}"
+  id="{{ custom_id }}"
+  data-show-after="{{ st_show_after }}"
+  aria-label="Volver arriba"
+  onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+>
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+  </svg>
+</button>

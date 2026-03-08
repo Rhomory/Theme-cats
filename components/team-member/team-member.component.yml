@@ -1,0 +1,62 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Team Member'
+group: 'Cats - Marketing'
+status: stable
+description: 'Tarjeta de miembro del equipo.'
+props:
+  type: object
+  required:
+    - name
+  properties:
+    image:
+      $ref: 'json-schema-definitions://canvas.module/image'
+      title: Foto
+      type: object
+    name:
+      type: string
+      title: Nombre
+      default: 'Nombre Apellido'
+      examples:
+        - 'Nombre Apellido'
+    position:
+      type: string
+      title: Cargo
+      default: ''
+    bio:
+      type: string
+      title: Biografia
+      default: ''
+    layout:
+      type: string
+      title: Diseno
+      enum:
+        - card
+        - horizontal
+        - minimal
+      default: card
+    image_style:
+      type: string
+      title: 'Estilo de imagen'
+      enum:
+        - square
+        - rounded
+        - circle
+      default: circle
+    alignment:
+      type: string
+      title: Alineacion
+      enum:
+        - left
+        - center
+      default: center
+    css_class:
+      type: string
+      title: 'Clases CSS adicionales'
+      default: ''
+    html_id:
+      type: string
+      title: 'ID HTML'
+      default: ''
+slots:
+  social:
+    title: 'Redes sociales'

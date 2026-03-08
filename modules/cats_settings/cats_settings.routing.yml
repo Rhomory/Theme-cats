@@ -1,15 +1,52 @@
-cats_settings.settings:
-  path: '/admin/config/cats/settings'
+# Cats Admin Dashboard
+cats_settings.dashboard:
+  path: '/admin/cats'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Cats'
+  requirements:
+    _permission: 'administer cats theme'
+
+# Cats Styles (main settings form)
+cats_settings.styles:
+  path: '/admin/cats/styles'
   defaults:
     _form: '\Drupal\cats_settings\Form\CatsSettingsForm'
-    _title: 'Cats - Configuración de Tema'
+    _title: 'Styles'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'administer cats theme'
 
+# Cats Custom Colors
 cats_settings.colors:
-  path: '/admin/config/cats/colors'
+  path: '/admin/cats/styles/colors'
   defaults:
     _form: '\Drupal\cats_settings\Form\CatsColorsForm'
-    _title: 'Cats - Colores Personalizados'
+    _title: 'Custom Colors'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'administer cats theme'
+
+# Cats Components Gallery
+cats_settings.components:
+  path: '/admin/cats/components'
+  defaults:
+    _controller: '\Drupal\cats_settings\Controller\CatsComponentsController::list'
+    _title: 'Components'
+  requirements:
+    _permission: 'administer cats theme'
+
+# Export/Import Configuration
+cats_settings.export_import:
+  path: '/admin/cats/export-import'
+  defaults:
+    _form: '\Drupal\cats_settings\Form\CatsExportImportForm'
+    _title: 'Export/Import'
+  requirements:
+    _permission: 'administer cats theme'
+
+# Export configuration (download)
+cats_settings.export:
+  path: '/admin/cats/export'
+  defaults:
+    _controller: '\Drupal\cats_settings\Controller\CatsExportController::export'
+  requirements:
+    _permission: 'administer cats theme'

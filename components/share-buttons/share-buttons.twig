@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Share Buttons component
+ */
+#}
+
+{% set sh_networks = networks|default(["facebook", "twitter", "linkedin", "whatsapp"]) %}
+{% set sh_style = style|default("colored") %}
+{% set sh_size = size|default("md") %}
+{% set sh_shape = shape|default("circle") %}
+{% set sh_labels = show_labels|default(false) %}
+{% set sh_alignment = alignment|default("left") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set size_classes = {
+  sm: "w-8 h-8",
+  md: "w-10 h-10",
+  lg: "w-12 h-12"
+} %}
+
+{% set shape_classes = {
+  circle: "rounded-full",
+  rounded: "rounded-lg",
+  square: "rounded-none"
+} %}
+
+{% set align_classes = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end"
+} %}
+
+{% set classes = [
+  "cats-share-buttons flex items-center gap-2",
+  align_classes[sh_alignment],
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+>
+  {% for network in sh_networks %}
+    <a
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cats-share-btn cats-share-{{ network }} flex items-center justify-center {{ size_classes[sh_size] }} {{ shape_classes[sh_shape] }} transition-transform hover:scale-110"
+      aria-label="Compartir en {{ network|capitalize }}"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <use href="#icon-{{ network }}"></use>
+      </svg>
+    </a>
+  {% endfor %}
+</div>

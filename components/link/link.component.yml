@@ -1,0 +1,56 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Link
+group: 'Cats - Content'
+status: stable
+description: 'Enlace con estilos y comportamientos configurables.'
+props:
+  type: object
+  required:
+    - text
+    - url
+  properties:
+    text:
+      type: string
+      title: 'Texto del enlace'
+      default: Enlace
+      examples:
+        - Enlace
+    url:
+      type: string
+      title: URL
+      default: '#'
+      examples:
+        - '#'
+    variant:
+      type: string
+      title: Variante
+      enum:
+        - default
+        - primary
+        - muted
+        - underline
+      default: default
+    target:
+      type: string
+      title: Destino
+      enum:
+        - _self
+        - _blank
+      default: _self
+    icon:
+      type: string
+      title: Icono
+      enum:
+        - none
+        - arrow-right
+        - external-link
+        - download
+      default: none
+    css_class:
+      type: string
+      title: 'Clases CSS adicionales'
+      default: ''
+    html_id:
+      type: string
+      title: 'ID HTML'
+      default: ''

@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Countdown component
+ */
+#}
+
+{% set cd_target = target_date|default("2025-12-31 23:59:59") %}
+{% set cd_days = show_days|default(true) %}
+{% set cd_hours = show_hours|default(true) %}
+{% set cd_minutes = show_minutes|default(true) %}
+{% set cd_seconds = show_seconds|default(true) %}
+{% set cd_style = style|default("boxed") %}
+{% set cd_size = size|default("md") %}
+{% set cd_labels = labels_position|default("below") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("cats-countdown-" ~ random()) %}
+
+{% set size_classes = {
+  sm: { number: "text-2xl", label: "text-xs", box: "p-3" },
+  md: { number: "text-4xl", label: "text-sm", box: "p-4" },
+  lg: { number: "text-6xl", label: "text-base", box: "p-6" }
+} %}
+
+{% set style_classes = {
+  default: "gap-4",
+  boxed: "gap-3",
+  minimal: "gap-6"
+} %}
+
+{% set classes = [
+  "cats-countdown flex items-center justify-center",
+  style_classes[cd_style],
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  id="{{ custom_id }}"
+  data-countdown-target="{{ cd_target }}"
+>
+  {% set units = [] %}
+  {% if cd_days %}{% set units = units|merge([{key: "days", label: "Dias"}]) %}{% endif %}
+  {% if cd_hours %}{% set units = units|merge([{key: "hours", label: "Horas"}]) %}{% endif %}
+  {% if cd_minutes %}{% set units = units|merge([{key: "minutes", label: "Min"}]) %}{% endif %}
+  {% if cd_seconds %}{% set units = units|merge([{key: "seconds", label: "Seg"}]) %}{% endif %}
+
+  {% for unit in units %}
+    <div class="cats-countdown-unit flex flex-col items-center {{ cd_style == 'boxed' ? 'bg-white shadow-md rounded-lg' : '' }} {{ size_classes[cd_size].box }}">
+      <span class="cats-countdown-number font-bold tabular-nums {{ size_classes[cd_size].number }}" data-countdown-{{ unit.key }}>00</span>
+      {% if cd_labels == 'below' %}
+        <span class="cats-countdown-label text-muted-foreground uppercase tracking-wider {{ size_classes[cd_size].label }}">{{ unit.label }}</span>
+      {% endif %}
+    </div>
+    {% if not loop.last %}
+      <span class="cats-countdown-separator {{ size_classes[cd_size].number }} font-bold text-muted-foreground">:</span>
+    {% endif %}
+  {% endfor %}
+</div>

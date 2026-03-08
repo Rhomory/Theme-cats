@@ -1,0 +1,17 @@
+{
+  "name": "cats-theme",
+  "version": "0.1.0",
+  "description": "Cats Theme for Drupal - Tailwind CSS powered SDC components",
+  "private": true,
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i src/main.css -o build/cats.min.css --watch",
+    "build": "npx @tailwindcss/cli -i src/main.css -o build/cats.min.css --minify",
+    "build:dev": "npx @tailwindcss/cli -i src/main.css -o build/cats.min.css"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -12,7 +12,7 @@
 {% set bar_label = label|default('') %}
 {% set bar_show_percentage = show_percentage|default(true) %}
 {% set bar_color = color|default('primary') %}
-{% set bar_size = size|default('medium') %}
+{% set bar_size = size|default('md') %}
 {% set bar_rounded = rounded|default(true) %}
 {% set bar_animated = animated|default(true) %}
 {% set bar_striped = striped|default(false) %}
@@ -26,7 +26,7 @@
     variants: {
       size: {
         thin: 'h-1',
-        medium: 'h-2',
+        md: 'h-2',
         thick: 'h-3'
       },
       rounded: {
@@ -69,7 +69,7 @@
 {% set track_classes = track.apply({ size: bar_size, rounded: is_rounded }) %}
 {% set bar_classes = bar.apply({ color: bar_color, rounded: is_rounded, striped: is_striped }) %}
 
-<div class="cb-progress-bar {{ additional_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} data-cb-progress="{{ bar_animated ? 'true' : 'false' }}">
+<div {{ attributes }} class="cb-progress-bar {{ additional_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} data-cb-progress="{{ bar_animated ? 'true' : 'false' }}">
   {% if bar_label or bar_show_percentage %}
     <div class="flex justify-between items-center mb-2">
       {% if bar_label %}

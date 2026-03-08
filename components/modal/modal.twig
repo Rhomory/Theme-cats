@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Modal component
+ */
+#}
+
+{% set md_title = title|default("") %}
+{% set md_size = size|default("md") %}
+{% set md_closable = closable|default(true) %}
+{% set md_close_overlay = close_on_overlay|default(true) %}
+{% set md_close_escape = close_on_escape|default(true) %}
+{% set md_position = position|default("center") %}
+{% set md_animation = animation|default("scale") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("modal-" ~ random()) %}
+
+{% set size_classes = {
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-lg",
+  xl: "max-w-4xl",
+  full: "max-w-full m-4"
+} %}
+
+{% set position_classes = {
+  center: "items-center",
+  top: "items-start pt-20"
+} %}
+
+<div {{ attributes }}
+  class="cats-modal fixed inset-0 z-50 hidden"
+  id="{{ custom_id }}"
+  role="dialog"
+  aria-modal="true"
+  data-close-overlay="{{ md_close_overlay ? true : false }}"
+  data-close-escape="{{ md_close_escape ? true : false }}"
+>
+  {# Backdrop #}
+  <div class="cats-modal-backdrop fixed inset-0 bg-black/50 transition-opacity"></div>
+
+  {# Modal container #}
+  <div class="cats-modal-container fixed inset-0 flex justify-center overflow-y-auto p-4 {{ position_classes[md_position] }}">
+    <div class="cats-modal-content relative w-full {{ size_classes[md_size] }} bg-white rounded-xl shadow-xl {{ custom_class }}">
+      {# Header #}
+      {% if md_title or md_closable %}
+        <div class="cats-modal-header flex items-center justify-between p-4 border-b border-border">
+          {% if md_title %}
+            <h3 class="text-lg font-semibold text-foreground">{{ md_title }}</h3>
+          {% endif %}
+          {% if md_closable %}
+            <button type="button" class="cats-modal-close p-2 text-muted hover:text-foreground transition-colors rounded-lg hover:bg-muted/10" aria-label="Cerrar">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {# Body #}
+      <div class="cats-modal-body p-4">
+        {% block content %}{% endblock %}
+      </div>
+
+      {# Footer #}
+      {% if footer is defined %}
+        <div class="cats-modal-footer flex items-center justify-end gap-3 p-4 border-t border-border">
+          {% block footer %}{% endblock %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

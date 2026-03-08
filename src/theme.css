@@ -1,0 +1,139 @@
+/**
+ * Cats Theme - CSS Variables
+ *
+ * These variables are the default theme values.
+ * They can be overridden by the cats_settings module
+ * from /admin/cats/styles
+ *
+ * This file is designed to be deployable independently
+ * for custom theme implementations.
+ */
+
+:root {
+  /* ==========================================================================
+     Colors - Primary
+     ========================================================================== */
+  --cats-primary: #3b82f6;
+  --cats-primary-light: #60a5fa;
+  --cats-primary-dark: #2563eb;
+  --cats-primary-foreground: #ffffff;
+
+  /* ==========================================================================
+     Colors - Secondary
+     ========================================================================== */
+  --cats-secondary: #64748b;
+  --cats-secondary-light: #94a3b8;
+  --cats-secondary-dark: #475569;
+  --cats-secondary-foreground: #ffffff;
+
+  /* ==========================================================================
+     Colors - Accent
+     ========================================================================== */
+  --cats-accent: #f59e0b;
+  --cats-accent-light: #fbbf24;
+  --cats-accent-dark: #d97706;
+  --cats-accent-foreground: #000000;
+
+  /* ==========================================================================
+     Colors - Neutrals
+     ========================================================================== */
+  --cats-background: #ffffff;
+  --cats-foreground: #0f172a;
+  --cats-muted: #f1f5f9;
+  --cats-muted-foreground: #64748b;
+  --cats-border: #e2e8f0;
+
+  /* ==========================================================================
+     Colors - Status
+     ========================================================================== */
+  --cats-success: #22c55e;
+  --cats-warning: #f59e0b;
+  --cats-error: #ef4444;
+  --cats-info: #3b82f6;
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+  --cats-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --cats-font-serif: Georgia, Cambria, "Times New Roman", serif;
+  --cats-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  /* Font sizes */
+  --cats-text-xs: 0.75rem;
+  --cats-text-sm: 0.875rem;
+  --cats-text-base: 1rem;
+  --cats-text-lg: 1.125rem;
+  --cats-text-xl: 1.25rem;
+  --cats-text-2xl: 1.5rem;
+  --cats-text-3xl: 1.875rem;
+  --cats-text-4xl: 2.25rem;
+  --cats-text-5xl: 3rem;
+  --cats-text-6xl: 3.75rem;
+
+  /* ==========================================================================
+     Spacing
+     ========================================================================== */
+  --cats-spacing-0: 0;
+  --cats-spacing-xs: 0.25rem;
+  --cats-spacing-sm: 0.5rem;
+  --cats-spacing-md: 1rem;
+  --cats-spacing-lg: 1.5rem;
+  --cats-spacing-xl: 2rem;
+  --cats-spacing-2xl: 3rem;
+  --cats-spacing-3xl: 4rem;
+  --cats-spacing-4xl: 6rem;
+
+  /* ==========================================================================
+     Border Radius
+     ========================================================================== */
+  --cats-radius-none: 0;
+  --cats-radius-sm: 0.25rem;
+  --cats-radius-md: 0.5rem;
+  --cats-radius-lg: 1rem;
+  --cats-radius-xl: 1.5rem;
+  --cats-radius-full: 9999px;
+
+  /* ==========================================================================
+     Shadows
+     ========================================================================== */
+  --cats-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --cats-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --cats-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --cats-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --cats-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* ==========================================================================
+     Transitions
+     ========================================================================== */
+  --cats-transition-fast: 150ms ease;
+  --cats-transition-normal: 300ms ease;
+  --cats-transition-slow: 500ms ease;
+
+  /* ==========================================================================
+     Z-Index Scale
+     ========================================================================== */
+  --cats-z-dropdown: 50;
+  --cats-z-sticky: 100;
+  --cats-z-fixed: 200;
+  --cats-z-modal-backdrop: 300;
+  --cats-z-modal: 400;
+  --cats-z-popover: 500;
+  --cats-z-tooltip: 600;
+}
+
+/* ==========================================================================
+   Dark Mode Variables (for future implementation)
+   ========================================================================== */
+
+[data-theme="dark"],
+.dark {
+  --cats-background: #0f172a;
+  --cats-foreground: #f8fafc;
+  --cats-muted: #1e293b;
+  --cats-muted-foreground: #94a3b8;
+  --cats-border: #334155;
+
+  /* Adjust primary colors for dark mode */
+  --cats-primary-foreground: #ffffff;
+  --cats-secondary-foreground: #ffffff;
+}

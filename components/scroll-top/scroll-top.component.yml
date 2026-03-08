@@ -1,0 +1,52 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Scroll Top
+group: Cats - Navigation
+status: stable
+description: "Boton para volver al inicio de la pagina."
+props:
+  type: object
+  properties:
+    position:
+      type: string
+      title: Posicion
+      enum:
+        - "bottom-right"
+        - "bottom-left"
+        - "bottom-center"
+      default: "bottom-right"
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "circle"
+        - "rounded"
+        - "square"
+      default: "circle"
+    color:
+      type: string
+      title: Color
+      enum:
+        - "primary"
+        - "secondary"
+        - "dark"
+      default: "primary"
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    show_after:
+      type: number
+      title: Mostrar despues de (px)
+      default: 300
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

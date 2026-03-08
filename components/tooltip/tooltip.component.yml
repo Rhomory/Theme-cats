@@ -1,0 +1,50 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Tooltip
+group: 'Cats - Interactive'
+status: stable
+description: 'Tooltip informativo al pasar el cursor.'
+props:
+  type: object
+  required:
+    - content
+  properties:
+    content:
+      type: string
+      title: 'Contenido del tooltip'
+      default: 'Informacion adicional'
+      examples:
+        - 'Informacion adicional'
+    position:
+      type: string
+      title: Posicion
+      enum:
+        - top
+        - bottom
+        - left
+        - right
+      default: top
+    trigger_type:
+      type: string
+      title: Activacion
+      enum:
+        - hover
+        - click
+      default: hover
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - dark
+        - light
+      default: dark
+    css_class:
+      type: string
+      title: 'Clases CSS adicionales'
+      default: ''
+    html_id:
+      type: string
+      title: 'ID HTML'
+      default: ''
+slots:
+  trigger:
+    title: 'Elemento activador'

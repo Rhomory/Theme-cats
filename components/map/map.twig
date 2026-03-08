@@ -11,8 +11,8 @@
 {% set map_provider = provider|default('openstreetmap') %}
 {% set map_address = address|default('') %}
 {% set map_zoom = zoom|default(14) %}
-{% set map_height = height|default('medium') %}
-{% set map_radius = border_radius|default('medium') %}
+{% set map_height = height|default('md') %}
+{% set map_radius = border_radius|default('md') %}
 
 {% set map =
   html_cva(
@@ -49,7 +49,7 @@
 {# URL encode the address #}
 {% set encoded_address = map_address|url_encode %}
 
-<div class="cb-map {{ map_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<div {{ attributes }} class="cb-map {{ map_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {% if map_provider == 'google' %}
     <iframe
       class="w-full h-full"

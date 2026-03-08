@@ -1,0 +1,63 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Modal
+group: Cats - Interactive
+status: stable
+description: "Ventana modal/popup."
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Titulo
+      default: ""
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+        - "xl"
+        - "full"
+      default: "md"
+    closable:
+      type: boolean
+      title: Boton cerrar
+      default: true
+    close_on_overlay:
+      type: boolean
+      title: Cerrar al hacer clic fuera
+      default: true
+    close_on_escape:
+      type: boolean
+      title: Cerrar con Escape
+      default: true
+    position:
+      type: string
+      title: Posicion
+      enum:
+        - "center"
+        - "top"
+      default: "center"
+    animation:
+      type: string
+      title: Animacion
+      enum:
+        - "fade"
+        - "scale"
+        - "slide"
+      default: "scale"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  content:
+    title: "Contenido del modal"
+  footer:
+    title: "Pie del modal"

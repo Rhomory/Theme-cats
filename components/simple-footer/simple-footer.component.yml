@@ -1,0 +1,22 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Simple Footer
+group: Cats - Navigation
+status: stable
+props:
+  type: object
+  properties:
+    copyright_text:
+      title: Copyright text
+      type: string
+      default: ''
+    show_social:
+      title: Show social links
+      type: boolean
+      default: true
+slots:
+  content:
+    title: Footer content
+  social:
+    title: Social links
+  bottom:
+    title: Bottom bar content

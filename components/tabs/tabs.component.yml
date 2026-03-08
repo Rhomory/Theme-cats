@@ -1,8 +1,9 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Tabs
-group: Cats - Content
+group: 'Cats - Interactive'
 status: stable
-description: "Contenedor de pestañas interactivas."
+library: cats/tabs
+description: 'Contenedor de pestañas interactivas.'
 props:
   type: object
   required:
@@ -10,20 +11,15 @@ props:
   properties:
     style:
       type: string
-      title: Estilo de pestañas
+      title: 'Estilo de pestañas'
       enum:
         - default
         - pills
         - underline
         - boxed
-      meta:enum:
-        default: Por defecto
-        pills: Píldoras
-        underline: Subrayado
-        boxed: Enmarcado
-      default: "default"
+      default: default
       examples:
-        - "default"
+        - default
     alignment:
       type: string
       title: Alineación
@@ -31,26 +27,15 @@ props:
         - left
         - center
         - right
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
-      examples:
-        - "left"
-
+      default: left
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   tabs_content:
-    title: "Contenido de las pestañas"
+    title: 'Contenido de las pestañas'

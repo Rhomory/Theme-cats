@@ -49,7 +49,7 @@
   })
 %}
 
-<article class="{{ card_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<article {{ attributes }} class="{{ card_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {# Image #}
   {% set image_content %}
     {% block card_image %}

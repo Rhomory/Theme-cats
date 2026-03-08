@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Button
-group: Cats - Content
+group: 'Cats - Content'
 status: stable
-description: "Botón con múltiples variantes y tamaños."
+description: 'Boton con multiples variantes y tamanos.'
 props:
   type: object
   required:
@@ -12,16 +12,14 @@ props:
   properties:
     label:
       type: string
-      title: Texto del botón
-      default: "Clic aquí"
+      title: 'Texto del boton'
+      default: 'Clic aqui'
       examples:
-        - "Más información"
+        - 'Clic aqui'
     href:
       type: string
-      title: URL de enlace
-      default: ""
-      examples:
-        - "#"
+      title: 'URL de enlace'
+      default: ''
     variant:
       type: string
       title: Variante
@@ -31,29 +29,19 @@ props:
         - outline
         - ghost
         - link
-      meta:enum:
-        primary: Primario
-        secondary: Secundario
-        outline: Contorno
-        ghost: Fantasma
-        link: Enlace
-      default: "primary"
+      default: primary
       examples:
-        - "primary"
+        - primary
     size:
       type: string
-      title: Tamaño
+      title: Tamano
       enum:
-        - small
-        - medium
-        - large
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
+        - sm
+        - md
+        - lg
+      default: md
       examples:
-        - "medium"
+        - md
     icon:
       type: string
       title: Icono
@@ -65,62 +53,34 @@ props:
         - external-link
         - plus
         - check
-      meta:enum:
-        none: Sin icono
-        arrow-right: Flecha derecha
-        arrow-left: Flecha izquierda
-        download: Descargar
-        external-link: Enlace externo
-        plus: Más
-        check: Check
-      default: "none"
-      examples:
-        - "arrow-right"
+      default: none
     icon_position:
       type: string
-      title: Posición del icono
+      title: 'Posicion del icono'
       enum:
         - left
         - right
-      meta:enum:
-        left: Izquierda
-        right: Derecha
-      default: "right"
-      examples:
-        - "right"
+      default: right
     full_width:
       type: boolean
-      title: Ancho completo
+      title: 'Ancho completo'
       default: false
-      examples:
-        - false
     rounded:
       type: string
-      title: Borde redondeado
+      title: 'Borde redondeado'
       enum:
         - default
         - full
-      meta:enum:
-        default: Por defecto
-        full: Píldora
-      default: "default"
-      examples:
-        - "default"
+      default: default
     disabled:
       type: boolean
       title: Deshabilitado
       default: false
-      examples:
-        - false
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-element-id"
+      title: 'ID HTML'
+      default: ''

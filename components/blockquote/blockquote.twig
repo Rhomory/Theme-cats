@@ -49,7 +49,7 @@
 
 {% set quote_size = bq_style == 'large' ? 'text-xl md:text-2xl' : 'text-lg' %}
 
-<blockquote class="{{ blockquote_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<blockquote {{ attributes }} class="{{ blockquote_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {# Quote icon for icon style #}
   {% if bq_style == 'icon' %}
     <svg class="absolute left-0 top-0 w-8 h-8 opacity-30" fill="currentColor" viewBox="0 0 24 24">

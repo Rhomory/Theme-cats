@@ -2,71 +2,50 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sd
 name: Row
 group: Cats - Layout
 status: stable
-description: "Fila flexible con opciones de alineación y distribución."
+description: "Fila flexible con opciones de alineacion y distribucion."
 props:
   type: object
   properties:
     direction:
       type: string
-      title: Dirección
+      title: Direccion
       enum:
         - "row"
         - "row-reverse"
         - "column"
         - "column-reverse"
-      meta:enum:
-        row: Horizontal
-        row-reverse: Horizontal inverso
-        column: Vertical
-        column-reverse: Vertical inverso
       default: "row"
     wrap:
       type: string
-      title: Ajuste de línea
+      title: Ajuste de linea
       enum:
         - "wrap"
         - "nowrap"
         - "wrap-reverse"
-      meta:enum:
-        wrap: Ajustar
-        nowrap: Sin ajustar
-        wrap-reverse: Ajustar inverso
       default: "wrap"
     gap:
       type: string
       title: Espaciado
       enum:
         - "none"
-        - "small"
-        - "medium"
-        - "large"
-        - "xlarge"
-      meta:enum:
-        none: Sin espacio
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-        xlarge: Extra grande
-      default: "medium"
+        - "sm"
+        - "md"
+        - "lg"
+        - "xl"
+      default: "md"
     align_items:
       type: string
-      title: Alineación vertical
+      title: Alineacion vertical
       enum:
         - "start"
         - "center"
         - "end"
         - "stretch"
         - "baseline"
-      meta:enum:
-        start: Arriba
-        center: Centro
-        end: Abajo
-        stretch: Estirar
-        baseline: Línea base
       default: "stretch"
     justify_content:
       type: string
-      title: Distribución horizontal
+      title: Distribucion horizontal
       enum:
         - "start"
         - "center"
@@ -74,27 +53,15 @@ props:
         - "between"
         - "around"
         - "evenly"
-      meta:enum:
-        start: Inicio
-        center: Centro
-        end: Final
-        between: Espacio entre
-        around: Espacio alrededor
-        evenly: Espacio uniforme
       default: "start"
     padding:
       type: string
       title: Padding
       enum:
         - "none"
-        - "small"
-        - "medium"
-        - "large"
-      meta:enum:
-        none: Sin padding
-        small: Pequeño
-        medium: Mediano
-        large: Grande
+        - "sm"
+        - "md"
+        - "lg"
       default: "none"
     background_color:
       type: string
@@ -107,34 +74,15 @@ props:
         - "muted"
         - "white"
         - "dark"
-      meta:enum:
-        transparent: Transparente
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
-        muted: Atenuado
-        white: Blanco
-        dark: Oscuro
       default: "transparent"
-    custom_class:
-      type: string
-      title: Clases CSS personalizadas
-    custom_id:
-      type: string
-      title: ID personalizado
-
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-section-id"
 
 slots:
   columns:

@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Badge
-group: Cats - Content
+group: 'Cats - Content'
 status: stable
-description: "Etiqueta o insignia para destacar estados o categorías."
+description: 'Etiqueta o insignia para destacar estados o categorias.'
 props:
   type: object
   required:
@@ -12,9 +12,9 @@ props:
     text:
       type: string
       title: Texto
-      default: "Nuevo"
+      default: Nuevo
       examples:
-        - "Nuevo"
+        - Nuevo
     variant:
       type: string
       title: Variante
@@ -26,31 +26,17 @@ props:
         - error
         - info
         - neutral
-      meta:enum:
-        primary: Primario
-        secondary: Secundario
-        success: Éxito
-        warning: Advertencia
-        error: Error
-        info: Información
-        neutral: Neutral
-      default: "primary"
+      default: primary
       examples:
-        - "primary"
+        - primary
     size:
       type: string
-      title: Tamaño
+      title: Tamano
       enum:
-        - small
-        - medium
-        - large
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
-      examples:
-        - "medium"
+        - sm
+        - md
+        - lg
+      default: md
     style:
       type: string
       title: Estilo
@@ -58,25 +44,14 @@ props:
         - solid
         - soft
         - outline
-      meta:enum:
-        solid: Sólido
-        soft: Suave
-        outline: Contorno
-      default: "solid"
-      examples:
-        - "solid"
+      default: solid
     rounded:
       type: string
       title: Bordes
       enum:
         - default
         - full
-      meta:enum:
-        default: Por defecto
-        full: Píldora
-      default: "full"
-      examples:
-        - "full"
+      default: full
     icon:
       type: string
       title: Icono
@@ -87,25 +62,12 @@ props:
         - star
         - clock
         - alert
-      meta:enum:
-        none: Sin icono
-        check: Check
-        x: X
-        star: Estrella
-        clock: Reloj
-        alert: Alerta
-      default: "none"
-      examples:
-        - "none"
+      default: none
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-element-id"
+      title: 'ID HTML'
+      default: ''

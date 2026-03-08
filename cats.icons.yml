@@ -1,0 +1,118 @@
+# Cats Theme Icon Packs
+# Heroicons v2.2.0 - https://heroicons.com
+
+heroicons_outline:
+  enabled: true
+  label: "Heroicons Outline"
+  description: "Beautiful hand-crafted SVG icons by the makers of Tailwind CSS - Outline style"
+  links:
+    - https://heroicons.com
+    - https://github.com/tailwindlabs/heroicons
+  version: 2.2.0
+  license:
+    name: MIT
+    url: https://github.com/tailwindlabs/heroicons/blob/master/LICENSE
+    gpl-compatible: true
+  extractor: svg
+  config:
+    sources:
+      - icons/heroicons/outline/{icon_id}.svg
+  settings:
+    size:
+      title: "Size"
+      type: "integer"
+      default: 24
+      multipleOf: 4
+      minimum: 16
+      maximum: 96
+    color:
+      title: "Color"
+      type: "string"
+      format: color
+    stroke_width:
+      title: "Stroke Width"
+      type: "number"
+      default: 1.5
+      minimum: 1
+      maximum: 3
+    class:
+      title: "CSS Class"
+      type: "string"
+      default: ""
+    alt:
+      title: "Alt text"
+      type: "string"
+      description: "Accessibility alternative text, leave empty for decorative icon."
+  template: >-
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="{{ size|default(24) }}"
+      height="{{ size|default(24) }}"
+      fill="none"
+      stroke="{{ color|default('currentColor') }}"
+      stroke-width="{{ stroke_width|default(1.5) }}"
+      {% if class %}class="{{ class }}"{% endif %}
+      {% if alt %}
+        aria-label="{{ alt }}"
+        role="img"
+      {% else %}
+        aria-hidden="true"
+      {% endif %}
+    >
+      {{ content }}
+    </svg>
+
+heroicons_solid:
+  enabled: true
+  label: "Heroicons Solid"
+  description: "Beautiful hand-crafted SVG icons by the makers of Tailwind CSS - Solid style"
+  links:
+    - https://heroicons.com
+    - https://github.com/tailwindlabs/heroicons
+  version: 2.2.0
+  license:
+    name: MIT
+    url: https://github.com/tailwindlabs/heroicons/blob/master/LICENSE
+    gpl-compatible: true
+  extractor: svg
+  config:
+    sources:
+      - icons/heroicons/solid/{icon_id}.svg
+  settings:
+    size:
+      title: "Size"
+      type: "integer"
+      default: 24
+      multipleOf: 4
+      minimum: 16
+      maximum: 96
+    color:
+      title: "Color"
+      type: "string"
+      format: color
+    class:
+      title: "CSS Class"
+      type: "string"
+      default: ""
+    alt:
+      title: "Alt text"
+      type: "string"
+      description: "Accessibility alternative text, leave empty for decorative icon."
+  template: >-
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="{{ size|default(24) }}"
+      height="{{ size|default(24) }}"
+      fill="{{ color|default('currentColor') }}"
+      {% if class %}class="{{ class }}"{% endif %}
+      {% if alt %}
+        aria-label="{{ alt }}"
+        role="img"
+      {% else %}
+        aria-hidden="true"
+      {% endif %}
+    >
+      {{ content }}
+    </svg>

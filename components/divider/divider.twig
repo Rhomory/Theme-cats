@@ -13,7 +13,7 @@
 {% set div_thickness = thickness|default('thin') %}
 {% set div_color = color|default('default') %}
 {% set div_alignment = alignment|default('center') %}
-{% set div_margin = margin|default('medium') %}
+{% set div_margin = margin|default('md') %}
 
 {% set divider =
   html_cva(
@@ -27,7 +27,7 @@
       },
       thickness: {
         thin: 'border-t',
-        medium: 'border-t-2',
+        md: 'border-t-2',
         thick: 'border-t-4'
       },
       style: {
@@ -50,9 +50,9 @@
       },
       margin: {
         none: 'my-0',
-        small: 'my-2',
-        medium: 'my-4',
-        large: 'my-8'
+        sm: 'my-2',
+        md: 'my-4',
+        lg: 'my-8'
       }
     }
   )
@@ -74,4 +74,4 @@
   }, additional_classes)
 %}
 
-<hr class="{{ divider_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} />
+<hr {{ attributes }} class="{{ divider_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} />

@@ -13,7 +13,7 @@
 {% set box_description = description|default('') %}
 {% set box_layout = layout|default('vertical') %}
 {% set box_alignment = alignment|default('center') %}
-{% set box_icon_size = icon_size|default('medium') %}
+{% set box_icon_size = icon_size|default('md') %}
 {% set box_icon_style = icon_style|default('circle') %}
 {% set box_icon_color = icon_color|default('primary') %}
 {% set box_link_url = link_url|default('') %}
@@ -63,9 +63,9 @@
     base: ['flex items-center justify-center shrink-0'],
     variants: {
       size: {
-        small: 'w-10 h-10',
-        medium: 'w-14 h-14',
-        large: 'w-20 h-20'
+        sm: 'w-10 h-10',
+        md: 'w-14 h-14',
+        lg: 'w-20 h-20'
       },
       style: {
         plain: '',
@@ -90,12 +90,12 @@
 %}
 
 {% set icon_size_map = {
-  'small': 'w-5 h-5',
-  'medium': 'w-7 h-7',
-  'large': 'w-10 h-10'
+  'sm': 'w-5 h-5',
+  'md': 'w-7 h-7',
+  'lg': 'w-10 h-10'
 } %}
 
-<div class="{{ wrapper_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<div {{ attributes }} class="{{ wrapper_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   {# Icon #}
   <div class="{{ icon_wrapper_classes }} {{ box_layout == 'vertical' ? 'mb-4' : '' }}">
     <svg class="{{ icon_size_map[box_icon_size] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">

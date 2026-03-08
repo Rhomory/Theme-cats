@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
-name: Text Editor
-group: Cats - Content
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Text Editor'
+group: 'Cats - Content'
 status: stable
-description: "Contenido de texto enriquecido con estilos tipográficos."
+description: 'Contenido de texto enriquecido con estilos tipograficos.'
 props:
   type: object
   required:
@@ -11,63 +11,42 @@ props:
   properties:
     prose_size:
       type: string
-      title: Tamaño de prosa
+      title: 'Tamano de prosa'
       enum:
         - sm
         - base
         - lg
         - xl
-      meta:enum:
-        sm: Pequeño
-        base: Base
-        lg: Grande
-        xl: Extra grande
-      default: "base"
+      default: base
       examples:
-        - "base"
+        - base
     align:
       type: string
-      title: Alineación
+      title: Alineacion
       enum:
         - left
         - center
         - right
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
-      default: "left"
+      default: left
       examples:
-        - "left"
+        - left
     max_width:
       type: string
-      title: Ancho máximo
+      title: 'Ancho maximo'
       enum:
         - none
         - prose
         - xl
         - full
-      meta:enum:
-        none: Sin límite
-        prose: Prosa (65ch)
-        xl: Extra grande
-        full: Completo
-      examples:
-        - "prose"
-
+      default: prose
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   content:
-    title: "Contenido del editor"
+    title: 'Contenido del editor'

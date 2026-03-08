@@ -60,7 +60,7 @@
   })
 %}
 
-<footer class="{{ footer_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
+<footer {{ attributes }} class="{{ footer_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}>
   <div class="container mx-auto px-4">
     {# Footer Columns #}
     <div class="{{ grid_classes }}">

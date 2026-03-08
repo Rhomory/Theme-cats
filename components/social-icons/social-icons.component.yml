@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
-name: Social Icons
-group: Cats - Content
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Social Icons'
+group: 'Cats - Social'
 status: stable
-description: "Iconos de redes sociales con enlaces."
+description: 'Iconos de redes sociales con enlaces.'
 props:
   type: object
   required:
@@ -17,70 +17,43 @@ props:
         - filled
         - outlined
         - minimal
-      meta:enum:
-        default: Por defecto
-        filled: Relleno con color
-        outlined: Solo borde
-        minimal: Minimalista
-      default: "default"
+      default: default
       examples:
-        - "default"
+        - default
     size:
       type: string
-      title: Tamaño
+      title: Tamano
       enum:
-        - small
-        - medium
-        - large
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
+        - sm
+        - md
+        - lg
+      default: md
       examples:
-        - "medium"
+        - md
     alignment:
       type: string
-      title: Alineación
+      title: Alineacion
       enum:
         - left
         - center
         - right
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
-      default: "center"
-      examples:
-        - "center"
+      default: center
     gap:
       type: string
       title: Espaciado
       enum:
-        - small
-        - medium
-        - large
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
-      examples:
-        - "medium"
-
+        - sm
+        - md
+        - lg
+      default: md
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   icons:
-    title: "Iconos de redes sociales"
+    title: 'Iconos de redes sociales'

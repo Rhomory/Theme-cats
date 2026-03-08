@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Timeline component
+ */
+#}
+
+{% set tl_layout = layout|default("vertical") %}
+{% set tl_style = style|default("default") %}
+{% set tl_line_color = line_color|default("primary") %}
+{% set tl_marker = marker_style|default("dot") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("") %}
+
+{% set line_classes = {
+  default: "bg-border",
+  primary: "bg-primary",
+  gradient: "bg-gradient-to-b from-primary to-accent"
+} %}
+
+{% set layout_classes = {
+  vertical: "flex flex-col",
+  horizontal: "flex flex-row overflow-x-auto"
+} %}
+
+{% set classes = [
+  "cats-timeline relative",
+  layout_classes[tl_layout],
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
+  data-timeline-layout="{{ tl_layout }}"
+  data-timeline-style="{{ tl_style }}"
+  data-timeline-marker="{{ tl_marker }}"
+>
+  {# Timeline line #}
+  {% if tl_layout == 'vertical' %}
+    <div class="absolute left-4 top-0 bottom-0 w-0.5 {{ line_classes[tl_line_color] }}"></div>
+  {% else %}
+    <div class="absolute top-4 left-0 right-0 h-0.5 {{ line_classes[tl_line_color] }}"></div>
+  {% endif %}
+
+  {# Timeline items #}
+  <div class="{{ tl_layout == 'vertical' ? 'space-y-8' : 'flex gap-8' }}">
+    {% block items %}
+    {% endblock %}
+  </div>
+</div>

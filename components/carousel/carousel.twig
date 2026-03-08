@@ -14,7 +14,7 @@
 {% set carousel_dots = show_dots|default(true) %}
 {% set carousel_effect = effect|default('slide') %}
 
-<div
+<div {{ attributes }}
   class="cats-carousel relative w-full overflow-hidden {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   data-cats-carousel
   data-autoplay="{{ carousel_autoplay ? 'true' : 'false' }}"

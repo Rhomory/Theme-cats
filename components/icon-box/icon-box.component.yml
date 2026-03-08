@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
-name: Icon Box
-group: Cats - Content
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: 'Icon Box'
+group: 'Cats - Marketing'
 status: stable
-description: "Caja de iconos para destacar características o servicios."
+description: 'Caja de iconos para destacar caracteristicas o servicios.'
 props:
   type: object
   required:
@@ -26,126 +26,75 @@ props:
         - globe
         - users
         - settings
-      meta:enum:
-        star: Estrella
-        check: Check
-        heart: Corazón
-        shield: Escudo
-        zap: Rayo
-        target: Objetivo
-        award: Premio
-        briefcase: Maletín
-        code: Código
-        globe: Globo
-        users: Usuarios
-        settings: Configuración
-      default: "star"
+      default: star
       examples:
-        - "star"
+        - star
     title:
       type: string
-      title: Título
-      default: "Título"
+      title: Titulo
+      default: Titulo
       examples:
-        - "Característica"
+        - Titulo
     description:
       type: string
-      title: Descripción
-      default: ""
-      examples:
-        - "Descripción de la característica"
+      title: Descripcion
+      default: ''
     layout:
       type: string
-      title: Diseño
+      title: Diseno
       enum:
         - vertical
         - horizontal
-      meta:enum:
-        vertical: Vertical
-        horizontal: Horizontal
-      default: "vertical"
+      default: vertical
       examples:
-        - "vertical"
+        - vertical
     alignment:
       type: string
-      title: Alineación
+      title: Alineacion
       enum:
         - left
         - center
-      meta:enum:
-        left: Izquierda
-        center: Centro
-      default: "center"
-      examples:
-        - "center"
+      default: center
     icon_size:
       type: string
-      title: Tamaño del icono
+      title: 'Tamano del icono'
       enum:
-        - small
-        - medium
-        - large
-      meta:enum:
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
-      examples:
-        - "medium"
+        - sm
+        - md
+        - lg
+      default: md
     icon_style:
       type: string
-      title: Estilo del icono
+      title: 'Estilo del icono'
       enum:
         - plain
         - circle
         - square
-      meta:enum:
-        plain: Simple
-        circle: Con fondo circular
-        square: Con fondo cuadrado
-      default: "circle"
-      examples:
-        - "circle"
+      default: circle
     icon_color:
       type: string
-      title: Color del icono
+      title: 'Color del icono'
       enum:
         - primary
         - secondary
         - accent
-      meta:enum:
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
-      default: "primary"
-      examples:
-        - "primary"
+      default: primary
     link_url:
       type: string
-      title: URL de enlace
-      default: ""
-      examples:
-        - "#"
+      title: 'URL de enlace'
+      default: ''
     link_text:
       type: string
-      title: Texto del enlace
-      default: "Ver más"
-      examples:
-        - "Ver más"
-
+      title: 'Texto del enlace'
+      default: 'Ver mas'
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   content:
-    title: "Contenido adicional"
+    title: 'Contenido adicional'

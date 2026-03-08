@@ -1,0 +1,64 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Countdown
+group: 'Cats - Data'
+status: stable
+description: 'Contador regresivo animado.'
+props:
+  type: object
+  required:
+    - target_date
+  properties:
+    target_date:
+      type: string
+      title: 'Fecha objetivo'
+      description: 'Formato: YYYY-MM-DD HH:MM:SS'
+      default: '2025-12-31 23:59:59'
+      examples:
+        - '2025-12-31 23:59:59'
+    show_days:
+      type: boolean
+      title: 'Mostrar dias'
+      default: true
+    show_hours:
+      type: boolean
+      title: 'Mostrar horas'
+      default: true
+    show_minutes:
+      type: boolean
+      title: 'Mostrar minutos'
+      default: true
+    show_seconds:
+      type: boolean
+      title: 'Mostrar segundos'
+      default: true
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - default
+        - boxed
+        - minimal
+      default: boxed
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - sm
+        - md
+        - lg
+      default: md
+    labels_position:
+      type: string
+      title: 'Posicion de etiquetas'
+      enum:
+        - below
+        - inside
+      default: below
+    css_class:
+      type: string
+      title: 'Clases CSS adicionales'
+      default: ''
+    html_id:
+      type: string
+      title: 'ID HTML'
+      default: ''

@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Blockquote
-group: Cats - Content
+group: 'Cats - Content'
 status: stable
-description: "Cita destacada con autor opcional."
+description: 'Cita destacada con autor opcional.'
 props:
   type: object
   required:
@@ -12,21 +12,17 @@ props:
     quote:
       type: string
       title: Cita
-      default: "Esta es una cita destacada."
+      default: 'Esta es una cita destacada.'
       examples:
-        - "El diseño no es solo cómo se ve, sino cómo funciona."
+        - 'Esta es una cita destacada.'
     author:
       type: string
       title: Autor
-      default: ""
-      examples:
-        - "Steve Jobs"
+      default: ''
     source:
       type: string
       title: Fuente
-      default: ""
-      examples:
-        - "Entrevista, 2005"
+      default: ''
     style:
       type: string
       title: Estilo
@@ -35,51 +31,30 @@ props:
         - large
         - bordered
         - icon
-      meta:enum:
-        default: Por defecto
-        large: Grande
-        bordered: Con borde
-        icon: Con icono de comillas
-      default: "default"
+      default: default
       examples:
-        - "default"
+        - default
     alignment:
       type: string
       title: Alineación
       enum:
         - left
         - center
-      meta:enum:
-        left: Izquierda
-        center: Centro
-      default: "left"
-      examples:
-        - "left"
+      default: left
     color:
       type: string
-      title: Color de acento
+      title: 'Color de acento'
       enum:
         - primary
         - secondary
         - accent
         - neutral
-      meta:enum:
-        primary: Primario
-        secondary: Secundario
-        accent: Acento
-        neutral: Neutral
-      default: "primary"
-      examples:
-        - "primary"
+      default: primary
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-element-id"
+      title: 'ID HTML'
+      default: ''

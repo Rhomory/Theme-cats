@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * FAQ component - wrapper para items de FAQ
+ */
+#}
+
+{% set faq_style = style|default("default") %}
+{% set faq_icon_pos = icon_position|default("right") %}
+{% set faq_multiple = allow_multiple|default(false) %}
+{% set faq_first = first_open|default(true) %}
+{% set faq_spacing = spacing|default("md") %}
+{% set custom_class = css_class|default("") %}
+{% set custom_id = html_id|default("cats-faq-" ~ random()) %}
+
+{% set spacing_classes = {
+  sm: "space-y-2",
+  md: "space-y-4",
+  lg: "space-y-6"
+} %}
+
+{% set style_classes = {
+  default: "",
+  boxed: "bg-white rounded-xl p-6 shadow-sm",
+  bordered: "border border-border rounded-lg p-4"
+} %}
+
+{% set classes = [
+  "cats-faq",
+  style_classes[faq_style],
+  custom_class
+]|join(" ")|trim %}
+
+<div {{ attributes }}
+  class="{{ classes }}"
+  id="{{ custom_id }}"
+  data-faq-multiple="{{ faq_multiple ? true : false }}"
+  data-faq-first-open="{{ faq_first ? true : false }}"
+>
+  <div class="{{ spacing_classes[faq_spacing] }}">
+    {% block items %}{% endblock %}
+  </div>
+</div>

@@ -1,0 +1,57 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Icon
+group: 'Cats - Content'
+status: stable
+description: 'Icono con tamano y color configurable.'
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      title: 'Nombre del icono'
+      description: 'Nombre del icono de Heroicons o Font Awesome'
+      default: star
+      examples:
+        - star
+    pack:
+      type: string
+      title: 'Pack de iconos'
+      enum:
+        - heroicons_outline
+        - heroicons_solid
+        - fontawesome
+      default: heroicons_outline
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+        - 2xl
+      default: md
+    color:
+      type: string
+      title: Color
+      enum:
+        - default
+        - primary
+        - secondary
+        - accent
+        - muted
+        - success
+        - warning
+        - error
+      default: default
+    css_class:
+      type: string
+      title: 'Clases CSS adicionales'
+      default: ''
+    html_id:
+      type: string
+      title: 'ID HTML'
+      default: ''

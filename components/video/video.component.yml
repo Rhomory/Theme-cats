@@ -2,6 +2,7 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sd
 name: Video
 group: Cats - Content
 status: stable
+library: cats/video
 description: "Reproductor de video con soporte para YouTube, Vimeo y videos locales."
 props:
   type: object
@@ -13,38 +14,29 @@ props:
         - "youtube"
         - "vimeo"
         - "local"
-      meta:enum:
-        youtube: YouTube
-        vimeo: Vimeo
-        local: Video local
       default: "youtube"
     url:
       type: string
       title: URL del video
       description: "URL de YouTube/Vimeo o ruta del archivo local"
-      examples:
-        - "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      default: ""
+
     poster:
       $ref: json-schema-definitions://canvas.module/image
       title: Imagen de portada
       type: object
     aspect_ratio:
       type: string
-      title: Proporción de aspecto
+      title: Proporcion de aspecto
       enum:
         - "16/9"
         - "4/3"
         - "1/1"
         - "21/9"
-      meta:enum:
-        "16/9": 16:9 (Panorámico)
-        "4/3": 4:3 (Clásico)
-        "1/1": 1:1 (Cuadrado)
-        "21/9": 21:9 (Cine)
       default: "16/9"
     autoplay:
       type: boolean
-      title: Reproducción automática
+      title: Reproduccion automatica
       default: false
     muted:
       type: boolean
@@ -68,31 +60,19 @@ props:
       title: Borde redondeado
       enum:
         - "none"
-        - "small"
-        - "medium"
-        - "large"
-      meta:enum:
-        none: Sin borde
-        small: Pequeño
-        medium: Mediano
-        large: Grande
-      default: "medium"
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
     shadow:
       type: boolean
       title: Sombra
       default: false
-    custom_class:
-      type: string
-      title: Clases CSS personalizadas
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-element-id"

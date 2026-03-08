@@ -1,0 +1,52 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Logo Grid
+group: Cats - Marketing
+status: stable
+description: "Cuadricula de logos de clientes o socios."
+props:
+  type: object
+  properties:
+    columns:
+      type: string
+      title: Columnas
+      enum:
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+      default: "4"
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "default"
+        - "grayscale"
+        - "bordered"
+      default: "grayscale"
+    alignment:
+      type: string
+      title: Alineacion
+      enum:
+        - "left"
+        - "center"
+      default: "center"
+    gap:
+      type: string
+      title: Espaciado
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""
+
+slots:
+  logos:
+    title: "Logos"

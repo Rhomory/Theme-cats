@@ -14,15 +14,15 @@ dependencies:
 
 regions:
   header: Header
+  content: Content
+  footer: Footer
   primary_menu: Primary Menu
   secondary_menu: Secondary Menu
   hero: Hero
   highlighted: Highlighted
   breadcrumb: Breadcrumb
   help: Help
-  content: Content
   sidebar_first: Sidebar First
   sidebar_second: Sidebar Second
   footer_top: Footer Top
-  footer: Footer
   footer_bottom: Footer Bottom

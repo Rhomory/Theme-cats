@@ -1,0 +1,4 @@
+'administer cats theme':
+  title: 'Administer Cats Theme'
+  description: 'Access Cats theme configuration, styles, and components gallery.'
+  restrict access: true

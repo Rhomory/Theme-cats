@@ -1,0 +1,45 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Star Rating
+group: Cats - Content
+status: stable
+description: "Calificacion con estrellas."
+props:
+  type: object
+  properties:
+    rating:
+      type: number
+      title: Calificacion
+      description: "Valor de 0 a 5"
+      default: 4
+    max_rating:
+      type: number
+      title: Calificacion maxima
+      default: 5
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    color:
+      type: string
+      title: Color
+      enum:
+        - "yellow"
+        - "primary"
+        - "accent"
+      default: "yellow"
+    show_value:
+      type: boolean
+      title: Mostrar valor
+      default: false
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

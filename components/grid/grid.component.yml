@@ -2,14 +2,14 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sd
 name: Grid
 group: Cats - Layout
 status: stable
-description: "Sistema de grid flexible con 12 columnas y múltiples configuraciones."
+description: "Sistema de grid flexible con 12 columnas y multiples configuraciones."
 props:
   type: object
   properties:
     columns:
       type: string
       title: Columnas (Desktop)
-      description: "Número de columnas en pantallas grandes"
+      description: "Numero de columnas en pantallas grandes"
       enum:
         - "1"
         - "2"
@@ -19,117 +19,108 @@ props:
         - "6"
         - "12"
       meta:enum:
-        "1": 1 columna
-        "2": 2 columnas
-        "3": 3 columnas
-        "4": 4 columnas
-        "5": 5 columnas
-        "6": 6 columnas
-        "12": 12 columnas
-      default: "3"
+        "1": "1 Columna"
+        "2": "2 Columnas"
+        "3": "3 Columnas"
+        "4": "4 Columnas"
+        "5": "5 Columnas"
+        "6": "6 Columnas"
+        "12": "12 Columnas"
       examples:
         - "3"
+      default: "3"
     columns_tablet:
       type: string
       title: Columnas (Tablet)
-      description: "Número de columnas en tablets"
+      description: "Numero de columnas en tablets"
       enum:
         - "1"
         - "2"
         - "3"
         - "4"
       meta:enum:
-        "1": 1 columna
-        "2": 2 columnas
-        "3": 3 columnas
-        "4": 4 columnas
-      default: "2"
+        "1": "1 Columna"
+        "2": "2 Columnas"
+        "3": "3 Columnas"
+        "4": "4 Columnas"
       examples:
         - "2"
+      default: "2"
     columns_mobile:
       type: string
-      title: Columnas (Móvil)
-      description: "Número de columnas en móviles"
+      title: Columnas (Movil)
+      description: "Numero de columnas en moviles"
       enum:
         - "1"
         - "2"
       meta:enum:
-        "1": 1 columna
-        "2": 2 columnas
-      default: "1"
+        "1": "1 Columna"
+        "2": "2 Columnas"
       examples:
         - "1"
+      default: "1"
     gap:
       type: string
       title: Espaciado entre elementos
       enum:
-        - "none"
-        - "small"
-        - "medium"
-        - "large"
-        - "xlarge"
+        - none
+        - sm
+        - md
+        - lg
+        - xl
       meta:enum:
-        none: Sin espacio
-        small: Pequeño (8px)
-        medium: Mediano (16px)
-        large: Grande (24px)
-        xlarge: Extra grande (32px)
-      default: "medium"
+        none: "Sin espaciado"
+        sm: "Pequeno"
+        md: "Mediano"
+        lg: "Grande"
+        xl: "Extra grande"
       examples:
-        - "medium"
+        - md
+      default: md
     align_items:
       type: string
-      title: Alineación vertical
+      title: Alineacion vertical
       enum:
-        - "start"
-        - "center"
-        - "end"
-        - "stretch"
+        - start
+        - center
+        - end
+        - stretch
       meta:enum:
         start: Arriba
         center: Centro
         end: Abajo
         stretch: Estirar
-      default: "stretch"
+      examples:
+        - stretch
+      default: stretch
     justify_content:
       type: string
-      title: Alineación horizontal
+      title: Alineacion horizontal
       enum:
-        - "start"
-        - "center"
-        - "end"
-        - "between"
-        - "around"
-        - "evenly"
+        - start
+        - center
+        - end
+        - between
+        - around
+        - evenly
       meta:enum:
         start: Inicio
         center: Centro
         end: Final
-        between: Espacio entre
-        around: Espacio alrededor
-        evenly: Espacio uniforme
-      default: "start"
-    custom_class:
-      type: string
-      title: Clases CSS personalizadas
+        between: "Espacio entre"
+        around: "Espacio alrededor"
+        evenly: "Espacio uniforme"
       examples:
-        - "my-custom-grid"
-    custom_id:
-      type: string
-      title: ID personalizado
-
+        - start
+      default: start
     css_class:
       type: string
       title: Clases CSS adicionales
       default: ""
-      examples:
-        - "my-custom-class"
     html_id:
       type: string
       title: ID HTML
       default: ""
-      examples:
-        - "my-section-id"
 
 slots:
   items:

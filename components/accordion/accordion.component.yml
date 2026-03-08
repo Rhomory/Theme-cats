@@ -1,8 +1,9 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Accordion
-group: Cats - Content
+group: 'Cats - Interactive'
 status: stable
-description: "Acordeón expandible para FAQ o contenido colapsable."
+library: cats/accordion
+description: 'Acordeón expandible para FAQ o contenido colapsable.'
 props:
   type: object
   required:
@@ -16,52 +17,47 @@ props:
         - bordered
         - separated
         - minimal
-      meta:enum:
-        default: Por defecto
-        bordered: Con borde
-        separated: Separados
-        minimal: Minimalista
-      default: "default"
+      default: default
       examples:
-        - "default"
+        - default
     allow_multiple:
       type: boolean
-      title: Permitir múltiples abiertos
+      title: 'Permitir múltiples abiertos'
       default: false
-      examples:
-        - false
     icon_position:
       type: string
-      title: Posición del icono
+      title: 'Posición del icono'
       enum:
         - left
         - right
-      meta:enum:
-        left: Izquierda
-        right: Derecha
-      default: "right"
-      examples:
-        - "right"
+      default: right
     first_open:
       type: boolean
-      title: Primer item abierto
+      title: 'Primer item abierto'
       default: false
-      examples:
-        - false
-
+    show_border:
+      type: boolean
+      title: 'Mostrar borde'
+      default: true
+    radius:
+      type: string
+      title: Redondeado
+      enum:
+        - none
+        - sm
+        - md
+        - lg
+        - xl
+        - full
+      default: md
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   items:
-    title: "Items del acordeón"
+    title: 'Items del acordeón'

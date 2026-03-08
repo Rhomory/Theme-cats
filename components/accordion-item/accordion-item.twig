@@ -10,17 +10,23 @@
 {% set custom_id = html_id|default('') %}
 {% set item_title = title|default('') %}
 {% set item_open = is_open|default(false) %}
+{% set icon_pos = icon_position|default('right') %}
 
-<div class="cats-accordion-item {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}" data-accordion-item>
+{# 
+  Styling note: We use CSS variables from the parent accordion if available.
+  The .cats-accordion-item will adapt based on whether the parent is "separated" or not via CSS.
+#}
+
+<div {{ attributes }} class="cats-accordion-item {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %} data-accordion-item>
   <button
     type="button"
-    class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 transition-colors"
+    class="cats-accordion-trigger flex items-center justify-between w-full p-4 text-left font-semibold hover:bg-gray-50 transition-all duration-200 {{ icon_pos == 'left' ? 'flex-row-reverse' : '' }}"
     aria-expanded="{{ item_open ? 'true' : 'false' }}"
     data-accordion-trigger
   >
-    <span>{{ item_title }}</span>
+    <span class="flex-1">{{ item_title }}</span>
     <svg 
-      class="w-5 h-5 transition-transform duration-200 {{ item_open ? 'rotate-180' : '' }}" 
+      class="w-5 h-5 transition-transform duration-300 pointer-events-none {{ item_open ? 'rotate-180' : '' }} {{ icon_pos == 'left' ? 'mr-3' : 'ml-3' }}" 
       fill="none" 
       stroke="currentColor" 
       viewBox="0 0 24 24"
@@ -31,12 +37,32 @@
   </button>
   
   <div 
-    class="overflow-hidden transition-all duration-200 {{ item_open ? '' : 'hidden' }}"
+    class="cats-accordion-content transition-all duration-300 ease-in-out overflow-hidden"
+    style="max-height: {{ item_open ? '2000px' : '0' }}; opacity: {{ item_open ? '1' : '0' }};"
     data-accordion-content
   >
-    <div class="p-4 pt-0 text-gray-600">
+    <div class="cats-accordion-body p-4 text-gray-600">
       {% block content %}
       {% endblock %}
     </div>
   </div>
 </div>
+
+<style>
+  /* Support for "Separated" style via parent context */
+  .cats-accordion.space-y-4 > .cats-accordion-item {
+    border: var(--accordion-border-width, 1px) solid var(--cats-border);
+    border-radius: var(--accordion-radius, var(--cats-radius-md));
+    background-color: var(--cats-background);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  
+  /* Ensure the body feels balanced with the header */
+  .cats-accordion-body {
+    min-height: calc(1.5rem + 2 * 1rem); /* Roughly matching the header height for small content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>

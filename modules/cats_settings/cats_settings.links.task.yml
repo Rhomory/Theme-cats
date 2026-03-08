@@ -1,10 +1,11 @@
-cats_settings.settings:
+# Styles page tabs
+cats_settings.styles:
   title: 'General'
-  route_name: cats_settings.settings
-  base_route: cats_settings.settings
+  route_name: cats_settings.styles
+  base_route: cats_settings.styles
 
 cats_settings.colors:
-  title: 'Colores'
+  title: 'Colors'
   route_name: cats_settings.colors
-  base_route: cats_settings.settings
+  base_route: cats_settings.styles
   weight: 10

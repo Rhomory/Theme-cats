@@ -1,0 +1,54 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Banner
+group: Cats - Marketing
+status: stable
+description: "Banner promocional o de anuncio."
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Texto
+      default: "Anuncio importante"
+    link_text:
+      type: string
+      title: Texto del enlace
+      default: ""
+    link_url:
+      type: string
+      title: URL del enlace
+      default: ""
+    style:
+      type: string
+      title: Estilo
+      enum:
+        - "info"
+        - "success"
+        - "warning"
+        - "error"
+        - "primary"
+        - "gradient"
+      default: "info"
+    dismissible:
+      type: boolean
+      title: Cerrable
+      default: true
+    icon:
+      type: boolean
+      title: Mostrar icono
+      default: true
+    position:
+      type: string
+      title: Posicion
+      enum:
+        - "top"
+        - "inline"
+      default: "inline"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

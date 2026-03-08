@@ -1,8 +1,9 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Carousel
-group: Cats - Content
+group: 'Cats - Interactive'
 status: stable
-description: "Carrusel de contenido con navegación."
+library: cats/carousel
+description: 'Carrusel de contenido con navegación.'
 props:
   type: object
   required:
@@ -11,53 +12,39 @@ props:
   properties:
     autoplay:
       type: boolean
-      title: Reproducción automática
+      title: 'Reproducción automática'
       default: true
       examples:
         - true
     autoplay_speed:
       type: number
-      title: Velocidad (ms)
+      title: 'Velocidad (ms)'
       default: 5000
-      examples:
-        - 5000
     show_navigation:
       type: boolean
-      title: Mostrar navegación
+      title: 'Mostrar navegación'
       default: true
       examples:
         - true
     show_dots:
       type: boolean
-      title: Mostrar indicadores
+      title: 'Mostrar indicadores'
       default: true
-      examples:
-        - true
     effect:
       type: string
-      title: Efecto de transición
+      title: 'Efecto de transición'
       enum:
         - slide
         - fade
-      meta:enum:
-        slide: Deslizar
-        fade: Desvanecer
-      examples:
-        - "slide"
-
+      default: slide
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-section-id"
-
+      title: 'ID HTML'
+      default: ''
 slots:
   slides:
-    title: "Diapositivas"
+    title: Diapositivas

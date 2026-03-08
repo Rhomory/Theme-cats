@@ -5,9 +5,6 @@
  */
 #}
 
-
-{% set custom_class = css_class|default('') %}
-{% set custom_id = html_id|default('') %}
 {% set col_width = width|default('auto') %}
 {% set col_width_tablet = width_tablet|default('auto') %}
 {% set col_width_mobile = width_mobile|default('12/12') %}
@@ -15,10 +12,12 @@
 {% set col_padding = padding|default('none') %}
 {% set col_bg = background_color|default('transparent') %}
 {% set col_radius = border_radius|default('none') %}
+{% set custom_class = css_class|default('') %}
+{% set custom_id = html_id|default('') %}
 
 {% set column =
   html_cva(
-    base: ['min-w-0'],
+    base: ['flex flex-col h-full w-full'],
     variants: {
       width: {
         auto: 'lg:flex-1',
@@ -33,7 +32,7 @@
         '9/12': 'lg:w-9/12',
         '10/12': 'lg:w-10/12',
         '11/12': 'lg:w-11/12',
-        '12/12': 'lg:w-full'
+        '12/12': 'lg:w-12/12'
       },
       widthTablet: {
         auto: 'md:flex-1',
@@ -53,34 +52,29 @@
       },
       padding: {
         none: 'p-0',
-        small: 'p-2',
-        medium: 'p-4',
-        large: 'p-6'
+        sm: 'p-4',
+        md: 'p-6',
+        lg: 'p-8'
       },
       backgroundColor: {
         transparent: 'bg-transparent',
-        primary: 'bg-primary text-primary-foreground',
-        secondary: 'bg-secondary text-secondary-foreground',
-        accent: 'bg-accent text-accent-foreground',
-        muted: 'bg-muted text-muted-foreground',
-        white: 'bg-white text-foreground',
+        primary: 'cats-bg-primary text-white',
+        secondary: 'cats-bg-secondary text-white',
+        accent: 'cats-bg-accent text-white',
+        muted: 'cats-bg-muted',
+        white: 'bg-white',
         dark: 'bg-slate-900 text-white'
       },
       borderRadius: {
         none: 'rounded-none',
-        small: 'rounded',
-        medium: 'rounded-lg',
-        large: 'rounded-2xl'
+        sm: 'rounded',
+        md: 'rounded-lg',
+        lg: 'rounded-2xl',
+        full: 'rounded-full'
       }
     }
   )
 %}
-
-{# Normalizar clases personalizadas #}
-{% set additional_classes = custom_class|default('') %}
-{% if additional_classes is iterable %}
-  {% set additional_classes = additional_classes|join(' ') %}
-{% endif %}
 
 {% set column_classes =
   column.apply({
@@ -91,14 +85,12 @@
     padding: col_padding,
     backgroundColor: col_bg,
     borderRadius: col_radius
-  }, additional_classes)
+  }, custom_class)|trim
 %}
 
-{% set col_id = custom_id|default('') %}
-
-<div
-  class="{{ column_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
-  {% if col_id %}id="{{ col_id }}"{% endif %}
+<div {{ attributes }}
+  class="{{ column_classes }}"
+  {% if custom_id %}id="{{ custom_id }}"{% endif %}
 >
   {% block content %}
   {% endblock %}

@@ -1,0 +1,52 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Toggle
+group: Cats - Interactive
+status: stable
+description: "Interruptor on/off."
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Etiqueta
+      default: ""
+    checked:
+      type: boolean
+      title: Activado
+      default: false
+    disabled:
+      type: boolean
+      title: Deshabilitado
+      default: false
+    size:
+      type: string
+      title: Tamano
+      enum:
+        - "sm"
+        - "md"
+        - "lg"
+      default: "md"
+    color:
+      type: string
+      title: Color activo
+      enum:
+        - "primary"
+        - "secondary"
+        - "accent"
+        - "success"
+      default: "primary"
+    label_position:
+      type: string
+      title: Posicion de etiqueta
+      enum:
+        - "left"
+        - "right"
+      default: "right"
+    css_class:
+      type: string
+      title: Clases CSS adicionales
+      default: ""
+    html_id:
+      type: string
+      title: ID HTML
+      default: ""

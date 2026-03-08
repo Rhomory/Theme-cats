@@ -1,8 +1,8 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Text
-group: Cats - Content
+group: 'Cats - Content'
 status: stable
-description: "Bloque de texto con opciones de tipografía."
+description: 'Bloque de texto con opciones de tipografía.'
 props:
   type: object
   required:
@@ -13,10 +13,10 @@ props:
   properties:
     text_content:
       type: string
-      title: Contenido de texto
-      default: "Tu texto aquí"
+      title: 'Contenido de texto'
+      default: 'Tu texto aquí'
       examples:
-        - "Lorem ipsum dolor sit amet"
+        - 'Tu texto aquí'
     text_size:
       type: string
       title: Tamaño
@@ -25,14 +25,9 @@ props:
         - base
         - lg
         - xl
-      meta:enum:
-        sm: Pequeño
-        base: Base
-        lg: Grande
-        xl: Extra grande
-      default: "base"
+      default: base
       examples:
-        - "base"
+        - base
     text_color:
       type: string
       title: Color
@@ -42,15 +37,9 @@ props:
         - secondary
         - muted
         - white
-      meta:enum:
-        default: Por defecto
-        primary: Primario
-        secondary: Secundario
-        muted: Atenuado
-        white: Blanco
-      default: "default"
+      default: default
       examples:
-        - "default"
+        - default
     align:
       type: string
       title: Alineación
@@ -59,36 +48,21 @@ props:
         - center
         - right
         - justify
-      meta:enum:
-        left: Izquierda
-        center: Centro
-        right: Derecha
-        justify: Justificado
-      default: "left"
+      default: left
       examples:
-        - "left"
+        - left
     line_height:
       type: string
-      title: Altura de línea
+      title: 'Altura de línea'
       enum:
         - tight
         - normal
         - relaxed
-      meta:enum:
-        tight: Ajustada
-        normal: Normal
-        relaxed: Relajada
-      examples:
-        - "normal"
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-element-id"
+      title: 'ID HTML'
+      default: ''

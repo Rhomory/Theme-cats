@@ -1,22 +1,17 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
 name: Image
-group: Cats - Content
+group: 'Cats - Content'
 status: stable
-description: "Componente de imagen con opciones de tamaño y efectos."
+description: 'Componente de imagen con opciones de tamaño y efectos.'
 props:
   type: object
   required:
     - aspect_ratio
   properties:
     media:
-      $ref: json-schema-definitions://canvas.module/image
+      $ref: 'json-schema-definitions://canvas.module/image'
       title: Imagen
       type: object
-      examples:
-        - src: "https://placehold.co/800x600"
-          alt: "Imagen de ejemplo"
-          width: 800
-          height: 600
     width:
       type: string
       title: Ancho
@@ -24,51 +19,30 @@ props:
         - auto
         - full
         - full-viewport
-      meta:enum:
-        auto: Automático
-        full: 100% del contenedor
-        full-viewport: Ancho completo (rompe contenedor)
-      default: "auto"
-      examples:
-        - "auto"
+      default: auto
     aspect_ratio:
       type: string
       title: Proporción
       enum:
         - auto
-        - "1:1"
-        - "4:3"
-        - "16:9"
-        - "3:2"
-        - "2:1"
-      meta:enum:
-        auto: Automática
-        "1:1": Cuadrado
-        "4:3": "4:3"
-        "16:9": "16:9 (Video)"
-        "3:2": "3:2"
-        "2:1": "2:1 (Banner)"
-      default: "auto"
+        - '1:1'
+        - '4:3'
+        - '16:9'
+        - '3:2'
+        - '2:1'
+      default: auto
       examples:
-        - "4:3"
+        - auto
     rounded:
       type: string
-      title: Borde redondeado
+      title: 'Borde redondeado'
       enum:
         - none
         - sm
         - md
         - lg
         - full
-      meta:enum:
-        none: Sin redondeo
-        sm: Pequeño
-        md: Mediano
-        lg: Grande
-        full: Circular
-      default: "none"
-      examples:
-        - "md"
+      default: none
     shadow:
       type: string
       title: Sombra
@@ -77,51 +51,29 @@ props:
         - sm
         - md
         - lg
-      meta:enum:
-        none: Sin sombra
-        sm: Pequeña
-        md: Mediana
-        lg: Grande
-      default: "none"
-      examples:
-        - "none"
+      default: none
     hover_effect:
       type: string
-      title: Efecto hover
+      title: 'Efecto hover'
       enum:
         - none
         - zoom
         - brightness
         - grayscale
-      meta:enum:
-        none: Ninguno
-        zoom: Zoom
-        brightness: Brillo
-        grayscale: Escala de grises
-      default: "none"
-      examples:
-        - "none"
+      default: none
     caption:
       type: string
       title: Leyenda
-      default: ""
-      examples:
-        - "Descripción de la imagen"
+      default: ''
     link_url:
       type: string
-      title: URL de enlace
-      default: ""
-      examples:
-        - "#"
+      title: 'URL de enlace'
+      default: ''
     css_class:
       type: string
-      title: Clases CSS adicionales
-      default: ""
-      examples:
-        - "my-custom-class"
+      title: 'Clases CSS adicionales'
+      default: ''
     html_id:
       type: string
-      title: ID HTML
-      default: ""
-      examples:
-        - "my-element-id"
+      title: 'ID HTML'
+      default: ''

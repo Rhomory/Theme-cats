@@ -17,7 +17,7 @@
 {% set video_loop = loop|default(false) %}
 {% set video_controls = controls|default(true) %}
 {% set video_lazy = lazy_load|default(true) %}
-{% set video_radius = border_radius|default('medium') %}
+{% set video_radius = border_radius|default('md') %}
 {% set video_shadow = shadow|default(false) %}
 
 {% set has_shadow = video_shadow ? 'yes' : 'no' %}
@@ -46,9 +46,9 @@
       },
       borderRadius: {
         none: 'rounded-none',
-        small: 'rounded',
-        medium: 'rounded-lg',
-        large: 'rounded-2xl'
+        sm: 'rounded',
+        md: 'rounded-lg',
+        lg: 'rounded-2xl'
       },
       shadow: {
         yes: 'shadow-lg',
@@ -71,7 +71,7 @@
   }, additional_classes)
 %}
 
-<div
+<div {{ attributes }}
   class="cb-video {{ wrapper_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
   data-cb-video
   data-source="{{ video_source }}"

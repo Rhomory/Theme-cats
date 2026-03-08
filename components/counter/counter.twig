@@ -13,39 +13,50 @@
 {% set counter_suffix = suffix|default('') %}
 {% set counter_title = title|default('') %}
 {% set counter_duration = duration|default(2000) %}
-{% set counter_size = size|default('large') %}
+{% set counter_size = size|default('lg') %}
 {% set counter_color = color|default('primary') %}
 {% set counter_alignment = alignment|default('center') %}
 
-{% set counter =
+{% set counter_cva =
   html_cva(
     base: ['cb-counter'],
     variants: {
-      alignment: {
-        left: 'text-left',
-        center: 'text-center',
-        right: 'text-right'
+      'alignment': {
+        'left': 'text-left',
+        'center': 'text-center',
+        'right': 'text-right'
       }
     }
   )
 %}
 
+{% set color_map = {
+  'default': 'text-foreground',
+  'primary': 'text-primary',
+  'secondary': 'text-secondary',
+  'accent': 'text-accent'
+} %}
+
 {% set number_styles =
   html_cva(
     base: ['font-bold tabular-nums'],
     variants: {
-      size: {
-        small: 'text-2xl md:text-3xl',
-        medium: 'text-3xl md:text-4xl',
-        large: 'text-4xl md:text-5xl',
-        xlarge: 'text-5xl md:text-6xl'
+      'size': {
+        'sm': 'text-2xl md:text-3xl',
+        'md': 'text-3xl md:text-4xl',
+        'lg': 'text-4xl md:text-5xl',
+        'xl': 'text-5xl md:text-6xl'
       },
-      color: {
-        default: 'text-foreground',
-        primary: 'text-primary',
-        secondary: 'text-secondary',
-        accent: 'text-accent'
-      }
+      'color': color_map
+    }
+  )
+%}
+
+{% set title_styles =
+  html_cva(
+    base: ['mt-2 text-sm md:text-base font-medium'],
+    variants: {
+      'color': color_map
     }
   )
 %}
@@ -55,11 +66,13 @@
   {% set additional_classes = additional_classes|join(' ') %}
 {% endif %}
 
-{% set counter_classes = counter.apply({ alignment: counter_alignment }, additional_classes) %}
-{% set number_classes = number_styles.apply({ size: counter_size, color: counter_color }) %}
+{% set counter_classes = counter_cva.apply({ 'alignment': counter_alignment }, additional_classes) %}
+{% set number_classes = number_styles.apply({ 'size': counter_size, 'color': counter_color }) %}
+{% set title_classes = title_styles.apply({ 'color': counter_color }) %}
 
-<div
-  class="{{ counter_classes }} {{ custom_class }}"{% if custom_id %} id="{{ custom_id }}"{% endif %}
+<div {{ attributes }}
+  class="{{ counter_classes }}"
+  {% if custom_id %} id="{{ custom_id }}"{% endif %}
   data-cb-counter
   data-target="{{ counter_number }}"
   data-duration="{{ counter_duration }}"
@@ -74,6 +87,6 @@
     {% endif %}
   </div>
   {% if counter_title %}
-    <p class="mt-2 text-muted-foreground text-sm md:text-base">{{ counter_title }}</p>
+    <p class="{{ title_classes }}">{{ counter_title }}</p>
   {% endif %}
 </div>
